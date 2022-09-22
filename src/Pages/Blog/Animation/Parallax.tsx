@@ -1,11 +1,16 @@
 import styled from "@emotion/styled";
-import { Typography } from "@mui/material";
+import { Typography, Stack, useScrollTrigger } from "@mui/material";
+import { useScroll } from "framer-motion";
 import { useRef, ReactNode } from "react";
+import { MdSlideshow } from "react-icons/md";
 import './style.css'
 
 
 
 export const Parallax = ({ id, children }: { id: number | string, children: ReactNode }) => {
+  const { scrollXProgress } = useScroll()
+  console.log(scrollXProgress);
+
   return (
     <ParallaxSection>
       <Typography
@@ -29,12 +34,25 @@ export const Parallax = ({ id, children }: { id: number | string, children: Reac
       </Typography>
 
       {children}
+
+      <Stack
+        alignItems='center'
+        justifyContent='center'
+        sx={{
+          position: 'absolute',
+          width: 50,
+          height: '40%',
+          right: 0,
+
+        }} >
+      </Stack>
     </ParallaxSection >
   )
 }
 
 const ParallaxSection = styled.section`
   height: 100vh;
+  width: 100%;
   display: flex;
   align-items: center;
   overflow-x: scroll;

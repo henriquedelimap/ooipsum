@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom"
 import '../Animation/style.css'
 export const PostThumb = ({ post, index }: { post: any, index: number }) => {
   const navigate = useNavigate()
+
+
   return (
     <PostContainer>
 
@@ -13,7 +15,6 @@ export const PostThumb = ({ post, index }: { post: any, index: number }) => {
         sx={{
           width: '80vw',
           height: '80vh',
-
           cursor: 'pointer',
           margin: index === 0 ? ' 0 0 0 6rem' : '0',
           background: '#3d3d3d',
@@ -23,8 +24,8 @@ export const PostThumb = ({ post, index }: { post: any, index: number }) => {
           backgroundRepeat: 'no-repeat',
           transition: 'all 400ms ease-in-out',
           backgroundSize: 'cover',
-          '&:hover': {
-            backgroundImage: `url(${post.img})`,
+          '&:last-of-type': {
+            marginRight: '1rem'
           }
         }}>
         <CardContent sx={{
@@ -40,15 +41,19 @@ export const PostThumb = ({ post, index }: { post: any, index: number }) => {
               sx={{
                 borderRadius: '.8rem',
               }} >
-              <Typography fontFamily='Outfit' variant='h3' color='#fafafa' sx={{ textShadow: '-2px 2px 0px #3d3d3d' }}>
+              <Typography
+                fontFamily='Outfit'
+                variant='h3'
+                color='#fafafa'
+                sx={{ textShadow: '-2px 2px 0px #3d3d3d' }}
+              >
                 {post?.title}
               </Typography>
             </Stack>
           </Stack>
         </CardContent>
       </Card>
-
-    </PostContainer>
+    </PostContainer >
   )
 }
 

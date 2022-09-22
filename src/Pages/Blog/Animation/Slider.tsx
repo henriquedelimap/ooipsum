@@ -20,18 +20,17 @@ export const Slider = ({ children }: { children: ReactNode }) => {
 
 const Carousel = styled.div`
   overflow: hidden;
-  margin-top: 64px;
-  
-  `
+  margin-top: 64px; 
+`
+
+
 
 const InnerCarousel = styled.div`
-display: flex;
-overflow: scroll;
-scroll-snap-type: x mandatory;
-
+  display: flex;
+  overflow: scroll;
+  scroll-snap-type: x mandatory;
 `
 
 const CarouselContainer = styled.div`
-overflow: scroll;
-
+  overflow: scroll;
 `
