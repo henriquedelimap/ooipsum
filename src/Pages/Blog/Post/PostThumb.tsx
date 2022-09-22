@@ -21,6 +21,7 @@ export const PostThumb = ({ post, index }: { post: any, index: number }) => {
           border: '3px solid transparent',
           backgroundImage: `url(${post.img})`,
           backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
           transition: 'all 400ms ease-in-out',
           backgroundSize: '100% ',
           '&:hover': {
