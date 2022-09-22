@@ -3,7 +3,7 @@ import { Card, CardContent, Paper, Typography } from "@mui/material"
 import { Stack } from "@mui/system"
 import { useNavigate } from "react-router-dom"
 import '../Animation/style.css'
-export const PostThumb = ({ post, index }: { post: any, index: number }) => {
+export const PostThumb = ({ post, index, small }: { post: any, index: number, small?: boolean }) => {
   const navigate = useNavigate()
 
 
@@ -11,10 +11,10 @@ export const PostThumb = ({ post, index }: { post: any, index: number }) => {
     <PostContainer>
 
       <Card
-        onClick={() => navigate(`${post.id}`)}
+        onClick={() => navigate(`/blog/${post.id}`)}
         sx={{
-          width: '80vw',
-          height: '80vh',
+          width: !!small ? '30vw' : '80vw',
+          height: !!small ? '80vh' : '80vh',
           cursor: 'pointer',
           margin: index === 0 ? ' 0 0 0 4rem' : '0',
           background: '#3d3d3d',
@@ -23,12 +23,13 @@ export const PostThumb = ({ post, index }: { post: any, index: number }) => {
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           transition: 'all 400ms ease-in-out',
-          backgroundSize: '100%',
+          backgroundSize: '130%',
           '&:last-of-type': {
             marginRight: '2rem'
           },
           '&:hover': {
-            backgroundSize: '120%',
+            backgroundSize: '150%',
+
           }
         }}>
         <CardContent sx={{

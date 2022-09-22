@@ -23,28 +23,25 @@ export const Blog = () => {
         Script.blog.map((item, index) => {
           return (
 
-            <>
-              <Parallax key={index} id={item.tag} >
-                <Slider>
-                  <Stack direction='row' spacing={4}>
+            <Parallax key={index} id={item.tag} >
+              <Slider>
+                <Stack direction='row' spacing={4}>
 
-                    {
-                      item.posts.map((post, index) => {
-                        return (
-                          <PostThumb index={index} key={index} post={post} />
-                        )
-                      })
-                    }
-                  </Stack>
-                </Slider>
-              </Parallax>
-            </>
+                  {
+                    item.posts.map((post, index) => {
+                      return (
+                        <PostThumb index={index} key={index} post={post} />
+                      )
+                    })
+                  }
+                </Stack>
+              </Slider>
+            </Parallax>
 
           )
         }
         )
       }
-
       <motion.div
         style={{
           scaleX,
