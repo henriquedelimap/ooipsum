@@ -14,7 +14,7 @@ export const PostThumb = ({ post, index, small }: { post: any, index: number, sm
         onClick={() => navigate(`/blog/${post.id}`)}
         sx={{
           width: !!small ? '50vw' : '80vw',
-          height: !!small ? '80vh' : '80vh',
+          height: !!small ? '50vw' : '80vh',
           cursor: 'pointer',
           margin: index === 0 ? ' 0 0 0 4rem' : '0',
           background: '#3d3d3d',
