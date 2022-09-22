@@ -18,7 +18,6 @@ export const PostThumb = ({ post, index }: { post: any, index: number }) => {
           margin: index === 0 ? ' 0 0 0 6rem' : '0',
           background: '#3d3d3d',
           borderRadius: '.8rem',
-          border: '3px solid transparent',
           backgroundImage: `url(${post.img})`,
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
