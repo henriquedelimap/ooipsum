@@ -13,7 +13,7 @@ export const PostThumb = ({ post, index, small }: { post: any, index: number, sm
       <Card
         onClick={() => navigate(`/blog/${post.id}`)}
         sx={{
-          width: !!small ? '30vw' : '80vw',
+          width: !!small ? '50vw' : '80vw',
           height: !!small ? '80vh' : '80vh',
           cursor: 'pointer',
           margin: index === 0 ? ' 0 0 0 4rem' : '0',
