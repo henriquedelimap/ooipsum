@@ -13,7 +13,7 @@ export const PostThumb = ({ post, index }: { post: any, index: number }) => {
       <Card
         onClick={() => navigate(`${post.id}`)}
         sx={{
-          width: '40vw',
+          width: '80vw',
           height: '80vh',
           cursor: 'pointer',
           margin: index === 0 ? ' 0 0 0 4rem' : '0',
@@ -23,12 +23,12 @@ export const PostThumb = ({ post, index }: { post: any, index: number }) => {
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           transition: 'all 400ms ease-in-out',
-          backgroundSize: 'cover',
+          backgroundSize: '100%',
           '&:last-of-type': {
             marginRight: '2rem'
           },
           '&:hover': {
-            width: '80vw'
+            backgroundSize: '120%',
           }
         }}>
         <CardContent sx={{
