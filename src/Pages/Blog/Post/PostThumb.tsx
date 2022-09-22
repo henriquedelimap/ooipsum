@@ -26,9 +26,6 @@ export const PostThumb = ({ post, index }: { post: any, index: number }) => {
           backgroundSize: 'cover',
           '&:hover': {
             backgroundImage: `url(${post.img})`,
-
-            backgroundSize: '116% ',
-
           }
         }}>
         <CardContent sx={{
