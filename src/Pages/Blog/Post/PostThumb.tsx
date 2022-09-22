@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { Card, CardContent, Paper, Typography } from "@mui/material"
+import { Card, CardContent, Chip, Paper, Typography } from "@mui/material"
 import { Stack } from "@mui/system"
 import { useNavigate } from "react-router-dom"
 import '../Animation/style.css'
@@ -37,11 +37,24 @@ export const PostThumb = ({ post, index, small }: { post: any, index: number, sm
           width: '100%',
         }}>
           <Stack sx={{ height: '100%' }}>
-            <Stack sx={{ height: '100%' }}>
+            <Stack alignItems='end' justifyContent='start' sx={{ height: '100%' }}>
+              <Typography fontFamily='Outfit'
+                variant='h5'
+                fontWeight={400}
+                color='#3d3d3d'
+                sx={{
+                  background: '#fafafaaf',
+                  p: 2, pt: 0, pb: 0,
+                  borderRadius: 200,
+                }}
+              >
+
+                ler artigo
+              </Typography>
             </Stack>
             <Stack
               alignItems='center'
-              justifyContent='center'
+              justifyContent='end'
               sx={{
                 borderRadius: '.8rem',
               }} >
