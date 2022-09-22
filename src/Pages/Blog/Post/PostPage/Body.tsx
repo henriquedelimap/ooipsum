@@ -9,7 +9,7 @@ export const PostPageBody = ({ page }: { page: any }) => {
         background: '#3d3d3d',
         backgroundImage: `url(${page.img})`,
         backgroundPosition: 'center',
-        backgroundSize: '100%',
+        backgroundSize: 'cover',
         overflow: 'hidden'
       }} >
       </Stack>
