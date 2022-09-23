@@ -1,6 +1,5 @@
 import { Stack, Typography } from "@mui/material"
 import { useState } from "react"
-import { Script } from "../../Common/Script"
 import { BtnContact } from "./BtnContact"
 import { CardContact } from "./CardContact"
 

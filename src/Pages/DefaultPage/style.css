@@ -1,0 +1,49 @@
+@keyframes load {
+  0% {
+    backdrop-filter: blur(6px);
+  }
+  100% {
+    backdrop-filter: blur(0px);
+  }
+}
+
+.paper {
+  animation: load 300ms ease-in backwards;
+}
+
+@keyframes AnimateBG {
+  0% {
+    background-size: 200% 200%;
+    background-position: 20% 20%;
+  }
+
+  50% {
+    background-position: 50% 0%;
+  }
+
+  100% {
+    background-size: 400% 400%;
+
+    background-position: 20% 20%;
+  }
+}
+
+.container {
+  animation: perspectiveAnimation 2s infinite ease-in-out;
+}
+
+.child {
+  transform: rotateY(61deg);
+}
+
+@keyframes perspectiveAnimation {
+  0% {
+    perspective: 2px;
+  }
+  50% {
+    perspective: 820px;
+  }
+  100% {
+    perspective: 2px;
+  }
+}

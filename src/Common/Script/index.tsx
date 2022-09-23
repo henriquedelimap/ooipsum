@@ -4,40 +4,12 @@ import { Id } from "../../Utils";
 
 export const Script = {
   logo: <Logo />,
-  siteName: 'genérico',
-  appBarListItems: [
-    {
-      to: '',
-      label: 'home'
-    },
-    {
-      to: 'blog',
-      label: 'blog'
-    },
-    {
-      to: 'acessar',
-      label: 'acessar'
-    },
-  ],
+
   homeInput: {
     icon: <MdMailOutline style={{ padding: 10 }} fontSize={64} />,
-    placeholder: 'informe seu email e receba conteúdos exclusivos',
-    button: 'assinar'
+
   },
-  homeMainCards: [
-    {
-      background: '1',
-      description: '',
-    },
-    {
-      background: '2',
-      description: '',
-    },
-    {
-      background: '3',
-      description: '',
-    }
-  ],
+
   blog: [
     {
       tag: 'lapsoo',
@@ -136,10 +108,6 @@ export const Script = {
     }
 
   ],
-  newsletter: {
-    title: 'fique por dentro das novidades',
-    subtitle: 'assine nossa newsletter para receber conteúdos exclusivos em primeira mão'
-  },
   imgDefault: [
     'https://images.unsplash.com/photo-1645330226269-f0d5530feb20?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80',
     'https://images.unsplash.com/photo-1637140945341-f28ada987326?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80',

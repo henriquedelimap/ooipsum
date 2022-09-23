@@ -1,18 +1,22 @@
 import { Stack, FormControl, InputLabel, OutlinedInput, Button, Typography } from "@mui/material"
 import { useState, useEffect } from "react"
-import { Navigate, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { useAuthContext } from "../../Common/Context/Auth"
 
 export const LoginForm = () => {
+
+  const { loading, login, error, user, usuario } = useAuthContext()
 
   const [username, setUsername] = useState<string | undefined>(undefined)
   const [password, setPassword] = useState<string | undefined>(undefined)
 
   const navigate = useNavigate()
 
-  const usuario = 'henrique'
-  const error = false
-  const loading = false
-  const login = (username: string, password: string) => { }
+  useEffect(() => {
+    if (!!usuario && !error) {
+      navigate(`/${usuario?.username}`)
+    }
+  }, [login, usuario])
 
   const handleLogin = (e: any) => {
     e.preventDefault()
@@ -22,17 +26,16 @@ export const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={(e) => handleLogin(e)} style={{ width: '100%' }}>
+    <form onSubmit={(e) => handleLogin(e)}>
       <Stack
         alignItems='center'
         justifyContent='center'
         spacing={8}
-        sx={{ height: '80vh', width: '100%' }}
       >
 
-        <Stack alignItems='center' spacing={4} sx={{ width: '100%' }} >
+        <Stack spacing={4} sx={{ width: ' 100%' }} >
           <Typography variant='h4' fontWeight={200}>Minha conta</Typography>
-          <Typography variant='subtitle1' color='error' >{error}</Typography>
+          <Typography variant='subtitle1' color='error' >{error?.message}</Typography>
 
           <FormControl sx={{ width: ' 100%' }} >
             <InputLabel color={error ? 'error' : 'primary'} size='small'>username</InputLabel>
@@ -44,7 +47,6 @@ export const LoginForm = () => {
             <OutlinedInput type='password' error={!!error} label='password' disabled={loading} onChange={(e: any) => setPassword(e.target.value)} size='small'></OutlinedInput>
           </FormControl>
         </Stack>
-
         <Button disabled={loading} type='submit'
           color='primary' variant='contained' sx={{ width: '100%', boxShadow: 'none' }}>
           <Typography fontFamily='Outfit' fontWeight={600} color='white'>acessar</Typography>

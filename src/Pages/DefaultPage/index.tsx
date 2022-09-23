@@ -2,11 +2,30 @@ import { Box, Stack, Paper } from "@mui/material"
 import { Container } from "@mui/system"
 import { Outlet } from "react-router-dom"
 import { OOLogo } from "../../assets/logoOOtech"
+import { useBlogConfig } from "../../Common/Context/BlogConfig"
 import { MyAppBar } from "./appBar"
+import './style.css'
 
 export const DefaultPage = () => {
+  const { loading } = useBlogConfig()
   return (
     <Box sx={{ position: 'relative' }}>
+      <Stack
+        className='paper'
+        sx={{
+          width: '100vw',
+          height: '100vh',
+          position: 'absolute',
+          zIndex: 2000,
+          display: loading ? 'block' : 'none',
+          backdropFilter: 'blur(3px)',
+
+        }} >
+
+      </Stack>
+
+
+
       <MyAppBar />
       <Box sx={{ height: 64, width: '100%', background: '#fafafa' }} />
       <Paper sx={{ minHeight: '100vh', pb: 8, background: '#fafafa' }}>
