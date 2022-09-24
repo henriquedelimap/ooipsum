@@ -6,6 +6,7 @@ import {
 import { Acessar, Cadastrar, DefaultPage, Home, NotFound, BlogRotas, Blog } from './Pages'
 import { AdminDefaultPage } from './Pages/Admin/AdminDefaultPage'
 import { Configurar } from './Pages/Admin/Config'
+import { AdminHomePage } from './Pages/Admin/Home'
 import { BlogPost } from './Pages/Admin/Post'
 import { ScrollToTop } from './Utils'
 
@@ -26,7 +27,7 @@ export const Rotas = () => {
           <Route path='*' element={<NotFound />} />
 
           <Route path='admin' element={<AdminDefaultPage />} >
-            <Route index element={<p>index</p>} />
+            <Route index element={<AdminHomePage />} />
             <Route path='blog' element={<BlogPost />} />
             <Route path='configurar' element={<Configurar />} />
           </Route>

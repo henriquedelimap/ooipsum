@@ -1,8 +1,9 @@
-import { Accordion, AccordionSummary, AccordionDetails, Avatar, Container, Stack, Typography, FormControl, OutlinedInput } from "@mui/material"
-import { SyntheticEvent, useState } from "react"
+import { Accordion, AccordionSummary, AccordionDetails, Avatar, Container, Stack, Typography, FormControl, OutlinedInput, Button } from "@mui/material"
+import { SyntheticEvent, useState, useEffect } from "react"
 import { MdEdit, MdExpandMore, MdModeEditOutline, MdSend } from "react-icons/md"
 import { useAuthContext } from "../../../Common/Context/Auth"
 import { useBlogConfig } from "../../../Common/Context/BlogConfig"
+import { useInternalConfig } from "../../../Common/Context/InternalConfig"
 import { drawerWidth } from "../menu"
 
 export const Configurar = () => {
@@ -34,6 +35,13 @@ export const Configurar = () => {
 
 
   const settingOptions = Object.keys(blogConfig)
+
+  const { setAppBarAction } = useInternalConfig()
+
+  useEffect(() => {
+    setAppBarAction(<></>)
+  }, [])
+
 
   return (
     <Stack spacing={4} sx={{ pt: 2, width: '100%' }} >
@@ -68,14 +76,14 @@ export const Configurar = () => {
         <Stack spacing={1}>
 
           {
-            label.map((item, index) => (
+            label?.map((item, index) => (
               <Accordion elevation={0} key={index} expanded={expanded === `${index}`} onChange={handleChange(`${index}`)}>
                 <AccordionSummary expandIcon={<MdExpandMore />}
                   aria-controls={`${label}-content`}
                   id={`${label}-header`}
                 >
                   <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                    {item.label}
+                    {item?.label}
                   </Typography>
                   <Typography>
                     {blogConfig?.siteName}

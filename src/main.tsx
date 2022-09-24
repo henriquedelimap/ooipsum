@@ -7,6 +7,7 @@ import { AuthProvider } from './Common/Context/Auth'
 import { SignUpProvider } from './Common/Context/SignUp'
 import { Rotas } from './Route'
 import theme from './Style/Global'
+import { InternalConfigProvider } from './Common/Context/InternalConfig'
 const client = new ApolloClient({
   uri: 'https://ooipsum.herokuapp.com/',
   cache: new InMemoryCache()
@@ -14,16 +15,18 @@ const client = new ApolloClient({
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <BlogConfigProvider>
-        <AuthProvider>
-          <SignUpProvider>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
-              <Rotas />
-            </ThemeProvider>
-          </SignUpProvider>
-        </AuthProvider>
-      </BlogConfigProvider>
+      <InternalConfigProvider>
+        <BlogConfigProvider>
+          <AuthProvider>
+            <SignUpProvider>
+              <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <Rotas />
+              </ThemeProvider>
+            </SignUpProvider>
+          </AuthProvider>
+        </BlogConfigProvider>
+      </InternalConfigProvider>
     </ApolloProvider>
   </React.StrictMode>
 )
