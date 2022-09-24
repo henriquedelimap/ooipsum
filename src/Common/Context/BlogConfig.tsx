@@ -32,7 +32,9 @@ export const BlogConfigProvider = (prop: Prop) => {
 export const useBlogConfig = () => {
   const { blogConfig, loading, error } = useContext(BlogConfigContext) as IBlogConfig
 
+  const siteName = blogConfig?.siteName
+
   return {
-    blogConfig, loading, error
+    blogConfig, loading, error, siteName
   }
 }

@@ -4,6 +4,9 @@ import {
   Route,
 } from 'react-router-dom'
 import { Acessar, Cadastrar, DefaultPage, Home, NotFound, BlogRotas, Blog } from './Pages'
+import { AdminDefaultPage } from './Pages/Admin/AdminDefaultPage'
+import { Configurar } from './Pages/Admin/Config'
+import { BlogPost } from './Pages/Admin/Post'
 import { ScrollToTop } from './Utils'
 
 export const Rotas = () => {
@@ -21,6 +24,12 @@ export const Rotas = () => {
 
           <Route path='blog/:id' element={<BlogRotas />} />
           <Route path='*' element={<NotFound />} />
+
+          <Route path='admin' element={<AdminDefaultPage />} >
+            <Route index element={<p>index</p>} />
+            <Route path='blog' element={<BlogPost />} />
+            <Route path='configurar' element={<Configurar />} />
+          </Route>
         </Routes>
       </ScrollToTop>
     </Router >

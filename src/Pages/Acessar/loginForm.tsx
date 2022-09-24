@@ -28,7 +28,7 @@ export const LoginForm = () => {
   return (
     <form onSubmit={(e) => handleLogin(e)}>
       <Stack
-        alignItems='center'
+        sx={{ height: '100vh' }}
         justifyContent='center'
         spacing={8}
       >

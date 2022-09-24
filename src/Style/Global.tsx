@@ -7,5 +7,17 @@ let theme = createTheme({
   }
 })
 
+theme = createTheme({
+  components: {
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          background: '#fafafa',
+          border: 'none'
 
+        }
+      }
+    }
+  }
+})
 export default theme

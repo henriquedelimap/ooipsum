@@ -7,7 +7,6 @@ import { Script } from "../../Common/Script"
 
 export const CardMain = () => {
   const { blogConfig, loading } = useBlogConfig()
-  console.log(blogConfig);
 
   return (
     <Fade in={!loading}>

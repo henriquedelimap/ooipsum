@@ -9,7 +9,6 @@ import './style.css'
 
 export const Parallax = ({ id, children }: { id: number | string, children: ReactNode }) => {
   const { scrollXProgress } = useScroll()
-  console.log(scrollXProgress);
 
   return (
     <ParallaxSection>

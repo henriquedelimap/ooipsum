@@ -51,8 +51,8 @@ export const MyAppBar = (prop: Prop) => {
           backdropFilter: 'blur(30px)',
           background: '#ffffff',
           boxShadow: 'none',
-          borderBottom: '1px solid #dbdbdb',
-          height: 64
+          height: 64,
+          zIndex: 3000
         }}>
           <Toolbar sx={{ justifyContent: 'space-between' }}>
             <Stack sx={{ height: 60, cursor: 'pointer' }} onClick={logoOnClick}>
