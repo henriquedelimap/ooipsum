@@ -10,7 +10,10 @@ export const AdminDefaultPage = () => {
       <MyAdminMenu />
       <Stack direction='row' sx={{ width: '100%' }}>
         <Stack sx={{ width: drawerWidth, display: { xs: 'none', md: 'block' } }} />
-        <Outlet />
+        <Stack spacing={4} sx={{ pt: 2, width: { xs: '100%', md: `calc(100% - ${drawerWidth})` } }} >
+
+          <Outlet />
+        </Stack>
       </Stack>
     </Stack >
   )

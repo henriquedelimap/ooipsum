@@ -1,13 +1,12 @@
 import { Stack } from "@mui/material"
+import { PostLayout } from "../../Blog/Post/PostPage/PostLayout"
 import { TextEditor } from "./TextEditor"
 
 export const BlogPost = () => {
   return (
 
     <Stack alignItems='end' sx={{ width: '100%' }}>
-      <Stack sx={{ width: '80%' }}>
-        <TextEditor />
-      </Stack>
+      <PostLayout edit={true} />
     </Stack>
   )
 }

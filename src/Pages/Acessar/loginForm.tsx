@@ -14,7 +14,7 @@ export const LoginForm = () => {
 
   useEffect(() => {
     if (!!usuario && !error) {
-      navigate(`/${usuario?.username}`)
+      navigate(-1)
     }
   }, [login, usuario])
 

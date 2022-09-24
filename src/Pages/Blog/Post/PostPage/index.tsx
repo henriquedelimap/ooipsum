@@ -10,6 +10,7 @@ import { PostPageBody } from "./Body"
 import { PostPageHeader } from "./Header"
 import { PostPageMoreAction } from "./MoreAction"
 import { PostPageNewsletter } from "./Newsletter"
+import { PostLayout } from "./PostLayout"
 
 export const PostPage = () => {
 
@@ -24,22 +25,7 @@ export const PostPage = () => {
   }
   return (
     <>
-      <Container maxWidth='lg'>
-
-        <Stack spacing={2}>
-          <Stack sx={{ width: '100%' }} spacing={8} alignItems='center'>
-
-            <PostPageHeader category={category} page={page} />
-
-            <PostPageBody page={page} />
-
-          </Stack>
-          <Divider />
-
-          <PostPageMoreAction page={page} />
-
-        </Stack>
-      </Container>
+      <PostLayout category={category} page={page} />
       <Container maxWidth='xl'>
 
         <PostPageNewsletter />

@@ -1,7 +1,7 @@
 import { Stack, Grid, Chip, IconButton } from "@mui/material"
 import { MdShare } from "react-icons/md"
 
-export const PostPageMoreAction = ({ page }: { page: any }) => {
+export const PostPageMoreAction = ({ page, edit }: { page?: any, edit?: boolean }) => {
   return (
     <Stack direction='row' alignItems='center'>
       <Grid container sx={{ height: '100%', maxWidth: '80vw' }} rowGap={1} columnGap={.5}>

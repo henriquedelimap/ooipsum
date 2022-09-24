@@ -1,6 +1,10 @@
-import { Stack, Typography, Avatar } from "@mui/material"
+import { Stack, Typography, Avatar, InputBase, FormControl, Badge, IconButton, OutlinedInput } from "@mui/material"
+import { ReactElement, useState } from "react"
+import { BsTextareaT } from "react-icons/bs"
+import { MdAdd, MdClose, MdEdit } from "react-icons/md"
+import { Text } from "../../../../Components/Text"
 
-export const PostPageHeader = ({ page, category }: { page: any, category: any }) => {
+export const PostPageHeader = ({ page, category, edit }: { page?: any, category?: any, edit?: boolean }) => {
   return (
     <Stack
       spacing={8}
@@ -8,33 +12,49 @@ export const PostPageHeader = ({ page, category }: { page: any, category: any })
       sx={{ width: '90%', pt: 8 }}
     >
 
-      <Typography
-        fontFamily='Outfit'
-        fontWeight={400}
-        variant='h6'
-      >
-        {category.tag}
-      </Typography>
+      {
+        edit
+          ? <OutlinedInput placeholder="categoria" size='small' fullWidth />
+          : <Text
+            content={category.tag}
+            fontWeight={400}
+            variant='h6'
+            center
+          />
+      }
 
       <Stack
         alignItems='center'
+        sx={{ width: '100%' }}
         spacing={1}
-      >
-        <Typography
-          align='center'
-          variant='h2'
-        >
-          {page.title}
-        </Typography>
 
-        <Typography
-          fontFamily='Outfit'
-          fontWeight={300}
-          align='center'
-          variant='h6'
-        >
-          {page.subtitle}
-        </Typography>
+      >
+
+        {
+          edit
+            ? <OutlinedInput placeholder="título" size='small' fullWidth />
+            : <Text
+              content={page.title}
+              variant='h2'
+              fontFamily={1}
+              center
+            />
+
+        }
+
+        {
+          edit
+            ? <OutlinedInput placeholder="subtítulo" size='small' fullWidth />
+            : <Text
+              content={page.subtitle}
+              variant='h6'
+              fontWeight={300}
+              center
+
+            />
+
+        }
+
       </Stack>
 
       <Stack
@@ -58,7 +78,7 @@ export const PostPageHeader = ({ page, category }: { page: any, category: any })
             fontFamily='Outfit'
             fontWeight={300}
           >
-            {page.createdAt}
+            {page?.createdAt}
           </Typography>
         </Stack>
       </Stack>

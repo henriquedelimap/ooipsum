@@ -32,22 +32,35 @@ export const Configurar = () => {
     },
   ]
 
-  console.log();
 
   const settingOptions = Object.keys(blogConfig)
 
   return (
-    <Stack spacing={4} sx={{ pt: 2, width: { xs: '100%', md: `calc(100% - ${drawerWidth})` } }} >
+    <Stack spacing={4} sx={{ pt: 2, width: '100%' }} >
 
       <Stack spacing={4} alignItems='center' sx={{ p: 4 }}>
         <Avatar sx={{ width: 200, height: 200 }} />
 
         <Stack alignItems='center' >
-          <Stack direction='row'>
-            <Typography fontFamily='Old Standard TT' textTransform='capitalize' variant='h4'>olá,</Typography>
-            <Typography fontFamily='Old Standard TT'>{usuario?.username}</Typography>
+          <Stack direction='row' spacing={1}>
+            <Typography
+              fontFamily='Old Standard TT'
+              textTransform='capitalize'
+              variant='h4'>
+              olá,
+            </Typography>
+            <Typography
+              fontFamily='Old Standard TT'
+              variant='h4'>
+              {usuario?.username}
+            </Typography>
           </Stack>
-          <Typography color='#6d6d6d' variant='subtitle1' fontFamily='Outfit'>Gerencie suas informações para que o blog atenda suas necessidades.</Typography>
+          <Typography
+            color='#6d6d6d'
+            variant='subtitle1'
+            fontFamily='Outfit'>
+            Gerencie suas informações para que o blog atenda suas necessidades.
+          </Typography>
         </Stack>
       </Stack>
 
@@ -63,8 +76,7 @@ export const Configurar = () => {
                 >
                   <Typography sx={{ width: '33%', flexShrink: 0 }}>
                     {item.label}
-                  </Typography
-                  >
+                  </Typography>
                   <Typography>
                     {blogConfig?.siteName}
                   </Typography>
