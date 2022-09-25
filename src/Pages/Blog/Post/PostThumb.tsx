@@ -20,7 +20,6 @@ export const PostThumb = ({ post, index, small }: { post: any, index: number, sm
             cursor: 'pointer',
             background: '#3d3d3d',
             borderRadius: '.8rem',
-            ml: 1.4,
             backgroundImage: `url(${post.img})`,
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
