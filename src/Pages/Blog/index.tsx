@@ -25,7 +25,7 @@ export const Blog = () => {
 
             <Parallax key={index} id={item.tag} >
               <Slider>
-                <Stack direction='row' spacing={4}>
+                <Stack direction='row' >
 
                   {
                     item.posts.map((post, index) => {

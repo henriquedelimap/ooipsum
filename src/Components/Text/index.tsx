@@ -25,10 +25,11 @@ export const EditMode = ({ edit, children, content }: { edit?: boolean, children
           sx={{
             '& .MuiBadge-badge': {
               cursor: 'pointer',
-              right: -16,
-              background: '#fff',
-              color: '#6d6d6d',
-              top: 0,
+              right: '0%',
+              background: '#fffffaf',
+              backdropFilter: 'blur(20px)',
+              color: '#1d1d1d',
+              top: '0%',
               p: '.4rem',
             }
           }} badgeContent={<BsTextareaT onClick={handleChange} fontSize={16} />} >

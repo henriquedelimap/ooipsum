@@ -2,12 +2,18 @@ import { Stack, Button } from '@mui/material'
 import { useEffect } from 'react'
 import { Routes, Route, useParams, Outlet } from 'react-router-dom'
 import { useAuthContext } from '../../Common/Context/Auth'
+import { useBlogConfig } from '../../Common/Context/BlogConfig'
 import { useInternalConfig } from '../../Common/Context/InternalConfig'
 import { MyAppBar } from '../../Components/AppBar/appBar'
 import { drawerWidth, MyAdminMenu } from './menu'
 
 export const AdminDefaultPage = () => {
   const { id } = useParams()
+  const { blogConfig } = useBlogConfig()
+  const { setAppBarAction } = useInternalConfig()
+  useEffect(() => {
+    setAppBarAction(<></>)
+  }, [!!blogConfig])
 
   return (
     <Stack sx={{ position: 'relative', background: '#fff', height: '100%' }}>
