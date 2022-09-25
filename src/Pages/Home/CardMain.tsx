@@ -29,6 +29,7 @@ export const CardMain = () => {
                 fontSize={320}
                 fontWeight={900}
                 color='#dbdbdb'
+                fontFamily='Old Standard TT'
                 sx={{ position: 'absolute', top: '-12%' }}
               >{item.background}</Typography>
             </Stack>

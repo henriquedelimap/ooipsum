@@ -9,9 +9,7 @@ export const PostThumb = ({ post, index, small }: { post: any, index: number, sm
 
   return (
     <PostContainer>
-      <Stack alignItems='center' sx={{ background: '#fff', width: '100vw' }}>
-
-
+      <Stack alignItems='center' sx={{ width: '100vw' }}>
         <Card
           onClick={() => navigate(`/blog/${post.id}`)}
           sx={{

@@ -34,6 +34,7 @@ export const BtnContact = (props: Props) => {
       <Typography
         fontWeight={100}
         variant='h1'
+        fontFamily='Old Standard TT'
         sx={{
           userSelect: 'none',
           letterSpacing: '-.4rem',

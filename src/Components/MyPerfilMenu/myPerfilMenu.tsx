@@ -44,7 +44,7 @@ export const MenuAuthenticated = (menuAuthProp: Props) => {
   const { login, logout, user } = useAuthContext()
   return (
     <>
-      <Stack sx={{ height: 140, position: 'relative' }} alignItems='center'>
+      <Stack sx={{ height: 140, pb: 2, position: 'relative' }} spacing={2} alignItems='center'>
         <Stack
           className='paper'
           sx={{
@@ -63,33 +63,21 @@ export const MenuAuthenticated = (menuAuthProp: Props) => {
 
       </Stack>
 
-      <Link style={{ textDecoration: 'none' }} to={`/${user?.user.username}`}>
-        <MenuItem sx={{ width: '100%' }} onClick={() => {
-          menuAuthProp.setAnchorEl(null)
-        }}
-        >
-          <Typography >
-            meu perfil
-          </Typography>
-        </MenuItem>
-      </Link>
-      {
-        user?.user.accountType.includes('dev')
-          ? <Link style={{ textDecoration: 'none' }} to={'/admin'}>
-            <MenuItem sx={{ width: '100%' }} onClick={() => {
-              menuAuthProp.setAnchorEl(null)
-            }}
-            >
-              <Typography >
-                gerenciar plataforma
-              </Typography>
-            </MenuItem>
-          </Link> : ''
-      }
 
       <MenuItem sx={{ width: '100%' }} onClick={() => {
         menuAuthProp.setAnchorEl(null)
-        navigate(`${user?.user.username}/config`)
+        navigate(`/admin`)
+
+      }}
+      >
+        <Typography >
+          gerenciar blog
+        </Typography>
+      </MenuItem>
+
+      <MenuItem sx={{ width: '100%' }} onClick={() => {
+        menuAuthProp.setAnchorEl(null)
+        navigate(`/admin/configurar`)
 
       }}
       >

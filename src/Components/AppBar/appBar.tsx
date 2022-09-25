@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { AppBar, Avatar, Box, Button, Collapse, Fade, Slide, Stack, Tab, Tabs, Toolbar, Typography, useScrollTrigger } from "@mui/material"
+import { AppBar, Avatar, Box, Button, ButtonBase, Collapse, Fade, Slide, Stack, Tab, Tabs, Toolbar, Typography, useScrollTrigger } from "@mui/material"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { Logo } from "../../assets/logoipsum-268"
@@ -111,10 +111,25 @@ export const MyAppBar = () => {
 
           <Button
             disableRipple
+            variant={!!usuario ? undefined : 'outlined'}
+            size='small'
             onClick={(event: any) => {
               !!usuario ? openMyPerfilMenu(event) : navigate('/acessar')
             }}
-            sx={{ fontFamily: 'Outfit', p: 3 }}
+            sx={{
+              color: 'primary',
+              fontFamily: 'Outfit',
+              fontWeight: 700,
+              '&:hover': {
+                background: !!usuario ? 'transparent' : '#0066cc',
+                color: '#fff',
+                fontWeight: 700
+              },
+              '&:active': {
+                background: 'transparent',
+                color: '#0066cc',
+              }
+            }}
           >
             {!!usuario ? <Avatar /> : 'acessar'}
           </Button>
