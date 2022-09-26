@@ -21,14 +21,14 @@ const MenuDefaultPaper = (menuProp: Props) => {
       sx={{
         width: 320,
         borderRadius: '.32rem',
+        mt: -6,
+
       }}
       PaperProps={{
         elevation: 0,
         sx: {
-          overflow: 'visible',
-          filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-          mt: 1.5,
           width: 400,
+
         }
       }}
       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
@@ -44,7 +44,7 @@ export const MenuAuthenticated = (menuAuthProp: Props) => {
   const { login, logout, user } = useAuthContext()
   return (
     <>
-      <Stack sx={{ height: 140, pb: 2, position: 'relative' }} spacing={2} alignItems='center'>
+      <Stack sx={{ height: 140, p: 2, position: 'relative' }} spacing={2} alignItems='end'>
         <Stack
           className='paper'
           sx={{
@@ -53,12 +53,6 @@ export const MenuAuthenticated = (menuAuthProp: Props) => {
             backgroundImage: '#3d3d3d'
           }}
         />
-        <Avatar sx={{
-          width: 64,
-          height: 64,
-          mt: -4
-        }} />
-
         <Typography>{user?.user.username}</Typography>
 
       </Stack>

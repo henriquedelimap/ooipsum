@@ -14,7 +14,6 @@ export const PostPageBody = ({ page, edit }: { page?: any, edit?: boolean }) => 
         backgroundImage: `url(${page?.img})`,
         backgroundPosition: 'center',
         backgroundSize: 'cover',
-        overflow: 'hidden'
       }} >
       </Stack>
 

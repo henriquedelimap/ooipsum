@@ -5,7 +5,7 @@ import { HomeHeader } from "./Header"
 export const Home = () => {
 
   return (
-    <Stack alignItems='center' sx={{ overflow: 'hidden' }}>
+    <Stack alignItems='center' >
       <HomeHeader />
       <CardCTA />
     </Stack >

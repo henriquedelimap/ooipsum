@@ -13,24 +13,11 @@ export const DefaultPage = () => {
   const { blogConfig } = useBlogConfig()
   return (
     <Box sx={{ position: 'relative' }}>
-      <Stack
-        className='paper'
-        sx={{
-          width: '100vw',
-          height: '100vh',
-          position: 'absolute',
-          zIndex: 2000,
-          display: loading ? 'block' : 'none',
-          backdropFilter: 'blur(3px)',
-
-        }} >
-
-      </Stack>
-
-
 
       <MyAppBar />
+
       <Box sx={{ height: 64, width: '100%', background: '#fafafa' }} />
+
       <Paper sx={{ minHeight: '100vh', pb: 8, background: '#fafafa' }}>
         <Outlet />
       </Paper>
