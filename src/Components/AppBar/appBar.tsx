@@ -101,7 +101,7 @@ export const MyAppBar = () => {
             justifyContent='center'
 
             onClick={() => {
-              if (navigator.userAgentData != undefined && navigator.userAgentData.mobile) {
+              if (navigator.userAgent != undefined && navigator.userAgent.mobile) {
                 setOpenMenu(!openMenu)
               }
             }
