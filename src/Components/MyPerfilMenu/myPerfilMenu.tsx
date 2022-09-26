@@ -6,9 +6,9 @@ import { LoginForm } from "../../Pages/Acessar/loginForm"
 
 interface Props {
   children?: any
-  anchorEl: null | HTMLElement
-  setAnchorEl: Dispatch<SetStateAction<null | HTMLElement>>
-  open: boolean
+  anchorEl?: null | HTMLElement
+  setAnchorEl?: Dispatch<SetStateAction<null | HTMLElement>>
+  open?: boolean
 }
 
 const MenuDefaultPaper = (menuProp: Props) => {
@@ -16,8 +16,7 @@ const MenuDefaultPaper = (menuProp: Props) => {
     <Menu
       id='menu-perfil'
       anchorEl={menuProp.anchorEl}
-      open={menuProp.open}
-      onClose={() => menuProp.setAnchorEl(null)}
+      open={false}
       sx={{
         width: 320,
         borderRadius: '.32rem',
@@ -59,7 +58,7 @@ export const MenuAuthenticated = (menuAuthProp: Props) => {
 
 
       <MenuItem sx={{ width: '100%' }} onClick={() => {
-        menuAuthProp.setAnchorEl(null)
+        // menuAuthProp.setAnchorEl(null)
         navigate(`/admin`)
 
       }}
@@ -70,7 +69,7 @@ export const MenuAuthenticated = (menuAuthProp: Props) => {
       </MenuItem>
 
       <MenuItem sx={{ width: '100%' }} onClick={() => {
-        menuAuthProp.setAnchorEl(null)
+        // menuAuthProp.setAnchorEl(null)
         navigate(`/admin/configurar`)
 
       }}
@@ -80,7 +79,7 @@ export const MenuAuthenticated = (menuAuthProp: Props) => {
         </Typography>
       </MenuItem>
       <MenuItem sx={{ width: '100%' }} onClick={() => {
-        menuAuthProp.setAnchorEl(null)
+        // menuAuthProp.setAnchorEl(null)
         navigate('/ajuda')
 
       }}>
@@ -90,7 +89,8 @@ export const MenuAuthenticated = (menuAuthProp: Props) => {
       </MenuItem>
       <Button sx={{ width: '100%' }} onClick={() => {
         logout()
-        menuAuthProp.setAnchorEl(null)
+        navigate('/')
+        // menuAuthProp.setAnchorEl(null)
 
       }}>sair da contato</Button>
     </>
@@ -103,7 +103,7 @@ export const MyPerfilMenu = (prop: Props) => {
   const { login, logout, loading, user } = useAuthContext()
 
   return (
-    <MenuDefaultPaper anchorEl={anchorEl} setAnchorEl={setAnchorEl} open={open}>
+    <>
       {
         !!user
           ? <MenuAuthenticated anchorEl={anchorEl} setAnchorEl={setAnchorEl} open={open} />
@@ -112,6 +112,6 @@ export const MyPerfilMenu = (prop: Props) => {
       <Fade in={loading}>
         <LinearProgress sx={{ mb: -1 }} />
       </Fade>
-    </MenuDefaultPaper>
+    </>
   )
 }

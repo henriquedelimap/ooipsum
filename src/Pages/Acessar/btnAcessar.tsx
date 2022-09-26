@@ -17,14 +17,11 @@ export const BtnAcessar = (prop: Prop) => {
     <Button
       disableRipple
       variant={!!usuario ? undefined : 'outlined'}
-      onClick={(event: any) => {
-        !!usuario ? setOpenMenuPerfil(!openMenuPerfil) : navigate('/acessar')
-      }}
+      onMouseEnter={() => setOpenMenuPerfil(!openMenuPerfil)}
       sx={{
         color: 'primary',
         fontFamily: 'Outfit',
         fontWeight: 700,
-
         '&:hover': {
           background: !!usuario ? 'transparent' : '#0066cc',
           color: '#fff',

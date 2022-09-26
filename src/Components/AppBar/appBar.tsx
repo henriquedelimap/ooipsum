@@ -42,8 +42,10 @@ export const MyAppBar = () => {
               color='#3d3d3d'
               variant='h6'
               fontWeight={300}
+              onMouseEnter={() => setOpenSubMenu(true)}
               onClick={(event: any) => {
                 setOpenMenuPerfil(false)
+
                 navigate(`/${item.to}`)
               }}
               sx={{ fontFamily: 'Outfit', cursor: 'pointer', color: 'white', pl: 1, pr: 1, '&:hover': { fontWeight: 600 } }}
@@ -62,11 +64,14 @@ export const MyAppBar = () => {
       <>
 
         <Menu
+          setOpenSubMenu={setOpenSubMenu}
           openMenuPerfil={openMenuPerfil}
           setOpenMenuPerfil={setOpenMenuPerfil}
           openMenu={openMenu}
           setOpenMenu={setOpenMenu}
-          openSubMenu={openSubMenu} />
+          openSubMenu={openSubMenu}
+        />
+
         <BtnAcessar openMenuPerfil={openMenuPerfil} setOpenMenuPerfil={setOpenMenuPerfil} />
 
         <PerfilMenu openMenuPerfil={openMenuPerfil} setOpenMenuPerfil={setOpenMenuPerfil} />

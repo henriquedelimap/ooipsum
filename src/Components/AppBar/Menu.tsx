@@ -1,4 +1,4 @@
-import { Stack, Collapse, IconButton } from "@mui/material"
+import { Stack, Collapse, IconButton, Slide, Paper } from "@mui/material"
 import { Dispatch, SetStateAction } from "react"
 import { MdMenu } from "react-icons/md"
 import { useNavigate } from 'react-router-dom'
@@ -11,6 +11,7 @@ interface Prop {
   openMenu: boolean
   setOpenMenu: Dispatch<SetStateAction<boolean>>
   openSubMenu: boolean
+  setOpenSubMenu: Dispatch<SetStateAction<boolean>>
 }
 
 export const Menu = (prop: Prop) => {
@@ -19,7 +20,8 @@ export const Menu = (prop: Prop) => {
     setOpenMenuPerfil,
     openMenu,
     setOpenMenu,
-    openSubMenu
+    openSubMenu,
+    setOpenSubMenu
   } = prop
 
   const { appBarAction, appBarSubMenu } = useInternalConfig()
@@ -27,6 +29,7 @@ export const Menu = (prop: Prop) => {
     <Stack
       alignItems='center'
       justifyContent='center'
+
       onClick={() => {
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
           setOpenMenu(!openMenu)
@@ -44,7 +47,7 @@ export const Menu = (prop: Prop) => {
       <Stack
         alignItems='center'
         direction='row'
-        sx={{ background: '#3d3d3d', borderRadius: 3, p: .2, pl: 1, pr: 1 }} >
+        sx={{ background: '#3d3d3d', borderRadius: 3, p: .2, pl: 1, pr: 1, position: 'relative' }} >
 
         <Collapse in={!openMenu}>
           <Stack
@@ -60,14 +63,20 @@ export const Menu = (prop: Prop) => {
         <Stack sx={{ borderRadius: 8 }}>
           <Collapse orientation='horizontal' in={openMenu}>
             {appBarAction}
+
           </Collapse>
         </Stack>
 
-        <Stack sx={{ borderRadius: 8 }}>
-          <Collapse orientation='horizontal' in={openSubMenu}>
-            {appBarSubMenu}
-          </Collapse>
-        </Stack>
+        <Slide alignSelf='end' in={openSubMenu}>
+
+          <Stack sx={{ borderRadius: 8 }}>
+            <Paper sx={{ background: '#3d3d3d' }}>
+              <Collapse orientation={openSubMenu ? 'vertical' : 'horizontal'} in={openSubMenu}>
+                {appBarAction}
+              </Collapse>
+            </Paper>
+          </Stack>
+        </Slide>
 
       </Stack>
     </Stack>

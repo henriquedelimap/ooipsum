@@ -5,7 +5,7 @@ export const Acessar = () => {
   return (
     <Stack sx={{ mb: -8 }} direction='row' alignItems='center'>
 
-      <Stack sx={{ width: { xs: '100%', md: '50%', lg: '50%' }, p: 4, mt: -8, background: '#fff' }}>
+      <Stack justifyContent='center' sx={{ width: { xs: '100%', md: '50%', lg: '50%' }, p: 4, mt: -8, background: '#fff', height: '100vh' }}>
         <LoginForm />
       </Stack>
 

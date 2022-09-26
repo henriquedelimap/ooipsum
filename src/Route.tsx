@@ -3,6 +3,7 @@ import {
   Routes,
   Route,
 } from 'react-router-dom'
+import { useAuthContext } from './Common/Context/Auth'
 import { Acessar, Cadastrar, DefaultPage, Home, NotFound, BlogRotas, Blog } from './Pages'
 import { AdminDefaultPage } from './Pages/Admin/AdminDefaultPage'
 import { Configurar } from './Pages/Admin/Config'
@@ -11,6 +12,7 @@ import { BlogPost } from './Pages/Admin/Post'
 import { ScrollToTop } from './Utils'
 
 export const Rotas = () => {
+  const { usuario } = useAuthContext()
 
   return (
     <Router>
@@ -26,7 +28,7 @@ export const Rotas = () => {
           <Route path='blog/:id' element={<BlogRotas />} />
           <Route path='*' element={<NotFound />} />
 
-          <Route path='admin' element={<AdminDefaultPage />} >
+          <Route path='admin' element={!!usuario ? <AdminDefaultPage /> : <Acessar />} >
             <Route index element={<AdminHomePage />} />
             <Route path='blog' element={<BlogPost />} />
             <Route path='configurar' element={<Configurar />} />
