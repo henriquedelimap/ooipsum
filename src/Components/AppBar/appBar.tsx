@@ -43,6 +43,7 @@ export const MyAppBar = () => {
               variant='h6'
               fontWeight={300}
               onMouseEnter={() => setOpenSubMenu(true)}
+              // onMouseLeave={() => setOpenSubMenu(false)}
               onClick={(event: any) => {
                 setOpenMenuPerfil(false)
 

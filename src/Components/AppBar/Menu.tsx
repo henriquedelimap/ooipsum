@@ -67,18 +67,17 @@ export const Menu = (prop: Prop) => {
           </Collapse>
         </Stack>
 
-        <Slide alignSelf='end' in={openSubMenu}>
-
-          <Stack sx={{ borderRadius: 8 }}>
-            <Paper sx={{ background: '#3d3d3d' }}>
-              <Collapse orientation={openSubMenu ? 'vertical' : 'horizontal'} in={openSubMenu}>
+        {/* <Collapse orientation={openSubMenu ? 'vertical' : 'horizontal'} in={openSubMenu}>
+          <Slide in={openSubMenu}>
+            <Stack sx={{ borderRadius: 8 }}>
+              <Paper sx={{ background: '#3d3d3d' }}>
                 {appBarAction}
-              </Collapse>
-            </Paper>
-          </Stack>
-        </Slide>
+              </Paper>
+            </Stack>
+          </Slide>
+        </Collapse> */}
 
       </Stack>
-    </Stack>
+    </Stack >
   )
 }
