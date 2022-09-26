@@ -108,7 +108,7 @@ export const Configurar = () => {
 
               }
               const keys = (Object.keys(options !== undefined ? options[0] : ''))
-              console.log(keys);
+              console.log(options);
 
               return (
 
@@ -117,16 +117,27 @@ export const Configurar = () => {
                     ? <MyAccordion key={index} index={index} label={item?.label}>
                       <>
                         {
-                          keys?.map((subItem, index) => (
-                            <MyAccordion index={index} label={subItem} >
-                              <FormControl fullWidth>
-                                <OutlinedInput
-                                  disabled
-                                  value={blogConfig?.siteName}
-                                  size='small'
-                                  endAdornment={<MdModeEditOutline />}
-                                />
-                              </FormControl>
+                          options?.map((subItem: any, index: any) => (
+                            <MyAccordion index={index} label={subItem.__typename} >
+                              <>
+                                {
+                                  keys.map((opt, index) => (
+                                    <>
+                                      <MyAccordion index={index} label={opt} >
+                                        <FormControl fullWidth>
+                                          <OutlinedInput
+                                            disabled
+                                            value={subItem.id}
+                                            size='small'
+                                            endAdornment={<MdModeEditOutline />}
+                                          />
+                                        </FormControl>
+                                      </MyAccordion>
+                                    </>
+                                  ))
+                                }
+                              </>
+
                             </MyAccordion>
                           ))
                         }

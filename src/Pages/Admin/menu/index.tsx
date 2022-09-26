@@ -61,7 +61,7 @@ export const MyAdminMenu = () => {
           {
             itens.map((item, index) => (
               <ListItem onClick={() => navigate(`${item.to}`)} key={index} >
-                <ListItemButton selected={selected === item.to} >
+                <ListItemButton sx={{ '& .Mui-selected': { background: 'red' } }} selected={selected === item.to} >
                   <ListItemIcon sx={{ fontSize: 24 }}>{item.icon}</ListItemIcon>
                   <ListItemText >
                     <Typography sx={{ '&:first-letter': { textTransform: 'capitalize' } }} fontFamily='Outfit'>

@@ -14,19 +14,19 @@ const client = new ApolloClient({
 })
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <InternalConfigProvider>
-        <BlogConfigProvider>
-          <AuthProvider>
-            <SignUpProvider>
-              <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <ApolloProvider client={client}>
+        <InternalConfigProvider>
+          <BlogConfigProvider>
+            <AuthProvider>
+              <SignUpProvider>
                 <CssBaseline />
                 <Rotas />
-              </ThemeProvider>
-            </SignUpProvider>
-          </AuthProvider>
-        </BlogConfigProvider>
-      </InternalConfigProvider>
-    </ApolloProvider>
+              </SignUpProvider>
+            </AuthProvider>
+          </BlogConfigProvider>
+        </InternalConfigProvider>
+      </ApolloProvider>
+    </ThemeProvider>
   </React.StrictMode>
 )
