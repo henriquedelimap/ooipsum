@@ -41,7 +41,7 @@ export const Menu = (prop: Prop) => {
       }
       }
       onMouseLeave={() => setOpenMenu(false)}
-      sx={{ width: '50%', height: '100%', zIndex: 8000 }}>
+      sx={{ width: '50%', height: '100%' }}>
 
 
       <Stack
