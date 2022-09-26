@@ -170,7 +170,7 @@ export const MyAppBar = () => {
           </Button>
 
           <Slide direction={openMenuPerfil ? 'left' : 'down'} in={openMenuPerfil}>
-            <Paper onMouseLeave={() => setOpenMenuPerfil(false)} sx={{ borderRadius: 6, background: '#fff', position: 'absolute', right: 24, top: 4, width: 400, minHeight: 400 }}>
+            <Paper onMouseLeave={() => setOpenMenuPerfil(false)} sx={{ borderRadius: 6, background: '#fff', position: 'absolute', right: 24, top: 4, width: 320, minHeight: 400 }}>
 
             </Paper>
           </Slide>
