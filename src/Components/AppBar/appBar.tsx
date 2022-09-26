@@ -10,46 +10,16 @@ import { useAuthContext } from '../../Common/Context/Auth'
 import { MenuAuthenticated, MyPerfilMenu } from '../MyPerfilMenu/myPerfilMenu'
 import { useInternalConfig } from '../../Common/Context/InternalConfig'
 import { MdMenu } from 'react-icons/md'
+import { StyledAppBar } from './LayouteAppBar'
+import { BtnAcessar } from '../../Pages/Acessar/btnAcessar'
+import { PerfilMenu } from './PerfilMenu'
+import { Menu } from './Menu'
 
 interface Prop {
   window?: () => Window
   children?: React.ReactElement
 }
 
-const StyledAppBar = (prop: Prop) => {
-
-  const { blogConfig, loading } = useBlogConfig()
-
-  const navigate = useNavigate()
-
-  const logoOnClick = () => {
-    navigate('/')
-  }
-
-  return (
-    <HiddenOnScroll {...prop}>
-      <Fade in={!loading}>
-        <AppBar sx={{
-          backdropFilter: 'blur(30px)',
-          background: '#ffffff',
-          boxShadow: 'none',
-          height: 64,
-          zIndex: 3000,
-        }}>
-          <Toolbar sx={{ justifyContent: 'space-between' }}>
-            <Stack sx={{ height: 60, cursor: 'pointer' }} onClick={logoOnClick}>
-              {Script.logo}
-            </Stack >
-
-            {prop.children}
-
-          </Toolbar>
-        </AppBar>
-      </Fade>
-    </HiddenOnScroll >
-  )
-
-}
 
 export const MyAppBar = () => {
   const { setAppBarAction, appBarSubMenu, setAppBarSubMenu, appBarAction, anchorEl, setAnchorEl, open } = useInternalConfig()
@@ -59,10 +29,8 @@ export const MyAppBar = () => {
   const navigate = useNavigate()
 
   const [openMenuPerfil, setOpenMenuPerfil] = useState(false)
-
-  // const openMyPerfilMenu = (event: React.MouseEvent<HTMLDivElement>) => {
-  //   setAnchorEl(event.currentTarget)
-  // }
+  const [openMenu, setOpenMenu] = useState(false)
+  const [openSubMenu, setOpenSubMenu] = useState(false)
 
   React.useLayoutEffect(() => {
     setAppBarAction(
@@ -89,96 +57,22 @@ export const MyAppBar = () => {
     )
   }, [!!blogConfig])
 
-  const [openMenu, setOpenMenu] = useState(false)
-  const [openSubMenu, setOpenSubMenu] = useState(false)
-
   return (
-    <>
-      <StyledAppBar>
-        <>
-          <Stack
-            alignItems='center'
-            justifyContent='center'
-            onClick={() => {
-              if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                setOpenMenu(!openMenu)
-              }
-            }}
-            onMouseEnter={() => {
-              openMenuPerfil ? setOpenMenuPerfil(true) : ''
-              setOpenMenu(!openMenu)
-            }
-            }
-            onMouseLeave={() => setOpenMenu(!openMenu)}
-            sx={{ width: '50%', height: '100%', zIndex: 8000 }}>
+    <StyledAppBar>
+      <>
 
+        <Menu
+          openMenuPerfil={openMenuPerfil}
+          setOpenMenuPerfil={setOpenMenuPerfil}
+          openMenu={openMenu}
+          setOpenMenu={setOpenMenu}
+          openSubMenu={openSubMenu} />
+        <BtnAcessar openMenuPerfil={openMenuPerfil} setOpenMenuPerfil={setOpenMenuPerfil} />
 
-            <Stack
-              alignItems='center'
-              direction='row'
-              sx={{ background: '#3d3d3d', borderRadius: 3, p: .2, pl: 1, pr: 1 }} >
+        <PerfilMenu openMenuPerfil={openMenuPerfil} setOpenMenuPerfil={setOpenMenuPerfil} />
 
-              <Collapse in={!openMenu}>
-                <Stack
-                  alignItems='center'
-                  sx={{ width: '100%', display: !openMenu ? 'flex' : 'none' }}
-                >
-                  <IconButton >
-                    <MdMenu color='white' />
-                  </IconButton>
-                </Stack>
-              </Collapse>
+      </>
+    </StyledAppBar >
 
-              <Stack sx={{ borderRadius: 8 }}>
-                <Collapse orientation='horizontal' in={openMenu}>
-                  {appBarAction}
-                </Collapse>
-              </Stack>
-
-              <Stack sx={{ borderRadius: 8 }}>
-                <Collapse orientation='horizontal' in={openSubMenu}>
-                  {appBarSubMenu}
-                </Collapse>
-              </Stack>
-
-            </Stack>
-          </Stack>
-
-          <Button
-            disableRipple
-            variant={!!usuario ? undefined : 'outlined'}
-            onClick={(event: any) => {
-              !!usuario ? setOpenMenuPerfil(!openMenuPerfil) : navigate('/acessar')
-            }}
-            sx={{
-              color: 'primary',
-              fontFamily: 'Outfit',
-              fontWeight: 700,
-
-              '&:hover': {
-                background: !!usuario ? 'transparent' : '#0066cc',
-                color: '#fff',
-                fontWeight: 700,
-              },
-              '&:active': {
-                background: 'transparent',
-                color: '#0066cc',
-              }
-            }}
-          >
-            {!!usuario ? <Avatar onMouseEnter={() => setOpenMenuPerfil(true)} sx={{ width: 40, height: 40, zIndex: 8000 }} /> : 'acessar'}
-          </Button>
-
-          <Slide direction={openMenuPerfil ? 'left' : 'down'} in={openMenuPerfil}>
-            <Paper onMouseLeave={() => setOpenMenuPerfil(false)} sx={{ borderRadius: 6, background: '#fff', position: 'absolute', right: 24, top: 4, width: 320, minHeight: 400 }}>
-
-            </Paper>
-          </Slide>
-
-        </>
-      </StyledAppBar >
-
-      {/* <MyPerfilMenu open={open} setAnchorEl={setAnchorEl} anchorEl={anchorEl} /> */}
-    </>
   )
 }
