@@ -18,7 +18,7 @@ export const PerfilMenu = (prop: Prop) => {
           background: '#fff',
           position: 'absolute',
           right: 24,
-          top: 4,
+          top: 8,
           width: 320,
           minHeight: 400
         }}>

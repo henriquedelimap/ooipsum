@@ -22,18 +22,10 @@ export const BtnAcessar = (prop: Prop) => {
         color: 'primary',
         fontFamily: 'Outfit',
         fontWeight: 700,
-        '&:hover': {
-          background: !!usuario ? 'transparent' : '#0066cc',
-          color: '#fff',
-          fontWeight: 700,
-        },
-        '&:active': {
-          background: 'transparent',
-          color: '#0066cc',
-        }
+        borderRadius: 3
       }}
     >
-      {!!usuario ? <Avatar onMouseEnter={() => setOpenMenuPerfil(true)} sx={{ width: 40, height: 40, zIndex: 8000 }} /> : 'acessar'}
+      acessar
     </Button>
   )
 }

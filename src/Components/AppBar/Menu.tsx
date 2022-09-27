@@ -1,5 +1,5 @@
 import { Stack, Collapse, IconButton, Slide, Paper } from "@mui/material"
-import { Dispatch, SetStateAction } from "react"
+import { Dispatch, SetStateAction, useState } from "react"
 import { MdMenu } from "react-icons/md"
 import { useNavigate } from 'react-router-dom'
 import { useInternalConfig } from "../../Common/Context/InternalConfig"
@@ -8,21 +8,14 @@ import { useInternalConfig } from "../../Common/Context/InternalConfig"
 interface Prop {
   openMenuPerfil: boolean
   setOpenMenuPerfil: Dispatch<SetStateAction<boolean>>
-  openMenu: boolean
-  setOpenMenu: Dispatch<SetStateAction<boolean>>
-  openSubMenu: boolean
-  setOpenSubMenu: Dispatch<SetStateAction<boolean>>
 }
 
 export const Menu = (prop: Prop) => {
   const {
     openMenuPerfil,
     setOpenMenuPerfil,
-    openMenu,
-    setOpenMenu,
-    openSubMenu,
-    setOpenSubMenu
   } = prop
+  const [openMenu, setOpenMenu] = useState(false)
 
   const { appBarAction, appBarSubMenu } = useInternalConfig()
   return (
@@ -47,7 +40,7 @@ export const Menu = (prop: Prop) => {
       <Stack
         alignItems='center'
         direction='row'
-        sx={{ background: '#3d3d3d', borderRadius: 3, p: .2, pl: 1, pr: 1, position: 'relative' }} >
+        sx={{ background: '#3d3d3d', borderRadius: openMenu ? 2 : 20, pl: openMenu ? 2 : 0, pr: openMenu ? 2 : 0, p: .4 }} >
 
         <Collapse in={!openMenu}>
           <Stack
@@ -60,22 +53,14 @@ export const Menu = (prop: Prop) => {
           </Stack>
         </Collapse>
 
-        <Stack sx={{ borderRadius: 8 }}>
+        <Stack >
           <Collapse orientation='horizontal' in={openMenu}>
             {appBarAction}
 
           </Collapse>
         </Stack>
 
-        {/* <Collapse orientation={openSubMenu ? 'vertical' : 'horizontal'} in={openSubMenu}>
-          <Slide in={openSubMenu}>
-            <Stack sx={{ borderRadius: 8 }}>
-              <Paper sx={{ background: '#3d3d3d' }}>
-                {appBarAction}
-              </Paper>
-            </Stack>
-          </Slide>
-        </Collapse> */}
+
 
       </Stack>
     </Stack >
