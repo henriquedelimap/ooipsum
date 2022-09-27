@@ -69,7 +69,7 @@ export const MyAppBar = () => {
         />
 
         {!!usuario
-          ? <Stack alignItems='center' spacing={2} direction='row' sx={{ p: 1, zIndex: 8000 }}>
+          ? <Stack alignItems='center' spacing={1} direction='row' sx={{ p: 1, zIndex: 8000 }}>
 
 
 
