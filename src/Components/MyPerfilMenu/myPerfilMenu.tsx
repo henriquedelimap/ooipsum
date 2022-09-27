@@ -1,112 +1,120 @@
-import { Button, Menu, MenuItem, MenuList, Typography, Stack, Avatar, LinearProgress, Fade, Box } from "@mui/material"
-import { Dispatch, ReactNode, SetStateAction } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Button, MenuItem, Typography, Stack, LinearProgress, Fade, Box, Divider, Slide, Collapse, IconButton } from "@mui/material"
+import { Dispatch, SetStateAction, useState } from "react"
+import { MdArrowBack } from "react-icons/md"
+import { useNavigate } from "react-router-dom"
 import { useAuthContext } from "../../Common/Context/Auth"
+import { useInternalConfig } from "../../Common/Context/InternalConfig"
 import { LoginForm } from "../../Pages/Acessar/loginForm"
 
-interface Props {
-  children?: any
-  anchorEl?: null | HTMLElement
-  setAnchorEl?: Dispatch<SetStateAction<null | HTMLElement>>
-  open?: boolean
+interface IMenuItem {
+  label: string
+  to: string
 }
-
-const MenuDefaultPaper = (menuProp: Props) => {
+const MyMenuItem = (prop: IMenuItem) => {
+  const { label, to } = prop
+  const navigate = useNavigate()
   return (
-    <Menu
-      id='menu-perfil'
-      anchorEl={menuProp.anchorEl}
-      open={false}
-      sx={{
-        width: 320,
-        borderRadius: '.32rem',
-        mt: -6,
-
-      }}
-      PaperProps={{
-        elevation: 0,
-        sx: {
-          width: 400,
-
-        }
-      }}
-      transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-      anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-    >
-      {menuProp.children}
-    </Menu>
+    <MenuItem sx={{ width: '100%' }} onClick={() => navigate(to)}>
+      <Typography color='#3d3d3d' variant='body1' fontFamily='Outfit'>
+        {label}
+      </Typography>
+    </MenuItem>
   )
 }
 
-export const MenuAuthenticated = (menuAuthProp: Props) => {
-  const navigate = useNavigate()
-  const { login, logout, user } = useAuthContext()
+interface IUserStatistics {
+  counter: number
+  label: string
+  setOpenPostagens: Dispatch<SetStateAction<boolean>>
+  openPostagens: boolean
+
+}
+const UserStatistics = (prop: IUserStatistics) => {
   return (
+    <Stack onClick={() => prop.setOpenPostagens(!prop.openPostagens)} alignItems='center' sx={{ p: .5, cursor: 'pointer' }} >
+      <Typography fontFamily='Outfit' lineHeight='1.6rem' color='#6d6d6d' fontWeight={500} variant='h6'>{prop.counter}</Typography>
+      <Typography color='#9d9d9d' variant='subtitle1' fontFamily='Outfit'>{prop.label}</Typography>
+    </Stack>
+  )
+}
+
+export const MenuAuthenticated = () => {
+  const navigate = useNavigate()
+  const { logout, usuario } = useAuthContext()
+  const [openPostagens, setOpenPostagens] = useState<boolean>(false)
+
+  return (
+
     <>
-      <Stack sx={{ height: 140, p: 2, position: 'relative' }} spacing={2} alignItems='end'>
-        <Stack
-          className='paper'
-          sx={{
-            mt: -1,
-            height: '50%',
-            backgroundImage: '#3d3d3d'
-          }}
-        />
-        <Typography>{user?.user.username}</Typography>
 
-      </Stack>
+      <Collapse in={!openPostagens}>
+        <Slide direction="left" in={!openPostagens}>
+
+          <Stack spacing={3} sx={{ width: '100%', height: 'auto', p: 2 }}>
+
+            <Stack alignItems='center' spacing={3} sx={{ width: '100%', pt: 6 }} >
+              <Stack alignItems='center'>
+                <Typography fontWeight={900} color='#6d6d6d' variant='h5' align='center'>{usuario?.username}</Typography>
+                <Typography fontFamily='Outfit' color='#9d9d9d' variant='subtitle1' align='center'>{usuario?.accountType}</Typography>
+              </Stack>
+
+              <Stack spacing={1} justifyContent='center' direction='row' sx={{ width: '100%' }}>
+                <UserStatistics setOpenPostagens={setOpenPostagens} openPostagens={openPostagens} counter={10} label='postagens' />
+                <UserStatistics setOpenPostagens={setOpenPostagens} openPostagens={openPostagens} counter={12} label='curtidas' />
+                <UserStatistics setOpenPostagens={setOpenPostagens} openPostagens={openPostagens} counter={30} label='visualizações' />
+              </Stack>
+            </Stack>
+
+            <Divider />
+
+            <Stack spacing={.5}>
+              <MyMenuItem label='gerenciar blog' to='/admin' />
+              <MyMenuItem label='configuração' to='/admin/configurar' />
+              <MyMenuItem label='ajuda' to='/ajuda' />
+            </Stack>
 
 
-      <MenuItem sx={{ width: '100%' }} onClick={() => {
-        // menuAuthProp.setAnchorEl(null)
-        navigate(`/admin`)
+            <Button fullWidth sx={{ width: '100%' }} onClick={() => {
+              logout()
+              navigate('/')
+            }}>
+              <Typography color='error' variant='body1' fontFamily='Outfit'>
+                sair da conta
+              </Typography>
+            </Button>
+          </Stack>
+        </Slide>
+      </Collapse>
 
-      }}
-      >
-        <Typography >
-          gerenciar blog
-        </Typography>
-      </MenuItem>
+      <Collapse in={openPostagens}>
+        <Slide direction='left' in={openPostagens}>
 
-      <MenuItem sx={{ width: '100%' }} onClick={() => {
-        // menuAuthProp.setAnchorEl(null)
-        navigate(`/admin/configurar`)
+          <Stack spacing={3} sx={{ width: '100%', height: 'auto', p: 2 }}>
+            <Stack alignItems='start' sx={{ width: '100%', mt: -1.5, ml: -1.2 }}>
 
-      }}
-      >
-        <Typography >
-          configuração
-        </Typography>
-      </MenuItem>
-      <MenuItem sx={{ width: '100%' }} onClick={() => {
-        // menuAuthProp.setAnchorEl(null)
-        navigate('/ajuda')
+              <IconButton onClick={() => setOpenPostagens(!openPostagens)}>
+                <MdArrowBack />
+              </IconButton>
+            </Stack>
 
-      }}>
-        <Typography >
-          ajuda
-        </Typography>
-      </MenuItem>
-      <Button sx={{ width: '100%' }} onClick={() => {
-        logout()
-        navigate('/')
-        // menuAuthProp.setAnchorEl(null)
+          </Stack>
 
-      }}>sair da contato</Button>
+        </Slide>
+      </Collapse>
     </>
+
+
   )
 }
 
-export const MyPerfilMenu = (prop: Props) => {
-  const { anchorEl, setAnchorEl, open } = prop
-  const navigate = useNavigate()
-  const { login, logout, loading, user } = useAuthContext()
+export const MyPerfilMenu = () => {
+  const { loading, usuario } = useAuthContext()
 
   return (
     <>
       {
-        !!user
-          ? <MenuAuthenticated anchorEl={anchorEl} setAnchorEl={setAnchorEl} open={open} />
+        !!usuario
+          ? <MenuAuthenticated />
           : <Box sx={{ p: 3 }}><LoginForm /></Box>
       }
       <Fade in={loading}>

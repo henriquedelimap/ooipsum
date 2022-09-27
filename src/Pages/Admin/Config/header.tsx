@@ -24,8 +24,10 @@ export const ConfigurarHeader = () => {
         <Typography
           color='#6d6d6d'
           variant='subtitle1'
-          fontFamily='Outfit'>
-          Gerencie suas informações para que o blog atenda suas necessidades.
+          fontFamily='Outfit'
+          align='center'
+        >
+          Gerencie suas informações para que o blog atenda suas necessidades
         </Typography>
       </Stack>
     </Stack>

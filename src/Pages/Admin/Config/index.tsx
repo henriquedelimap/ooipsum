@@ -1,6 +1,7 @@
-import { Accordion, AccordionSummary, AccordionDetails, Avatar, Container, Stack, Typography, FormControl, OutlinedInput, Button, formLabelClasses } from "@mui/material"
-import { SyntheticEvent, useState, useEffect, ReactElement } from "react"
+import { Accordion, AccordionSummary, AccordionDetails, Avatar, Container, Stack, Typography, FormControl, OutlinedInput, Button, formLabelClasses, Box } from "@mui/material"
+import { SyntheticEvent, useState, useEffect, ReactElement, useLayoutEffect } from "react"
 import { MdEdit, MdExpandMore, MdModeEditOutline, MdSend } from "react-icons/md"
+import { useNavigate } from "react-router-dom"
 import { useAuthContext } from "../../../Common/Context/Auth"
 import { useBlogConfig } from "../../../Common/Context/BlogConfig"
 import { useInternalConfig } from "../../../Common/Context/InternalConfig"
@@ -49,8 +50,10 @@ export const MyAccordion = (prop: Prop) => {
 
 export const Configurar = () => {
   const [expanded, setExpanded] = useState<string | false>(false)
-  const { blogConfig } = useBlogConfig()
+  const { blogConfig, loading } = useBlogConfig()
   const { usuario } = useAuthContext()
+  const { setAppBarAction, appBarAction, pathname } = useInternalConfig()
+  const navigate = useNavigate()
   const handleChange = (panel: string) => (e: SyntheticEvent, isExpanded: boolean) => {
     setExpanded(isExpanded ? panel : false)
   }
@@ -78,16 +81,19 @@ export const Configurar = () => {
       multi: true
     },
   ]
-
-
-
-  const { setAppBarAction } = useInternalConfig()
-
+  const appBarOption = [
+    {
+      to: 'perfil',
+      label: 'perfil'
+    },
+    {
+      to: 'blog',
+      label: 'blog'
+    },
+  ]
   useEffect(() => {
-    setAppBarAction(<></>)
+    setAppBarAction(appBarOption)
   }, [])
-  // console.log(blogConfig);
-
 
   return (
     <Stack spacing={4} sx={{ pt: 2, width: '100%' }} >
@@ -97,80 +103,81 @@ export const Configurar = () => {
       <Container maxWidth='lg' >
         <Stack spacing={1}>
 
-          {
-            label?.map((item, index) => {
-              const types = blogConfig !== undefined ? blogConfig[`${item.key}`] : ''
-              const multipleOptions = typeof types === typeof [] ? types : ''
-              let options
-              if (multipleOptions[0] !== undefined) {
-                const typename = multipleOptions.map((item: any) => item.__typename)[0]
-                options = blogConfig[`${item.key}`][0].__typename === typename ? blogConfig[`${item.key}`] : ''
 
-              }
-              const keys = (Object.keys(options !== undefined ? options[0] : ''))
-              console.log(options);
-
-              return (
-
-                <>
-                  {item?.multi === true
-                    ? <MyAccordion key={index} index={index} label={item?.label}>
-                      <>
-                        {
-                          options?.map((subItem: any, index: any) => (
-                            <MyAccordion index={index} label={subItem.__typename} >
-                              <>
-                                {
-                                  keys.map((opt, index) => (
-                                    <>
-                                      <MyAccordion index={index} label={opt} >
-                                        <FormControl fullWidth>
-                                          <OutlinedInput
-                                            disabled
-                                            value={subItem.id}
-                                            size='small'
-                                            endAdornment={<MdModeEditOutline />}
-                                          />
-                                        </FormControl>
-                                      </MyAccordion>
-                                    </>
-                                  ))
-                                }
-                              </>
-
-                            </MyAccordion>
-                          ))
-                        }
-                      </>
-                    </MyAccordion>
-                    : < MyAccordion key={index} index={index} label={item?.label}>
-                      <>
-                        {
-
-                          <FormControl fullWidth>
-                            <OutlinedInput
-                              disabled
-                              value={blogConfig?.siteName}
-                              size='small'
-                              endAdornment={<MdModeEditOutline />}
-                            />
-                          </FormControl>
-                        }
-                      </>
-
-                    </MyAccordion>
-                  }
-                </>
-
-              )
-
-
-            }
-            )
-          }
         </Stack>
 
       </Container >
     </Stack >
   )
 }
+
+
+
+// {
+//   label?.map((item, index) => {
+//     const types = blogConfig !== undefined ? blogConfig[`${item.key}`] : ''
+//     const multipleOptions = typeof types === typeof [] ? types : ''
+//     let options
+//     if (multipleOptions[0] !== undefined) {
+//       const typename = multipleOptions.map((item: any) => item.__typename)[0]
+//       options = blogConfig[`${item.key}`][0].__typename === typename ? blogConfig[`${item.key}`] : ''
+
+//     }
+//     const keys = (Object.keys(options !== undefined ? options[0] : ''))
+
+//     return (
+
+//       <>
+//         {item?.multi === true
+//           ? <MyAccordion key={index} index={index} label={item?.label}>
+//             <>
+//               {
+//                 options?.map((subItem: any, index2: any) => (
+
+//                   <Box key={index2}  >
+//                     <>
+//                       {
+//                         keys.map((opt, index) => (
+//                           <>
+//                             <FormControl fullWidth>
+//                               <OutlinedInput
+//                                 disabled
+//                                 value={subItem.id}
+//                                 size='small'
+//                                 endAdornment={<MdModeEditOutline />}
+//                               />
+//                             </FormControl>
+//                           </>
+//                         ))
+//                       }
+//                     </>
+//                   </Box>
+//                 ))
+//               }
+//             </>
+//           </MyAccordion>
+//           : < MyAccordion key={index} index={index} label={item?.label}>
+//             <>
+//               {
+
+//                 <FormControl fullWidth>
+//                   <OutlinedInput
+//                     disabled
+//                     value={blogConfig?.siteName}
+//                     size='small'
+//                     endAdornment={<MdModeEditOutline />}
+//                   />
+//                 </FormControl>
+//               }
+//             </>
+
+//           </MyAccordion>
+//         }
+//       </>
+
+//     )
+
+
+//   }
+//   )
+// }

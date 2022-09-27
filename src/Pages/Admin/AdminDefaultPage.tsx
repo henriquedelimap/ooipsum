@@ -11,9 +11,7 @@ export const AdminDefaultPage = () => {
   const { id } = useParams()
   const { blogConfig } = useBlogConfig()
   const { setAppBarAction } = useInternalConfig()
-  useEffect(() => {
-    setAppBarAction(<></>)
-  }, [!!blogConfig])
+
 
   return (
     <Stack sx={{ position: 'relative', background: '#fff', height: '100%' }}>

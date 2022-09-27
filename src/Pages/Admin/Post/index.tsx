@@ -8,8 +8,15 @@ export const BlogPost = () => {
 
   const { setAppBarAction } = useInternalConfig()
 
+  const appBarOption = [
+    {
+      label: 'post',
+      to: 'post'
+    }
+  ]
+
   useEffect(() => {
-    setAppBarAction(<Button>salvar</Button>)
+    setAppBarAction(appBarOption)
   }, [])
 
   return (
