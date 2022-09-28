@@ -11,7 +11,7 @@ interface Prop {
 
 export const StyledAppBar = (prop: Prop) => {
 
-  const { blogConfig, loading } = useBlogConfig()
+  const { loading } = useBlogConfig()
 
   const navigate = useNavigate()
 

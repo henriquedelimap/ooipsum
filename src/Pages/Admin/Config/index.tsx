@@ -1,11 +1,11 @@
 import { Accordion, AccordionSummary, AccordionDetails, Avatar, Container, Stack, Typography, FormControl, OutlinedInput, Button, formLabelClasses, Box } from "@mui/material"
 import { SyntheticEvent, useState, useEffect, ReactElement, useLayoutEffect } from "react"
-import { MdEdit, MdExpandMore, MdModeEditOutline, MdSend } from "react-icons/md"
+import { MdExpandMore } from "react-icons/md"
 import { useNavigate } from "react-router-dom"
 import { useAuthContext } from "../../../Common/Context/Auth"
 import { useBlogConfig } from "../../../Common/Context/BlogConfig"
 import { useInternalConfig } from "../../../Common/Context/InternalConfig"
-import { drawerWidth } from "../menu"
+import { drawerWidth } from "../Drawer"
 import { ConfigurarHeader } from "./header"
 
 

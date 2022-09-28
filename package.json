@@ -15,6 +15,7 @@
     "@mui/material": "^5.10.6",
     "@tiptap/react": "^2.0.0-beta.196",
     "@tiptap/starter-kit": "^2.0.0-beta.196",
+    "crypto-js": "^4.1.1",
     "framer-motion": "^7.3.6",
     "graphql": "^16.6.0",
     "react": "^18.2.0",
@@ -23,6 +24,7 @@
     "react-router-dom": "^6.4.0"
   },
   "devDependencies": {
+    "@types/crypto-js": "^4.1.1",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.1.0",

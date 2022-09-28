@@ -1,11 +1,9 @@
-import { Stack, Button } from '@mui/material'
-import { useEffect } from 'react'
-import { Routes, Route, useParams, Outlet } from 'react-router-dom'
-import { useAuthContext } from '../../Common/Context/Auth'
+import { Stack } from '@mui/material'
+import { useParams, Outlet } from 'react-router-dom'
 import { useBlogConfig } from '../../Common/Context/BlogConfig'
 import { useInternalConfig } from '../../Common/Context/InternalConfig'
 import { MyAppBar } from '../../Components/AppBar/appBar'
-import { drawerWidth, MyAdminMenu } from './menu'
+import { drawerWidth, MyAdminMenu } from './Drawer'
 
 export const AdminDefaultPage = () => {
   const { id } = useParams()

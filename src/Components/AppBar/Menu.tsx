@@ -1,8 +1,7 @@
-import { Stack, Collapse, IconButton, Slide, Paper, Typography } from "@mui/material"
-import { Dispatch, SetStateAction, useEffect, useState } from "react"
+import { Stack, Collapse, IconButton, Typography } from "@mui/material"
+import { Dispatch, SetStateAction, useState } from "react"
 import { MdMenu } from "react-icons/md"
 import { useNavigate } from 'react-router-dom'
-import { useBlogConfig } from "../../Common/Context/BlogConfig"
 import { useInternalConfig } from "../../Common/Context/InternalConfig"
 
 
@@ -18,7 +17,6 @@ export const Menu = (prop: Prop) => {
   } = prop
   const [openMenu, setOpenMenu] = useState(false)
 
-  const { appBarAction, appBarSubMenu } = useInternalConfig()
   return (
     <Stack
       alignItems='center'
@@ -69,8 +67,6 @@ export const Menu = (prop: Prop) => {
 const MenuItems = () => {
   const navigate = useNavigate()
   const { appBarAction } = useInternalConfig()
-
-
   return (
     <Stack direction='row'   >
       {
@@ -92,6 +88,4 @@ const MenuItems = () => {
       }
     </Stack>
   )
-
-
 }

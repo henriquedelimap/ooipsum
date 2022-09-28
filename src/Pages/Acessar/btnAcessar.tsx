@@ -1,4 +1,4 @@
-import { Button, Avatar } from "@mui/material"
+import { Button } from "@mui/material"
 import { Dispatch, SetStateAction } from "react"
 import { useNavigate } from 'react-router-dom'
 

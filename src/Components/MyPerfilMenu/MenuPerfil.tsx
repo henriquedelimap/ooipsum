@@ -1,7 +1,6 @@
 import { Slide, Paper } from "@mui/material"
 import { Dispatch, SetStateAction } from "react"
-import { useNavigate } from 'react-router-dom'
-import { MenuAuthenticated, MyPerfilMenu } from "../MyPerfilMenu/myPerfilMenu"
+import { MyPerfilMenu } from "./MyPerfilMenu"
 
 interface Prop {
   openMenuPerfil: boolean
@@ -22,8 +21,6 @@ export const PerfilMenu = (prop: Prop) => {
           width: 320,
           minHeight: 400
         }}>
-
-
         <MyPerfilMenu />
       </Paper>
     </Slide>

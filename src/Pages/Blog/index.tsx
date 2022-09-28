@@ -1,8 +1,6 @@
-import styled from "@emotion/styled";
 import { Stack } from "@mui/material";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { Script } from "../../Common/Script";
-import { Id } from "../../Utils";
 import { Parallax } from "./Animation/Parallax"
 import { Slider } from './Animation/Slider'
 import { PostThumb } from "./Post/PostThumb"
