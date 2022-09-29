@@ -1,6 +1,33 @@
-import { Slide, Paper } from "@mui/material"
+import { Slide, Paper, Box, Fade, LinearProgress } from "@mui/material"
 import { Dispatch, SetStateAction } from "react"
-import MyPerfilMenu from "./MyPerfilMenu"
+import { useAuthContext } from "../../Common/Context/Auth"
+import { LoginForm } from "../../Pages/Acessar/loginForm"
+import { MenuAuthenticated } from "./MenuAuthenticated"
+
+
+const MyPerfilMenu = () => {
+  const { loading, auth } = useAuthContext()
+
+  return (
+    <>
+      {
+        !!auth
+          ? <MenuAuthenticated />
+          : <Box sx={{ p: 3 }}>
+            <LoginForm />
+          </Box>
+      }
+      <Fade in={loading}>
+        <LinearProgress sx={{ mb: -1 }} />
+      </Fade>
+    </>
+
+  )
+}
+
+
+
+
 
 interface Prop {
   openMenuPerfil: boolean
