@@ -1,6 +1,6 @@
 import { Slide, Paper } from "@mui/material"
 import { Dispatch, SetStateAction } from "react"
-import { MyPerfilMenu } from "./MyPerfilMenu"
+import MyPerfilMenu from "./MyPerfilMenu"
 
 interface Prop {
   openMenuPerfil: boolean

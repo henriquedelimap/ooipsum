@@ -1,9 +1,9 @@
-import { LinearProgress, Fade, Box } from "@mui/material"
+import { Fade, LinearProgress, Box } from "@mui/material"
 import { useAuthContext } from "../../Common/Context/Auth"
 import { LoginForm } from "../../Pages/Acessar/loginForm"
 import { MenuAuthenticated } from "./MenuAuthenticated"
 
-export const MyPerfilMenu = () => {
+const MyPerfilMenu = () => {
   const { loading, auth } = useAuthContext()
 
   return (
@@ -22,3 +22,5 @@ export const MyPerfilMenu = () => {
 
   )
 }
+
+export default MyPerfilMenu
