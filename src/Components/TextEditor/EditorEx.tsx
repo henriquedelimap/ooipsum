@@ -1,11 +1,11 @@
 
-import { Button, ButtonGroup, Stack, Box, IconButton, Divider } from '@mui/material'
+import { Button, ButtonGroup, Stack, Box, IconButton, Divider, FormControl, InputLabel, Select, MenuItem, SelectChangeEvent, ToggleButtonGroup, ToggleButton } from '@mui/material'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import { useEffect, useState } from 'react'
+import { MouseEvent, useEffect, useState } from 'react'
 import { BsTextParagraph } from 'react-icons/bs'
 import { MdOutlineFormatBold, MdOutlineFormatItalic, MdRedo, MdUndo, MdFormatStrikethrough, MdAdd, MdFormatSize, MdRemove, MdFormatClear, MdFormatListBulleted, MdFormatListNumbered, MdFormatQuote, MdCode, MdOutlineHorizontalRule, MdTextFormat, MdTextFields } from 'react-icons/md'
-import { useInternalConfig } from '../../../../Common/Context/InternalConfig'
+import { useInternalConfig } from '../../Common/Context/InternalConfig'
 import './style.css'
 import './style.css'
 
@@ -72,33 +72,6 @@ export const MenuBar = ({ editor }: { editor: any }) => {
     ],
     [
       {
-        label: 'font size increment',
-        action: () => {
-          setFontSize(fontSize - 1)
-          editor.chain().focus().toggleHeading({ level: fontSize }).run()
-        },
-        icon: <MdAdd />,
-        id: 8
-      },
-      {
-        label: 'font size',
-        action: () => [],
-        icon: <MdFormatSize />,
-        disabled: true,
-        id: 9
-      },
-      {
-        label: 'font size decrement',
-        action: () => {
-          setFontSize(fontSize + 1)
-          editor.chain().focus().toggleHeading({ level: fontSize }).run()
-        },
-        icon: <MdRemove />,
-        id: 10
-      }
-    ],
-    [
-      {
         label: 'Format bulleted list',
         action: () => editor.chain().focus().toggleBulletList().run(),
         icon: <MdFormatListBulleted />,
@@ -135,20 +108,54 @@ export const MenuBar = ({ editor }: { editor: any }) => {
     ],
   ]
 
+  const fontSizeOptions = [
+    {
+      label: 'título principal',
+      id: 16,
+    },
+    {
+      label: 'subtítulo 1',
+      id: 17,
+    },
+    {
+      label: 'subtítulo 2',
+      id: 18
+    },
+    {
+      label: 'body 1',
+      id: 19
+    },
+    {
+      label: 'body 2',
+      id: 20
+    }
+  ]
+
+
+  const [fontSizeValue, setFontSizeValue] = useState<string | null>(null)
+
+  const [level, setlevel] = useState<number | null>(null)
+
+  const handleChangeFontSize = (event: React.MouseEvent<HTMLElement>,
+    newFontSize: string | null,) => {
+    editor.chain().focus().toggleHeading({ level: newFontSize }).run()
+    setFontSizeValue(newFontSize)
+  }
+
+
   return (
     <Stack sx={{ flexWrap: 'wrap', gap: 1.2 }} alignItems='center' justifyContent='start' direction='row' >
-
       {
         editorOptions.map((items, index) => (
+
           <ButtonGroup key={index} size='small'>
             {
-              items.map((item, index2) => (
+              items?.map((item, index2) => (
 
                 <IconButton
                   key={item.id}
                   onClick={item.action}
                   aria-label={item.label}
-                  disableRipple={item.disabled}
                   sx={{
                     fontSize: 20,
                     borderRadius: items.length > 1 ? 0 : 10,
@@ -157,7 +164,7 @@ export const MenuBar = ({ editor }: { editor: any }) => {
                     border: 'none',
                     '&:hover': {
                       border: 'none',
-                      background: item.disabled ? '#fafafa0f' : '#fafafa',
+                      background: '#fafafa',
                       boxShadow: 'none'
                     }
                   }}>
@@ -168,7 +175,40 @@ export const MenuBar = ({ editor }: { editor: any }) => {
           </ButtonGroup>
         ))
       }
-    </Stack>
+      <ToggleButtonGroup
+        exclusive
+        aria-label='font size'
+        onChange={handleChangeFontSize}
+      >
+        {
+          fontSizeOptions.map((item, index) => (
+            <ToggleButton
+              sx={
+                editor.isActive('heading', { level: index + 1 })
+                  ? {
+                    background: '#0066cc1f',
+                    color: '#0066cc',
+                    border: '1px solid transparent',
+                    fontFamily: 'outfit',
+                    fontWeight: 800,
+                    fontSize: 20 - index * 2.7
+                  }
+                  : {
+                    border: '1px solid transparent',
+                    fontFamily: 'outfit',
+                    fontWeight: 800,
+                    fontSize: 20 - index * 2.7
+                  }
+              }
+              size='small'
+              value={index + 1}
+            >
+              h{index + 1}
+            </ToggleButton>
+          ))
+        }
+      </ToggleButtonGroup>
+    </Stack >
 
   )
 }

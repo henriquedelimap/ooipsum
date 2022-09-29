@@ -4,7 +4,7 @@ import { BsSave } from "react-icons/bs"
 import { MdEdit } from "react-icons/md"
 import { useAuthContext } from "../../../../Common/Context/Auth"
 import { useInternalConfig } from "../../../../Common/Context/InternalConfig"
-import { EditorDeTexto } from "../../../Admin/Post/TextEditor/EditorEx"
+import { EditorDeTexto } from "../../../../Components/TextEditor/EditorEx"
 export const PostPageBody = ({ page, edit }: { page?: any, edit?: boolean }) => {
 
   const text1 = `<h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos ad vel vitae autem, repellendus hic obcaecati repudiandae modi quam neque omnis accusamus odit illo ab a dicta atque nisi architecto, dolorem vero ratione labore facere. Est voluptatibus libero perferendis quam facilis laudantium ipsum iusto similique voluptas molestias n</h1>`

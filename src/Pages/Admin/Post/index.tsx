@@ -1,6 +1,6 @@
 import { Stack, Button } from "@mui/material"
 import { PostLayout } from "../../Blog/Post/PostPage/PostLayout"
-import { TextEditor } from "./TextEditor"
+import { TextEditor } from "../../../Components/TextEditor"
 import { useEffect } from 'react'
 import { useInternalConfig } from '../../../Common/Context/InternalConfig'
 
