@@ -20,10 +20,8 @@ export const BlogPost = () => {
   }, [])
 
   return (
-
     <Stack alignItems='end' sx={{ width: '100%' }}>
       <PostLayout edit={true} />
-
     </Stack>
   )
 }

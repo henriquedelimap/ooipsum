@@ -41,10 +41,7 @@ const SubMenuAuthenticatedLayout = (prop: ISubMenuAuthenticatedLayout) => {
         </IconButton>
 
         {prop.children}
-
-
       </Stack>
-
     </MenuAuthenticatedLayout>
   )
 }
@@ -52,7 +49,7 @@ const SubMenuAuthenticatedLayout = (prop: ISubMenuAuthenticatedLayout) => {
 
 export const MenuAuthenticated = () => {
   const navigate = useNavigate()
-  const { logout, usuario } = useAuthContext()
+  const { logout, user, usuario } = useAuthContext()
   const [openPostagens, setOpenPostagens] = useState<boolean>(false)
 
   return (
@@ -68,8 +65,8 @@ export const MenuAuthenticated = () => {
 
           <Stack spacing={1} justifyContent='center' direction='row' sx={{ width: '100%' }}>
             <UserStatistics setOpenPostagens={setOpenPostagens} openPostagens={openPostagens} counter={10} label='postagens' />
-            <UserStatistics setOpenPostagens={setOpenPostagens} openPostagens={openPostagens} counter={12} label='curtidas' />
-            <UserStatistics setOpenPostagens={setOpenPostagens} openPostagens={openPostagens} counter={30} label='visualizações' />
+            <UserStatistics setOpenPostagens={setOpenPostagens} openPostagens={openPostagens} counter={12} label='leitores' />
+            <UserStatistics setOpenPostagens={setOpenPostagens} openPostagens={openPostagens} counter={30} label='assinantes' />
           </Stack>
         </Stack>
 

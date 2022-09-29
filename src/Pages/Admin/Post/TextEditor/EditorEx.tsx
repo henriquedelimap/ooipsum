@@ -1,171 +1,228 @@
 
-import { Button, ToggleButton, ToggleButtonGroup } from '@mui/material'
+import { Button, ButtonGroup, Stack, Box, IconButton, Divider } from '@mui/material'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import React, { MouseEvent, useState } from 'react'
-import { MdRedo, MdUndo } from 'react-icons/md'
-
+import { useEffect, useState } from 'react'
+import { BsTextParagraph } from 'react-icons/bs'
+import { MdOutlineFormatBold, MdOutlineFormatItalic, MdRedo, MdUndo, MdFormatStrikethrough, MdAdd, MdFormatSize, MdRemove, MdFormatClear, MdFormatListBulleted, MdFormatListNumbered, MdFormatQuote, MdCode, MdOutlineHorizontalRule, MdTextFormat, MdTextFields } from 'react-icons/md'
+import { useInternalConfig } from '../../../../Common/Context/InternalConfig'
+import './style.css'
 import './style.css'
 
 export const MenuBar = ({ editor }: { editor: any }) => {
   if (!editor) {
     return null
   }
+  const [fontSize, setFontSize] = useState<number>(1)
 
-  const [undo, setUndo] = useState<string | null>(null)
 
-  const handleUndo = (
-    event: MouseEvent<HTMLElement>,
-    action: string | null
-  ) => {
-    setUndo(action)
-  }
+  const editorOptions = [
+    [
+      {
+        label: 'undo',
+        action: () => editor.chain().focus().undo().run(),
+        icon: <MdUndo />,
+        id: 1
+      },
+      {
+        label: 'redo',
+        action: () => editor.chain().focus().redo().run(),
+        icon: <MdRedo />,
+        id: 2
+      }
+    ],
+    [
+      {
+        label: 'Format Clear',
+        action: () => {
+          editor.chain().focus().clearNodes().run()
+          editor.chain().focus().unsetAllMarks().run()
+        },
+        icon: <MdFormatClear />,
+        id: 3
+      }
+    ],
+    [
+      {
+        label: 'bold',
+        action: () => editor.chain().focus().toggleBold().run(),
+        icon: <MdOutlineFormatBold />,
+        id: 4
+      },
+      {
+        label: 'italic',
+        action: () => editor.chain().focus().toggleItalic().run(),
+        icon: <MdOutlineFormatItalic />,
+        id: 5
+      },
+      {
+        label: 'strike',
+        action: () => editor.chain().focus().toggleStrike().run(),
+        icon: <MdFormatStrikethrough />,
+        id: 6
+      }
+    ],
+    [
+      {
+        label: 'format set paragraph',
+        action: () => editor.chain().focus().setParagraph().run(),
+        icon: <BsTextParagraph />,
+        id: 7
+      }
+    ],
+    [
+      {
+        label: 'font size increment',
+        action: () => {
+          setFontSize(fontSize - 1)
+          editor.chain().focus().toggleHeading({ level: fontSize }).run()
+        },
+        icon: <MdAdd />,
+        id: 8
+      },
+      {
+        label: 'font size',
+        action: () => [],
+        icon: <MdFormatSize />,
+        disabled: true,
+        id: 9
+      },
+      {
+        label: 'font size decrement',
+        action: () => {
+          setFontSize(fontSize + 1)
+          editor.chain().focus().toggleHeading({ level: fontSize }).run()
+        },
+        icon: <MdRemove />,
+        id: 10
+      }
+    ],
+    [
+      {
+        label: 'Format bulleted list',
+        action: () => editor.chain().focus().toggleBulletList().run(),
+        icon: <MdFormatListBulleted />,
+        id: 11
+      },
+      {
+        label: 'Format numbered list',
+        action: () => editor.chain().focus().toggleOrderedList().run(),
+        icon: <MdFormatListNumbered />,
+        id: 12
+      }
+    ],
+    [
+      {
+        label: 'Format block quote',
+        action: () => editor.chain().focus().toggleBlockquote().run(),
+        icon: <MdFormatQuote />,
+        id: 13
+      },
+      {
+        label: 'Format block code',
+        action: () => editor.chain().focus().toggleCodeBlock().run(),
+        icon: <MdCode />,
+        id: 14
+      }
+    ],
+    [
+      {
+        label: 'Format horizontal line',
+        action: () => editor.chain().focus().setHorizontalRule().run(),
+        icon: <MdOutlineHorizontalRule />,
+        id: 15
+      }
+    ],
+  ]
+
   return (
-    <>
+    <Stack sx={{ flexWrap: 'wrap', gap: 1.2 }} alignItems='center' justifyContent='start' direction='row' >
 
-      <Button>
-        <MdUndo />
-      </Button>
-      <ToggleButtonGroup
-        exclusive
-        value={undo}
-        onChange={handleUndo}
-        aria-label='history action'
-      >
-        <ToggleButton value='undo' aria-label='undo action'>
-          <MdUndo />
-        </ToggleButton>
+      {
+        editorOptions.map((items, index) => (
+          <ButtonGroup key={index} size='small'>
+            {
+              items.map((item, index2) => (
 
-        <ToggleButton value='redo' aria-label='redo action'>
-          <MdRedo />
-        </ToggleButton>
-      </ToggleButtonGroup>
+                <IconButton
+                  key={item.id}
+                  onClick={item.action}
+                  aria-label={item.label}
+                  disableRipple={item.disabled}
+                  sx={{
+                    fontSize: 20,
+                    borderRadius: items.length > 1 ? 0 : 10,
+                    background: '#fafafa0f',
+                    color: '#3d3d3d',
+                    border: 'none',
+                    '&:hover': {
+                      border: 'none',
+                      background: item.disabled ? '#fafafa0f' : '#fafafa',
+                      boxShadow: 'none'
+                    }
+                  }}>
+                  {item.icon}
+                </IconButton>
+              ))
+            }
+          </ButtonGroup>
+        ))
+      }
+    </Stack>
 
-
-      <button
-        onClick={() => editor.chain().focus().toggleBold().run()}
-        className={editor.isActive('bold') ? 'is-active' : ''}
-      >
-        bold
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleItalic().run()}
-        className={editor.isActive('italic') ? 'is-active' : ''}
-      >
-        italic
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleStrike().run()}
-        className={editor.isActive('strike') ? 'is-active' : ''}
-      >
-        strike
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleCode().run()}
-        className={editor.isActive('code') ? 'is-active' : ''}
-      >
-        code
-      </button>
-      <button onClick={() => editor.chain().focus().unsetAllMarks().run()}>
-        clear marks
-      </button>
-      <button onClick={() => editor.chain().focus().clearNodes().run()}>
-        clear nodes
-      </button>
-      <button
-        onClick={() => editor.chain().focus().setParagraph().run()}
-        className={editor.isActive('paragraph') ? 'is-active' : ''}
-      >
-        paragraph
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-        className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
-      >
-        h1
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-        className={editor.isActive('heading', { level: 2 }) ? 'is-active' : ''}
-      >
-        h2
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
-        className={editor.isActive('heading', { level: 3 }) ? 'is-active' : ''}
-      >
-        h3
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleHeading({ level: 4 }).run()}
-        className={editor.isActive('heading', { level: 4 }) ? 'is-active' : ''}
-      >
-        h4
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleHeading({ level: 5 }).run()}
-        className={editor.isActive('heading', { level: 5 }) ? 'is-active' : ''}
-      >
-        h5
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleHeading({ level: 6 }).run()}
-        className={editor.isActive('heading', { level: 6 }) ? 'is-active' : ''}
-      >
-        h6
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleBulletList().run()}
-        className={editor.isActive('bulletList') ? 'is-active' : ''}
-      >
-        bullet list
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleOrderedList().run()}
-        className={editor.isActive('orderedList') ? 'is-active' : ''}
-      >
-        ordered list
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-        className={editor.isActive('codeBlock') ? 'is-active' : ''}
-      >
-        code block
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleBlockquote().run()}
-        className={editor.isActive('blockquote') ? 'is-active' : ''}
-      >
-        blockquote
-      </button>
-      <button onClick={() => editor.chain().focus().setHorizontalRule().run()}>
-        horizontal rule
-      </button>
-      <button onClick={() => editor.chain().focus().setHardBreak().run()}>
-        hard break
-      </button>
-      <button onClick={() => editor.chain().focus().undo().run()}>
-        undo
-      </button>
-      <button onClick={() => editor.chain().focus().redo().run()}>
-        redo
-      </button>
-    </>
   )
 }
 
-export default () => {
+const franse = 'uma página em branco é uma oportunidade para criar algo novo...'
+interface IEditor {
+  editable?: boolean
+  content?: string
+}
+export const EditorDeTexto = ({ editable, content }: IEditor) => {
+  const { setContent } = useInternalConfig()
+
   const editor = useEditor({
+    editable,
     extensions: [
       StarterKit,
     ],
-    content: ``,
+    content: `
+    <section className='editor'>
+    <p>${content}</p>
+    </section>
+    `,
   })
 
+  const json = editor?.getHTML()
+
+
+  useEffect(() => {
+    setContent(json)
+    console.log(content);
+  }, [json])
+
+  useEffect(() => {
+    if (!editor) {
+      return undefined
+    }
+    editor.setEditable(Boolean(editable))
+  }, [editor, editable])
+
+  if (!editor) {
+    return null
+  }
+
   return (
-    <div>
-      <MenuBar editor={editor} />
+    <Stack sx={{ position: 'relative' }} spacing={2}>
+      {
+        editable
+          ? <Box sx={{ position: 'sticky', top: 8, zIndex: 1000, background: '#6d6d6d0f', backdropFilter: 'blur(30px)', p: 1.3, pl: 4, pr: 4, borderRadius: 40 }}>
+            <MenuBar editor={editor} />
+          </Box>
+          : ''
+      }
+
       <EditorContent editor={editor} />
-    </div>
+    </Stack>
   )
 }

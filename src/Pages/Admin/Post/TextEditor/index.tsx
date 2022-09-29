@@ -1,17 +1,14 @@
+import { Stack } from '@mui/material'
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import MenuBar from './EditorEx'
+import { EditorDeTexto } from './EditorEx'
+
 export const TextEditor = () => {
 
-  const editor = useEditor({
-    extensions: [
-      StarterKit,
-    ],
-    content: '<p>Hello World!</p>',
-  })
-
-
   return (
-    <MenuBar />
+    <Stack sx={{ width: '100%' }}>
+
+      <EditorDeTexto />
+    </Stack>
   )
 }

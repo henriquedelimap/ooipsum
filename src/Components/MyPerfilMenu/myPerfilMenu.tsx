@@ -4,12 +4,12 @@ import { LoginForm } from "../../Pages/Acessar/loginForm"
 import { MenuAuthenticated } from "./MenuAuthenticated"
 
 export const MyPerfilMenu = () => {
-  const { loading, usuario } = useAuthContext()
+  const { loading, auth } = useAuthContext()
 
   return (
     <>
       {
-        !!usuario
+        !!auth
           ? <MenuAuthenticated />
           : <Box sx={{ p: 3 }}>
             <LoginForm />

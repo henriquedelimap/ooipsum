@@ -8,6 +8,7 @@ export const Home = () => {
     <Stack alignItems='center' >
       <HomeHeader />
       <CardCTA />
+
     </Stack >
   )
 }

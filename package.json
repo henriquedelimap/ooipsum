@@ -13,6 +13,8 @@
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@mui/material": "^5.10.6",
+    "@splinetool/react-spline": "^2.2.3",
+    "@splinetool/runtime": "^0.9.110",
     "@tiptap/react": "^2.0.0-beta.196",
     "@tiptap/starter-kit": "^2.0.0-beta.196",
     "crypto-js": "^4.1.1",
@@ -21,7 +23,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
-    "react-router-dom": "^6.4.0"
+    "react-router-dom": "^6.4.0",
+    "react-spline": "^1.2.1"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.1.1",
