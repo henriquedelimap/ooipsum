@@ -1,7 +1,7 @@
 import { Stack, Grid, Chip, IconButton } from "@mui/material"
 import { MdShare } from "react-icons/md"
 
-export const PostPageMoreAction = ({ page, edit }: { page?: any, edit?: boolean }) => {
+export const PostPageMoreAction = ({ page }: { page?: any }) => {
   return (
     <Stack direction='row' alignItems='center'>
       <Grid container sx={{ height: '100%', maxWidth: '80vw' }} rowGap={1} columnGap={.5}>
@@ -13,19 +13,19 @@ export const PostPageMoreAction = ({ page, edit }: { page?: any, edit?: boolean 
       </Grid>
 
       <Stack direction='row' spacing={1}>
-        <IconButton size='medium' sx={{ borderRadius: '.4rem', border: '1px solid #dbdbdb' }}>
+        <IconButton size='medium' sx={{ borderRadius: '3px', border: '1px solid #dbdbdb' }}>
           <MdShare />
         </IconButton>
 
-        <IconButton size='medium' sx={{ borderRadius: '.4rem', border: '1px solid #dbdbdb' }}>
+        <IconButton size='medium' sx={{ borderRadius: '3px', border: '1px solid #dbdbdb' }}>
           <MdShare />
         </IconButton>
 
-        <IconButton size='medium' sx={{ borderRadius: '.4rem', border: '1px solid #dbdbdb' }}>
+        <IconButton size='medium' sx={{ borderRadius: '3px', border: '1px solid #dbdbdb' }}>
           <MdShare />
         </IconButton>
 
-        <IconButton size='medium' sx={{ borderRadius: '.4rem', border: '1px solid #dbdbdb' }}>
+        <IconButton size='medium' sx={{ borderRadius: '3px', border: '1px solid #dbdbdb' }}>
           <MdShare />
         </IconButton>
       </Stack>

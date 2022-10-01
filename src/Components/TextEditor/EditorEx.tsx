@@ -1,5 +1,5 @@
 
-import { Button, ButtonGroup, Stack, Box, IconButton, Divider, FormControl, InputLabel, Select, MenuItem, SelectChangeEvent, ToggleButtonGroup, ToggleButton } from '@mui/material'
+import { Button, Container, ButtonGroup, Stack, Box, IconButton, Divider, FormControl, InputLabel, Select, MenuItem, SelectChangeEvent, ToggleButtonGroup, ToggleButton, Toolbar } from '@mui/material'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { MouseEvent, useEffect, useState } from 'react'
@@ -131,20 +131,14 @@ export const MenuBar = ({ editor }: { editor: any }) => {
     }
   ]
 
-
-  const [fontSizeValue, setFontSizeValue] = useState<string | null>(null)
-
-  const [level, setlevel] = useState<number | null>(null)
-
   const handleChangeFontSize = (event: React.MouseEvent<HTMLElement>,
     newFontSize: string | null,) => {
     editor.chain().focus().toggleHeading({ level: newFontSize }).run()
-    setFontSizeValue(newFontSize)
   }
 
 
   return (
-    <Stack sx={{ flexWrap: 'wrap', gap: 1.2 }} alignItems='center' justifyContent='start' direction='row' >
+    <Stack sx={{ flexWrap: 'wrap', gap: .5 }} alignItems='center' justifyContent='start' direction='row' >
       {
         editorOptions.map((items, index) => (
 
@@ -157,7 +151,7 @@ export const MenuBar = ({ editor }: { editor: any }) => {
                   onClick={item.action}
                   aria-label={item.label}
                   sx={{
-                    fontSize: 20,
+                    fontSize: 18,
                     borderRadius: items.length > 1 ? 0 : 10,
                     background: '#fafafa0f',
                     color: '#3d3d3d',
@@ -191,13 +185,13 @@ export const MenuBar = ({ editor }: { editor: any }) => {
                     border: '1px solid transparent',
                     fontFamily: 'outfit',
                     fontWeight: 800,
-                    fontSize: 20 - index * 2.7
+                    fontSize: 18 - index * 2.7
                   }
                   : {
                     border: '1px solid transparent',
                     fontFamily: 'outfit',
                     fontWeight: 800,
-                    fontSize: 20 - index * 2.7
+                    fontSize: 18 - index * 2.7
                   }
               }
               size='small'
@@ -213,13 +207,14 @@ export const MenuBar = ({ editor }: { editor: any }) => {
   )
 }
 
-const franse = 'uma página em branco é uma oportunidade para criar algo novo...'
 interface IEditor {
   editable?: boolean
   content?: string
 }
+
+
 export const EditorDeTexto = ({ editable, content }: IEditor) => {
-  const { setContent } = useInternalConfig()
+  const isPostPage = window.location.pathname.split('/')[2] === 'blog'
 
   const editor = useEditor({
     editable,
@@ -237,11 +232,6 @@ export const EditorDeTexto = ({ editable, content }: IEditor) => {
 
 
   useEffect(() => {
-    setContent(json)
-    console.log(content);
-  }, [json])
-
-  useEffect(() => {
     if (!editor) {
       return undefined
     }
@@ -253,16 +243,44 @@ export const EditorDeTexto = ({ editable, content }: IEditor) => {
   }
 
   return (
-    <Stack sx={{ position: 'relative' }} spacing={2}>
+    <Stack
+      sx={{
+        position: 'relative',
+        width: '100%',
+        '& .ProseMirror': {
+          minHeight: '70.5vh',
+          width: '100%',
+          borderRadius: 0,
+          pl: { xs: 3, md: 6 },
+          pr: { xs: 3, md: 6 },
+          pt: 2,
+          mt: 2,
+          pb: 18,
+          background: editable ? '#fff' : '#fafafa',
+          outline: '0px solid transparent',
+        }
+      }}>
       {
         editable
-          ? <Box sx={{ position: 'sticky', top: 8, zIndex: 1000, background: '#6d6d6d0f', backdropFilter: 'blur(30px)', p: 1.3, pl: 4, pr: 4, borderRadius: 40 }}>
+          ? <Toolbar
+            sx={{
+              position: 'sticky',
+              top: isPostPage ? 0 : 8,
+              zIndex: 1000,
+              background: isPostPage ? '#fff' : '#ffffffaf',
+              backdropFilter: isPostPage ? '' : 'blur(30px)',
+              pl: 4,
+              pr: 4,
+              borderRadius: isPostPage ? 0 : 40
+            }}>
             <MenuBar editor={editor} />
-          </Box>
+          </Toolbar>
           : ''
       }
 
-      <EditorContent editor={editor} />
+      <Container maxWidth='xl'>
+        <EditorContent editor={editor} />
+      </Container>
     </Stack>
   )
 }

@@ -40,7 +40,7 @@ export const PerfilMenu = (prop: Prop) => {
       <Paper
         onMouseLeave={() => setOpenMenuPerfil(false)}
         sx={{
-          borderRadius: 6,
+          borderRadius: 1,
           background: '#fff',
           position: 'absolute',
           right: 24,

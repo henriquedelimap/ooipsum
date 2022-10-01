@@ -23,7 +23,6 @@ export const MyAppBar = () => {
 
   const [openMenuPerfil, setOpenMenuPerfil] = useState(false)
 
-
   useLayoutEffect(() => {
     setAppBarAction(blogConfig?.appBarListItems)
   }, [!!blogConfig, !!pathname])
@@ -31,12 +30,10 @@ export const MyAppBar = () => {
   return (
     <StyledAppBar>
       <>
-
         <Menu
           openMenuPerfil={openMenuPerfil}
           setOpenMenuPerfil={setOpenMenuPerfil}
         />
-
         {
           !!usuario
             ? <Stack
@@ -53,7 +50,7 @@ export const MyAppBar = () => {
                 onClick={() => navigate(`/admin/blog`)}
                 sx={{
                   background: '#f3f3f3',
-                  borderRadius: 2,
+                  borderRadius: 1,
                   '&:hover': {
                     background: '#f3f3f3',
                     opacity: .7,
@@ -68,7 +65,7 @@ export const MyAppBar = () => {
                   background: '#f3f3f3',
                   width: 40,
                   height: 40,
-                  borderRadius: openMenuPerfil ? 6 : 2
+                  borderRadius: openMenuPerfil ? 6 : 1
                 }}
                 onClick={() => {
                   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {

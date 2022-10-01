@@ -17,7 +17,7 @@ export const PostThumb = ({ post, index, small }: { post: any, index: number, sm
             height: !!small ? '50vw' : '80vh',
             cursor: 'pointer',
             background: '#3d3d3d',
-            borderRadius: '.8rem',
+            borderRadius: '32px',
             backgroundImage: `url(${post.img})`,
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -53,7 +53,7 @@ export const PostThumb = ({ post, index, small }: { post: any, index: number, sm
                 alignItems='center'
                 justifyContent='end'
                 sx={{
-                  borderRadius: '.8rem',
+                  borderRadius: '3px',
                 }} >
                 <Typography
                   fontFamily='Outfit'

@@ -25,15 +25,15 @@ export const MyAccordion = (prop: Prop) => {
   }
 
   return (
-    <Accordion elevation={0} expanded={expanded === `${index}`} onChange={handleChange(`${index}`)}>
+    <Accordion sx={{ p: 1, pl: 0, pr: 0 }} elevation={0} expanded={expanded === `${index}`} onChange={handleChange(`${index}`)}>
       <AccordionSummary expandIcon={<MdExpandMore />}
         aria-controls={`${label}-content`}
         id={`${label}-header`}
       >
-        <Typography sx={{ width: '33%', flexShrink: 0 }}>
+        <Typography fontFamily='Outfit' sx={{ flexShrink: 0 }}>
           {label}
         </Typography>
-        <Typography>
+        <Typography fontFamily='Outfit'>
           {value}
         </Typography>
       </AccordionSummary>
@@ -41,8 +41,6 @@ export const MyAccordion = (prop: Prop) => {
       <AccordionDetails>
         {children}
       </AccordionDetails>
-
-
     </Accordion>
   )
 }

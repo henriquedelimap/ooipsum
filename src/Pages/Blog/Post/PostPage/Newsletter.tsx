@@ -6,7 +6,7 @@ import { InMail } from "../../../Home/inMail"
 export const PostPageNewsletter = () => {
   const { blogConfig } = useBlogConfig()
   return (
-    <Stack justifyContent='center' sx={{ height: '90vh', background: '#fff', mt: 8, mb: 8, p: 4, borderRadius: '4rem' }}>
+    <Stack justifyContent='center' sx={{ height: '90vh', background: '#fff', mt: 8, mb: 8, p: 4, borderRadius: '64px' }}>
 
       <Stack spacing={8}>
         <Stack spacing={.5}>

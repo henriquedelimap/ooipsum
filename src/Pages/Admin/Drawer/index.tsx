@@ -4,11 +4,14 @@ import { MdOutlineSettings } from "react-icons/md"
 import { BsVectorPen } from "react-icons/bs"
 import { useNavigate } from "react-router-dom"
 import { useBlogConfig } from "../../../Common/Context/BlogConfig"
+import { useInternalConfig } from "../../../Common/Context/InternalConfig"
 
 export const drawerWidth = '240px'
+
 export const MyAdminMenu = () => {
 
   const { blogConfig, siteName } = useBlogConfig()
+  const { postPage } = useInternalConfig()
   const navigate = useNavigate()
 
 
@@ -46,7 +49,7 @@ export const MyAdminMenu = () => {
     }
   ]
   return (
-    <Drawer sx={{ zIndex: 3000, '& .MuiDrawer-paper': { width: drawerWidth }, display: { xs: 'none', md: 'block', lg: 'block' } }} variant='permanent'>
+    <Drawer open={selected === 'blog' ? false : true} sx={{ zIndex: 2000, '& .MuiDrawer-paper': { width: drawerWidth }, display: { xs: 'none', md: 'block', lg: 'block' } }} variant='persistent'>
       <Stack spacing={8} justifyContent='space-between' sx={{ pt: 4, pb: 4, height: '100%' }}>
         <Stack sx={{ cursor: 'pointer' }} onClick={() => navigate('/admin')} direction='row' justifyContent='center' >
           <Typography color='primary' variant='h6' fontWeight={600}>

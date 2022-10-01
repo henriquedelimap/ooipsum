@@ -27,7 +27,7 @@ export const Parallax = ({ id, children }: { id: number | string, children: Reac
           p: 4,
           pt: 1,
           pb: 1,
-          borderRadius: '.4rem'
+          borderRadius: '3px'
         }}>
         {`#${id}`}
       </Typography>

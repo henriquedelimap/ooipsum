@@ -5,13 +5,19 @@ import { MdEdit } from "react-icons/md"
 import { useAuthContext } from "../../../../Common/Context/Auth"
 import { useInternalConfig } from "../../../../Common/Context/InternalConfig"
 import { EditorDeTexto } from "../../../../Components/TextEditor/EditorEx"
-export const PostPageBody = ({ page, edit }: { page?: any, edit?: boolean }) => {
+export const PostPageBody = ({ page }: { page?: any }) => {
+  let text
 
-  const text1 = `<h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos ad vel vitae autem, repellendus hic obcaecati repudiandae modi quam neque omnis accusamus odit illo ab a dicta atque nisi architecto, dolorem vero ratione labore facere. Est voluptatibus libero perferendis quam facilis laudantium ipsum iusto similique voluptas molestias n</h1>`
-  const typo = typeof text1
-  const { content } = useInternalConfig()
+  let textFormated = `
+  <h1>${page?.title}</h1>
+  <h3>${page?.abstract}</h3>
+  `
+
+  text = textFormated
+
   const [editable, setEditable] = useState(false)
   const { auth, usuario } = useAuthContext()
+
   return (
     <Stack sx={{ width: '100%', position: 'relative' }} spacing={2}>
       <Stack
@@ -19,17 +25,17 @@ export const PostPageBody = ({ page, edit }: { page?: any, edit?: boolean }) => 
         sx={{
           width: '100%',
           height: '80vh',
-          borderRadius: '3rem',
+          borderRadius: '32px',
           background: '#3d3d3d',
           backgroundImage: `url(${page?.img})`,
           backgroundPosition: 'center',
           backgroundSize: 'cover',
         }} />
-      <Stack alignItems='end' sx={{ position: 'sticky', top: 16, zIndex: 1010 }} >
+      <Stack alignItems='end' sx={{ position: 'sticky', top: { xs: 50, md: 20 }, zIndex: 1010 }} >
 
         {
           usuario?.accountType.includes('dev')
-            ? <IconButton sx={{ mr: editable ? 4 : 0 }} onClick={() => setEditable(!editable)}>
+            ? <IconButton sx={{ mr: editable ? 2 : 0 }} onClick={() => setEditable(!editable)}>
               {
                 editable ? <BsSave /> : <MdEdit />
               }
@@ -38,7 +44,7 @@ export const PostPageBody = ({ page, edit }: { page?: any, edit?: boolean }) => 
         }
       </Stack>
 
-      <EditorDeTexto editable={editable} content={text1} />
+      <EditorDeTexto editable={editable} content={text} />
 
     </Stack>
   )

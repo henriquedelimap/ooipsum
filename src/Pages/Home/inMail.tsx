@@ -11,7 +11,7 @@ export const InMail = () => {
         <FormControl sx={{ height: 80, borderBottom: '1px solid #dbdbdb' }} fullWidth>
           <InputBase
             placeholder={blogConfig?.newsletter.placeholder}
-            sx={{ height: '100%', borderRadius: '.2rem 0 0 .2rem', }}
+            sx={{ height: '100%', borderRadius: '3px 0 0 3px', }}
             startAdornment={Script.homeInput.icon}
             fullWidth
           />

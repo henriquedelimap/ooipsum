@@ -1,4 +1,5 @@
 import { Stack } from '@mui/material'
+import { useEffect } from 'react'
 import { useParams, Outlet } from 'react-router-dom'
 import { useBlogConfig } from '../../Common/Context/BlogConfig'
 import { useInternalConfig } from '../../Common/Context/InternalConfig'
@@ -8,7 +9,7 @@ import { drawerWidth, MyAdminMenu } from './Drawer'
 export const AdminDefaultPage = () => {
   const { id } = useParams()
   const { blogConfig } = useBlogConfig()
-  const { setAppBarAction } = useInternalConfig()
+  const { setAppBarAction, setPostPage } = useInternalConfig()
 
 
   return (
@@ -16,8 +17,8 @@ export const AdminDefaultPage = () => {
       <MyAppBar />
       <MyAdminMenu />
       <Stack direction='row' sx={{ width: '100%' }}>
-        <Stack sx={{ width: drawerWidth, display: { xs: 'none', md: 'block' } }} />
-        <Stack spacing={4} sx={{ pt: 2, width: { xs: '100%', md: `calc(100% - ${drawerWidth})` } }} >
+        <Stack sx={{ width: window.location.pathname.split('/')[2] === 'blog' ? '0%' : drawerWidth, display: { xs: 'none', md: 'block' } }} />
+        <Stack sx={{ width: { xs: '100%', md: `calc(100% - ${window.location.pathname.split('/')[2] === 'blog' ? '0%' : drawerWidth})` } }} >
           <Outlet />
         </Stack>
       </Stack>

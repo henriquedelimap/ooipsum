@@ -9,13 +9,13 @@ export const PostLayout = ({ page, category, edit }: { page?: any, category?: an
       <Stack spacing={2}>
 
         <Stack sx={{ width: '100%' }} spacing={8} alignItems='center'>
-          <PostPageHeader category={category} page={page} edit={edit} />
-          <PostPageBody page={page} edit={edit} />
+          <PostPageHeader category={category} page={page} />
+          <PostPageBody page={page} />
         </Stack>
 
         <Divider />
 
-        <PostPageMoreAction page={page} edit={edit} />
+        <PostPageMoreAction page={page} />
 
       </Stack>
     </Container>

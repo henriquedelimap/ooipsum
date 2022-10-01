@@ -7,11 +7,14 @@ let theme = createTheme({
   },
   palette: {
     primary: {
+      main: '#3d3d3d',
+    },
+    secondary: {
       main: '#0066cc',
     },
     text: {
-      primary: '#0066cc',
-      secondary: '#3d3d3d'
+      primary: '#3d3d3d',
+      secondary: '#9d9d9d'
     }
   },
   components: {
@@ -21,6 +24,41 @@ let theme = createTheme({
           background: '#fafafa',
           border: 'none'
 
+        }
+      }
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          fontFamily: 'Outfit'
+        }
+      }
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          fontFamily: 'Outfit'
+        }
+      }
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        input: {
+          fontFamily: 'Outfit',
+        }
+      }
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          fontFamily: 'Outfit'
+        }
+      }
+    },
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          fontFamily: 'Outfit'
         }
       }
     }

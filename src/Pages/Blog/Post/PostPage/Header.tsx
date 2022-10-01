@@ -4,7 +4,7 @@ import { BsTextareaT } from "react-icons/bs"
 import { MdAdd, MdClose, MdEdit } from "react-icons/md"
 import { Text } from "../../../../Components/Text"
 
-export const PostPageHeader = ({ page, category, edit }: { page?: any, category?: any, edit?: boolean }) => {
+export const PostPageHeader = ({ page, category }: { page?: any, category?: any }) => {
   return (
     <Stack
       spacing={8}
@@ -12,16 +12,12 @@ export const PostPageHeader = ({ page, category, edit }: { page?: any, category?
       sx={{ width: '90%', pt: 8 }}
     >
 
-      {
-        edit
-          ? <OutlinedInput placeholder="categoria" size='small' fullWidth />
-          : <Text
-            content={category.tag}
-            fontWeight={400}
-            variant='h6'
-            center
-          />
-      }
+      <Text
+        content={category?.tag}
+        fontWeight={400}
+        variant='h6'
+        center
+      />
 
       <Stack
         alignItems='center'
@@ -29,31 +25,21 @@ export const PostPageHeader = ({ page, category, edit }: { page?: any, category?
         spacing={1}
 
       >
+        <Text
+          content={page?.title}
+          variant='h2'
+          fontFamily={1}
+          center
+        />
 
-        {
-          edit
-            ? <OutlinedInput placeholder="título" size='small' fullWidth />
-            : <Text
-              content={page.title}
-              variant='h2'
-              fontFamily={1}
-              center
-            />
+        <Text
+          content={page?.subtitle}
+          variant='h6'
+          fontWeight={300}
+          center
 
-        }
+        />
 
-        {
-          edit
-            ? <OutlinedInput placeholder="subtítulo" size='small' fullWidth />
-            : <Text
-              content={page.subtitle}
-              variant='h6'
-              fontWeight={300}
-              center
-
-            />
-
-        }
 
       </Stack>
 

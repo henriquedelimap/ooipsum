@@ -17,7 +17,7 @@ export const Acessar = () => {
           display: { xs: 'none', md: 'flex', lg: 'flex' },
           height: '100vh',
           mt: -8,
-          borderRadius: '0 0 .3rem 0',
+          borderRadius: '0 0 3px 0',
           position: 'relative'
         }}>
 
@@ -32,7 +32,7 @@ export const Acessar = () => {
           width: "80%",
           height: 180,
           top: '50%',
-          borderRadius: '.4rem',
+          borderRadius: '3px',
           position: 'absolute',
           background: '#ffffff0f',
           backdropFilter: 'blur(18px)',

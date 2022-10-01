@@ -22,7 +22,7 @@ export const BtnAcessar = (prop: Prop) => {
         color: 'primary',
         fontFamily: 'Outfit',
         fontWeight: 700,
-        borderRadius: 3
+        borderRadius: 1
       }}
     >
       acessar

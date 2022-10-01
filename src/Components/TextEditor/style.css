@@ -6,6 +6,7 @@ h5,
 h6 {
   color: #3d3d3d;
   font-family: "Outfit";
+  font-weight: 300;
 }
 h1 {
   font-weight: 300;
@@ -51,15 +52,4 @@ blockquote::before {
   font-size: 120px;
   top: -3rem;
   right: 0rem;
-}
-.ProseMirror {
-  min-height: 80vh;
-  width: 100%;
-  background-color: #fff;
-  border-radius: 3rem;
-  padding: 2rem 4rem;
-  outline: 2px solid #fff;
-}
-.ProseMirror:focus {
-  outline: 2px solid #3d3d3d;
 }
