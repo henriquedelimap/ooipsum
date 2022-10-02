@@ -45,6 +45,8 @@ export const MenuLateral = () => {
   const [key, setKey] = useState<string | undefined>(undefined)
   const [value, setValue] = useState<string | undefined>(undefined)
   const [selecionaImagem, setSelecionaImagem] = useState<string | undefined>(undefined)
+  const [randomImage, setRandomImage] = useState<number>(1)
+  const [previewImage, setPreviewImage] = useState<boolean>(false)
 
   const MountPost = (key: string, value: string) => {
     switch (key) {
@@ -101,7 +103,6 @@ export const MenuLateral = () => {
   }, [handleColor, setPostColor, setPost, setSelecionaImagem, selecionaImagem, setSearchImage])
 
 
-
   const options = [
     'nextoo',
     'lapsoo',
@@ -111,6 +112,7 @@ export const MenuLateral = () => {
     'lapsoo',
     'lapsoo',
   ]
+  const [openClose, setOpenClose] = useState<boolean>(false)
   return (
 
     <Paper
@@ -121,9 +123,25 @@ export const MenuLateral = () => {
         top: '16%',
         borderRadius: '3px',
         zIndex: 2000,
-        overflow: 'hidden'
+        overflow: 'hidden',
+
       }}>
 
+      {/* <Stack
+        onMouseEnter={() => setOpenClose(prev => !prev)}
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          height: '100vh',
+          width: openClose ? 128 : 32,
+          background: 'pink',
+          '&:hover': {
+            width: 128,
+            background: 'blue',
+          }
+
+        }} /> */}
 
 
       <Stack
@@ -158,10 +176,20 @@ export const MenuLateral = () => {
             handleColor={handleColor}
             post={post}
             postColor={postColor}
+            setPreviewImage={setPreviewImage}
+            setRandomImage={setRandomImage}
+            randomImage={randomImage}
           />
         </Stack>
 
-        <SearchImagePaper selecionaImagem={selecionaImagem} setSelecionaImagem={setSelecionaImagem} searchImage={searchImage} backgroundType={String(post.background.type)} />
+        <SearchImagePaper
+          previewImage={previewImage}
+          randomImage={randomImage}
+          setRandomImage={setRandomImage}
+          selecionaImagem={selecionaImagem}
+          setSelecionaImagem={setSelecionaImagem}
+          searchImage={searchImage}
+          backgroundType={String(post.background.type)} />
       </Stack>
     </Paper>
 

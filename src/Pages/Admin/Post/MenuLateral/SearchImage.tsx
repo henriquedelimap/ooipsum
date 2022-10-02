@@ -1,81 +1,117 @@
-import { Stack, Collapse, Grid } from "@mui/material";
-import { useState, useEffect, Dispatch, SetStateAction } from "react";
+import { Stack, Collapse, Grid, IconButton, Box } from "@mui/material";
+import { useState, useEffect, Dispatch, SetStateAction, useRef } from "react";
+import { MdClose } from 'react-icons/md'
 
-export const SearchImagePaper = ({ searchImage, backgroundType, selecionaImagem, setSelecionaImagem }: { searchImage: string | undefined, backgroundType: string, selecionaImagem: string | undefined, setSelecionaImagem: Dispatch<SetStateAction<string | undefined>> }) => {
+export interface ISearchImage {
+  searchImage: string | undefined,
+  backgroundType: string,
+  selecionaImagem: string | undefined,
+  setSelecionaImagem: Dispatch<SetStateAction<string | undefined>>,
+  randomImage: number,
+  setRandomImage: Dispatch<SetStateAction<number>>,
+  previewImage: boolean,
+}
+export const SearchImagePaper = (prop: ISearchImage) => {
+  const {
+    searchImage,
+    backgroundType,
+    selecionaImagem,
+    setSelecionaImagem,
+    randomImage,
+    setRandomImage,
+    previewImage
+  } = prop
   const [result, setResult] = useState<any>([''])
-
+  const [limit, setLimit] = useState<number | undefined>(undefined)
+  if (randomImage === limit) {
+    setRandomImage(1)
+  }
   const fetchRequest = async () => {
     let Access_Key = "rqQXwCDIFG2i_2LtTwi1sHOr07iPKW1n94C_HArmR64"
+    randomImage
     const data = await fetch(
-      `https://api.unsplash.com/search/photos?page=1&query=${searchImage}&client_id=${Access_Key}`
+      `https://api.unsplash.com/search/photos?page=${randomImage}&query=${searchImage}&client_id=${Access_Key}`
     );
     const dataJ = await data.json();
     const result = dataJ.results;
-    console.log(result);
+    setLimit(dataJ.total_pages)
     setResult(result)
   };
   useEffect(() => {
     fetchRequest();
-  }, [searchImage]);
+  }, [searchImage, randomImage]);
+
 
   return (
-    <Stack sx={{
-      position: 'relative',
-      maxWidth: !!searchImage && backgroundType === 'image' ? '64vw' : '0vw',
-      height: '93vh',
-      mr: '332px',
-      transition: 'all 300ms ease-in-out',
-      overflow: 'scroll'
+    <Stack
+      sx={{
+        position: 'relative',
+        maxWidth: !!searchImage && backgroundType === 'image' ? '64vw' : previewImage ? '64vw' : '0vw',
+        height: '85vh',
+        mr: '332px',
+        transition: 'all 300ms ease-out',
+        overflow: 'scroll'
+      }}>
 
-    }}>
-
-      <Collapse in={!!searchImage && backgroundType === 'image'} >
+      <Collapse in={!!searchImage && backgroundType === 'image' || previewImage} >
         <Grid
-          gap={2}
+          gap={3}
           container
-          alignItems='start'
+          alignItems='center'
           sx={{
-            width: '64vw', p: 2, pl: 0, pr: 2,
+            width: '64vw', p: 2
           }}
-          justifyContent='end'>
+          justifyContent='space-around'>
+
           {
-            result?.map((item: { urls: { small: string | undefined; }; }, index: any) => (
-              <Grid
-                onClick={() => setSelecionaImagem(item?.urls?.small)}
-                item
-                key={index}
-                xs={5.8}
-                sx={{
-                  height: 'auto',
-                  width: '100%',
-                  transition: 'all 200ms ease',
-                  transform: selecionaImagem === item?.urls?.small
-                    ? 'scale(1.02)'
-                    : 'none',
+            previewImage ? <Grid xs={12} item sx={{ width: 'auto', height: '100%' }}>
+              <img src={selecionaImagem} style={{
+                objectFit: 'cover',
+                height: 640,
+                borderRadius: '3px 32px 3px 32px',
+                width: '98%',
 
-                }}
-              >
-                <img style={{
-                  padding: '2px',
-                  objectFit: 'cover',
-                  height: 640,
-                  borderRadius: '32px',
-                  width: '98%',
-                  boxShadow: selecionaImagem === item?.urls?.small && index % 2 === 0
-                    ? '-4px 4px 10px 1px #3d3d3d3d'
-                    : selecionaImagem === item?.urls?.small && index % 2 !== 0
-                      ? '4px 4px 10px 1px #3d3d3d3d'
-                      : 'none',
-                  outline: selecionaImagem === item?.urls?.small ? '3px solid #0066cc' : '3px solid transparent',
+              }} />
 
-                  opacity: !!searchImage && backgroundType === 'image' ? 1 : 0,
-                  transition: 'all 300ms ease-in'
-                }}
+            </Grid>
+              : result?.map((item: { urls: { small: string | undefined; }; }, index: any) => (
+                <Grid
+                  onClick={() => setSelecionaImagem(item?.urls?.small)}
+                  item
                   key={index}
-                  src={item?.urls?.small}
-                />
-              </Grid>
-            ))
+                  xs={selecionaImagem === item?.urls?.small ? 12 : 10}
+                  sx={{
+                    height: 'auto',
+                    width: '100%',
+                    transition: 'all 300ms ease-in',
+
+                  }}
+                >
+                  <img style={{
+                    padding: '2px',
+                    scrollSnapAlign: 'center',
+
+                    objectFit: 'cover',
+                    height: 640,
+                    borderRadius:
+                      selecionaImagem === item?.urls?.small
+                        ? '3px'
+                        : index % 2 !== 0
+                          ? '3px 32px 3px 32px'
+                          : '32px 3px 32px 3px',
+                    width: '98%',
+
+
+                    outline: selecionaImagem === item?.urls?.small ? '1.8px solid #0066cc' : '1.8px solid transparent',
+
+                    opacity: !!searchImage && backgroundType === 'image' ? 1 : 0,
+                    transition: 'all 300ms ease-in'
+                  }}
+                    key={index}
+                    src={item?.urls?.small}
+                  />
+                </Grid>
+              ))
           }
 
         </Grid>

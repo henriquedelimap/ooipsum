@@ -2,3 +2,37 @@
   width: 0px;
   height: 0px;
 }
+
+* {
+  scroll-behavior: smooth;
+  scroll-snap-type: both mandatory;
+}
+.iconRandom {
+  animation: radonIcon 4s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes radonIcon {
+  0% {
+    color: #ab0056;
+
+    transform: rotate(0deg);
+  }
+  2% {
+    transform: rotate(10deg);
+  }
+  2.6% {
+    transform: rotate(-15deg);
+  }
+  5% {
+    transform: rotate(10deg);
+  }
+  6% {
+    transform: rotate(0deg);
+  }
+  35% {
+    color: #3d3d3d;
+  }
+  100% {
+    color: #0066cc;
+  }
+}

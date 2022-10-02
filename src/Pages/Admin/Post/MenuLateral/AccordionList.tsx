@@ -1,10 +1,11 @@
-import { Stack, Typography, ToggleButtonGroup, ToggleButton, Collapse, TextField, FormControl, InputLabel, OutlinedInput, FormHelperText, IconButton, InputBase } from "@mui/material"
+import { Stack, Typography, ToggleButtonGroup, ToggleButton, Collapse, TextField, FormControl, InputLabel, OutlinedInput, FormHelperText, IconButton, InputBase, Box } from "@mui/material"
 import { Dispatch, SetStateAction, ChangeEvent, useEffect, useState } from "react"
 import { TwitterPicker, Color, ColorResult } from "react-color"
-import { MdApproval, MdCheck, MdClose } from "react-icons/md"
+import { MdApproval, MdCheck, MdClose, MdKeyboardArrowLeft, MdKeyboardReturn, MdOutlineRemoveRedEye } from "react-icons/md"
 import { IPost } from "."
 import { MyAccordion } from "../../Config"
 import { MyRadioGroup } from "../RadioGroup"
+import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi'
 
 const permalinkOptions = [
   {
@@ -59,7 +60,10 @@ export const AccordionList = (
     handleColor,
     postColor,
     selecionaImagem,
-    setSelecionaImagem
+    setSelecionaImagem,
+    setRandomImage,
+    setPreviewImage,
+    randomImage
   }: {
     post: IPost,
     setSearchImage: Dispatch<SetStateAction<string | undefined>>,
@@ -68,7 +72,10 @@ export const AccordionList = (
     handleColor: (color: ColorResult, event: ChangeEvent<HTMLInputElement>) => void,
     postColor: ColorResult | undefined,
     selecionaImagem: string | undefined,
-    setSelecionaImagem: Dispatch<SetStateAction<string | undefined>>
+    setSelecionaImagem: Dispatch<SetStateAction<string | undefined>>,
+    setRandomImage: Dispatch<SetStateAction<number>>,
+    setPreviewImage: Dispatch<SetStateAction<boolean>>,
+    randomImage: number
   }) => {
 
   return (
@@ -101,37 +108,72 @@ export const AccordionList = (
           </Collapse>
 
           <Collapse in={post.background.type === 'image'}>
-            <Stack spacing={2} sx={{ width: '100%' }}>
-              <FormControl size='small'>
-                <InputLabel size='small'>pesquise imagem</InputLabel>
-                <OutlinedInput
-                  onChange={(e) => setSearchImage(e.target.value as string)}
-                  label='pesquise imagem'
-                  endAdornment={<>
-                    {
-                      !!searchImage ? <IconButton size='small' onClick={() => setSearchImage('')} >
-                        <MdClose />
-                      </IconButton> : ''
+            <Stack spacing={1} sx={{ width: '100%' }}>
+
+              <Stack spacing={.5} sx={{ width: '17.2rem' }} justifyContent='center' alignItems='start' direction='row'>
+                {
+                  randomImage !== 1
+                    ? <IconButton sx={{ mt: .8 }} size='small' onClick={() => setRandomImage(anterior => anterior - 1)}>
+                      <MdKeyboardArrowLeft />
+                    </IconButton>
+                    : ''
+                }
+
+
+                <FormControl fullWidth size='small'>
+                  <InputLabel size='small'>pesquise imagem</InputLabel>
+                  <OutlinedInput
+                    onChange={(e) => setSearchImage(e.target.value as string)}
+                    label='pesquise imagem'
+                    startAdornment={
+                      <>
+
+                        {
+                          !!searchImage
+                            ? <IconButton size='small' sx={{ ml: -1.2 }} onClick={() => setRandomImage(anterior => anterior + 1)}>
+                              <GiPerspectiveDiceSixFacesRandom className='iconRandom' />
+                            </IconButton>
+                            : ''
+                        }
+                      </>
                     }
-                  </>}
-                  value={searchImage}
-                />
-                <FormHelperText>insira uma palavra-chave</FormHelperText>
-              </FormControl>
+                    endAdornment={<>
+                      {
+                        !!searchImage ? <IconButton size='small' onClick={() => {
+                          setSearchImage('')
+                          setRandomImage(1)
+                        }} >
+                          <MdClose />
+                        </IconButton> : ''
+                      }
+                    </>}
+                    value={searchImage}
+                  />
+                  <FormHelperText>insira uma palavra-chave</FormHelperText>
+                </FormControl>
+              </Stack>
+
 
 
               <Stack direction='row' alignItems='center' justifyContent='space-between' sx={{ width: '100%' }}>
 
-                {/* <Typography noWrap={true} >
-                  {selecionaImagem !== undefined ? selecionaImagem : ''}
-                </Typography> */}
+
                 {selecionaImagem !== undefined ? <InputBase
                   fullWidth
                   value={selecionaImagem}
+                  startAdornment={<>
+
+                    <IconButton onClick={() => setPreviewImage(prev => !prev)}>
+                      <MdOutlineRemoveRedEye />
+                    </IconButton>
+                  </>}
                   endAdornment={<> {
                     selecionaImagem !== undefined
                       ? <Stack direction='row' >
-                        <IconButton onClick={() => setSearchImage('')} size='small'>
+                        <IconButton onClick={() => {
+                          setRandomImage(1)
+                          setSearchImage('')
+                        }} size='small'>
                           <MdCheck fontSize={24} color='green' />
                         </IconButton>
                         <IconButton onClick={() => setSelecionaImagem(undefined)} size='small'>
@@ -143,17 +185,13 @@ export const AccordionList = (
                   } />
                   : ''
                 }
-
-
-
-
               </Stack>
             </Stack>
           </Collapse>
 
 
         </Stack>
-      </MyAccordion>
+      </MyAccordion >
 
 
       <MyAccordion label="link permanente" index={114} >
@@ -204,7 +242,7 @@ export const AccordionList = (
 
         </Stack>
       </MyAccordion>
-    </Stack>
+    </Stack >
 
   )
 }
