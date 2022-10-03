@@ -1,4 +1,4 @@
-import { Paper, Stack, Autocomplete, TextField, Collapse } from "@mui/material"
+import { Paper, Stack, Autocomplete, TextField, Slide } from "@mui/material"
 import { useState, MouseEvent, useEffect, Dispatch, SetStateAction } from "react"
 import { ColorResult } from 'react-color'
 import { AccordionList } from "./items/AccordionList";
@@ -102,64 +102,71 @@ export const MenuLateral = ({
   ]
   return (
 
-    <Paper
-      sx={{
-        position: 'fixed',
-        height: '84vh',
-        display: { xs: !openMenuLateral ? 'flex' : 'none', md: 'flex' },
-        bottom: 0,
-        right: 12,
-        borderRadius: '3px',
-        overflow: 'hidden',
+    <Slide in={!openMenuLateral} direction='up'>
 
-      }}>
-      <Stack
-        direction='row-reverse'
-        sx={{ overflow: 'hidden', height: '100%' }}
-      >
+
+      <Paper
+        sx={{
+          position: 'fixed',
+          height: { xs: '74vh', md: '84vh' },
+          display: { xs: !openMenuLateral ? 'flex' : 'none', md: 'flex' },
+          bottom: 0,
+          width: '100%',
+          borderTop: '2px solid #eaeaea',
+          right: { xs: 0, md: 12 },
+          borderRadius: '3px',
+          overflow: 'hidden',
+
+        }}>
         <Stack
-          spacing={2}
-          sx={{
-            minWidth: '320px',
-            height: '84vh',
-            p: 1.4,
-            pb: 6.4,
-            overflowX: 'scroll',
-            position: 'fixed',
-          }} >
-          <TextField fullWidth sx={{ '& input': { border: 'none' } }} id='subtitulo' label='subtítulo' helperText='' />
-          <Autocomplete
-            size='small'
-            id='categoria'
-            sx={{ fontFamily: 'Outfit' }}
-            options={options}
-            renderInput={(params) => <TextField  {...params} label='categoria' />}
-          />
-          <AccordionList
-            setSearchImage={setSearchImage}
+          direction='row-reverse'
+          sx={{ overflow: 'hidden', width: '100%', height: '100%' }}
+        >
+          <Stack
+            spacing={2}
+            sx={{
+              minWidth: { xs: '100%', md: '320px' },
+              height: { xs: '74vh', md: '84vh' },
+              p: 1.4,
+              pb: 6.4,
+              overflowX: 'scroll',
+              position: 'fixed',
+            }} >
+            <TextField fullWidth sx={{ '& input': { border: 'none' } }} id='subtitulo' label='subtítulo' helperText='' />
+            <Autocomplete
+              size='small'
+              id='categoria'
+              sx={{ fontFamily: 'Outfit' }}
+              options={options}
+              renderInput={(params) => <TextField  {...params} label='categoria' />}
+            />
+            <AccordionList
+              setSearchImage={setSearchImage}
+              selecionaImagem={selecionaImagem}
+              setSelecionaImagem={setSelecionaImagem}
+              searchImage={searchImage}
+              handleChange={handleChange}
+              handleColor={handleColor}
+              post={post}
+              postColor={postColor}
+              setPreviewImage={setPreviewImage}
+              setRandomImage={setRandomImage}
+              randomImage={randomImage}
+            />
+          </Stack>
+
+          <SearchImagePaper
+            previewImage={previewImage}
+            randomImage={randomImage}
+            setRandomImage={setRandomImage}
             selecionaImagem={selecionaImagem}
             setSelecionaImagem={setSelecionaImagem}
             searchImage={searchImage}
-            handleChange={handleChange}
-            handleColor={handleColor}
-            post={post}
-            postColor={postColor}
-            setPreviewImage={setPreviewImage}
-            setRandomImage={setRandomImage}
-            randomImage={randomImage}
-          />
+            backgroundType={String(post.background.type)} />
         </Stack>
+      </Paper>
+    </Slide>
 
-        <SearchImagePaper
-          previewImage={previewImage}
-          randomImage={randomImage}
-          setRandomImage={setRandomImage}
-          selecionaImagem={selecionaImagem}
-          setSelecionaImagem={setSelecionaImagem}
-          searchImage={searchImage}
-          backgroundType={String(post.background.type)} />
-      </Stack>
-    </Paper>
 
   )
 }
