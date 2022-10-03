@@ -23,7 +23,7 @@ export const MyRadioGroup = ({
       onChange={handle}
     >
       {
-        options.map((item, index) =>
+        options?.map((item, index) =>
           <FormControlLabel key={index} value={item.value} control={<Radio />} label={item.label} />)
       }
     </RadioGroup>
