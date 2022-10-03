@@ -90,7 +90,11 @@ export const MenuLateral = ({
     })
   }, [handleColor, setPostColor, setPost, setSelecionaImagem, selecionaImagem, setSearchImage])
 
-
+  useEffect(() => {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      setOpenMenuLateral(prev => !prev)
+    }
+  }, [])
   const options = [
     'nextoo',
     'lapsoo',
@@ -102,9 +106,7 @@ export const MenuLateral = ({
   ]
   return (
 
-    <Slide in={{ xs: !openMenuLateral, md: openMenuLateral }} direction='up'>
-
-
+    <Slide in={openMenuLateral} direction='up' >
       <Paper
         sx={{
           position: 'fixed',
@@ -165,7 +167,7 @@ export const MenuLateral = ({
             backgroundType={String(post.background.type)} />
         </Stack>
       </Paper>
-    </Slide>
+    </Slide >
 
 
   )
