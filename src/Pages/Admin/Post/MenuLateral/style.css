@@ -10,7 +10,20 @@
 .iconRandom {
   animation: radonIcon 4s ease-in-out infinite alternate-reverse;
 }
-
+.paperSlide {
+  animation: paperSlide 300ms ease-in-out normal;
+  transform-origin: bottom;
+}
+@keyframes paperSlide {
+  0% {
+    transform: scaleY(0);
+  }
+  98% {
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
 @keyframes radonIcon {
   0% {
     color: #ab0056;

@@ -90,8 +90,8 @@ export const HeaderBlogPost = ({
             sx={{
               display: { xs: 'flex', md: 'none' },
               transition: 'all 300ms ease-in-out',
-              background: openMenuLateral ? '#0066cc' : '#fff',
-              color: openMenuLateral ? '#f5f5f5' : '#6d6d6d',
+              background: !openMenuLateral ? '#0066cc' : '#fff',
+              color: !openMenuLateral ? '#f5f5f5' : '#6d6d6d',
               '&:hover': {
                 color: '#6d6d6d',
                 transform: 'rotate(145deg) scale(1.16) '
