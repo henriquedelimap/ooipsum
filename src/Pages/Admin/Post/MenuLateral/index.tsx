@@ -102,16 +102,16 @@ export const MenuLateral = ({
   ]
   return (
 
-    <Slide in={!openMenuLateral} direction='up'>
+    <Slide in={{ xs: !openMenuLateral, md: openMenuLateral }} direction='up'>
 
 
       <Paper
         sx={{
           position: 'fixed',
-          height: { xs: '74vh', md: '84vh' },
+          height: { xs: '64vh', md: '84vh' },
           display: { xs: !openMenuLateral ? 'flex' : 'none', md: 'flex' },
           bottom: 0,
-          width: '100%',
+          minWidth: { xs: '100%', md: '320px' },
           borderTop: '2px solid #eaeaea',
           right: { xs: 0, md: 12 },
           borderRadius: '3px',
@@ -126,7 +126,7 @@ export const MenuLateral = ({
             spacing={2}
             sx={{
               minWidth: { xs: '100%', md: '320px' },
-              height: { xs: '74vh', md: '84vh' },
+              height: { xs: '64vh', md: '84vh' },
               p: 1.4,
               pb: 6.4,
               overflowX: 'scroll',
