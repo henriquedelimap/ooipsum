@@ -1,8 +1,8 @@
 import { Stack } from "@mui/material"
 import { Dispatch, SetStateAction, ChangeEvent } from "react"
 import { ColorResult } from "react-color"
-import { IPost } from ".."
 import { postPrivacyOptions, permalinkOptions, propagationOptions } from "../../../../../Common/Script"
+import { IPost } from "../../../../../Types"
 import { ItemAccordionList } from "./item"
 import { DefineBackground } from "./item/DefineBackground"
 
