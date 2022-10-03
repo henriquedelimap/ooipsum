@@ -113,8 +113,49 @@ export const Script = {
     'https://images.unsplash.com/photo-1637140945341-f28ada987326?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80',
     'https://images.unsplash.com/photo-1645680827507-9f392edae51c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80',
     'https://images.unsplash.com/photo-1644318295821-12c4ddf2a36e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80'
-
-
   ]
-
 }
+
+export const permalinkOptions = [
+  {
+    value: 'post-title',
+    label: 'título'
+  },
+  {
+    value: 'post-title-data',
+    label: 'título e data'
+  },
+  {
+    value: 'custom',
+    label: 'customizado'
+  }
+]
+export const propagationOptions = [
+  {
+    value: 'blog',
+    label: 'blog'
+  },
+  {
+    value: 'newsletter',
+    label: 'newsletter'
+  },
+  {
+    value: 'blog-newsletter',
+    label: 'blog e newsletter'
+  }
+]
+
+export const postPrivacyOptions = [
+  {
+    value: 'just-me',
+    label: 'somente eu'
+  },
+  {
+    value: 'subscriber',
+    label: 'assinantes'
+  },
+  {
+    value: 'public',
+    label: 'público'
+  }
+]

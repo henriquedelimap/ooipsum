@@ -1,30 +1,18 @@
-import { Paper, Stack, Autocomplete, TextField } from "@mui/material"
-import { useState, MouseEvent, useEffect } from "react"
+import { Paper, Stack, Autocomplete, TextField, Collapse } from "@mui/material"
+import { useState, MouseEvent, useEffect, Dispatch, SetStateAction } from "react"
 import { ColorResult } from 'react-color'
-import { AccordionList } from "./AccordionList";
-import { SearchImagePaper } from "./SearchImage";
+import { AccordionList } from "./items/AccordionList";
+import { SearchImagePaper } from "./ImagePaper";
 import './style.css'
+import { IPost } from "../../../../Types";
 
 
-type postBackgroundType = {
-  type?: string
-  url?: string
-  color: ColorResult | undefined
-}
-
-type PermalinkType = {
-  option: string
-  custom?: string
-  url: string
-}
-export interface IPost {
-  permalink: PermalinkType
-  privacy: string
-  propagation: string
-  background: postBackgroundType
-}
-
-export const MenuLateral = () => {
+export const MenuLateral = ({
+  openMenuLateral,
+  setOpenMenuLateral }: {
+    openMenuLateral: boolean
+    setOpenMenuLateral: Dispatch<SetStateAction<boolean>>
+  }) => {
 
   const [post, setPost] = useState<IPost>({
     permalink: {
@@ -112,86 +100,70 @@ export const MenuLateral = () => {
     'lapsoo',
     'lapsoo',
   ]
-  const [openClose, setOpenClose] = useState<boolean>(false)
   return (
 
-    <Paper
-      sx={{
-        position: 'fixed',
-        height: '100vh',
-        right: 12,
-        top: '16%',
-        borderRadius: '3px',
-        zIndex: 2000,
-        overflow: 'hidden',
+    <Collapse in={openMenuLateral}>
 
-      }}>
 
-      {/* <Stack
-        onMouseEnter={() => setOpenClose(prev => !prev)}
+      <Paper
         sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          height: '100vh',
-          width: openClose ? 128 : 32,
-          background: 'pink',
-          '&:hover': {
-            width: 128,
-            background: 'blue',
-          }
+          position: 'fixed',
+          height: '84vh',
+          bottom: 0,
+          right: 12,
+          borderRadius: '3px',
+          overflow: 'hidden',
 
-        }} /> */}
-
-
-      <Stack
-        direction='row-reverse'
-        sx={{ overflow: 'hidden', height: '100%' }}
-      >
+        }}>
         <Stack
-          spacing={2}
-          sx={{
-            minWidth: '320px',
-            height: '100%',
-            p: 1.4,
-            pt: 2,
-            pb: 6.4,
-            overflowX: 'scroll',
-            position: 'fixed',
-          }} >
-          <TextField size='small' fullWidth sx={{ '& input': { border: 'none' }, mt: 3 }} id='subtitulo' label='subtítulo' helperText='' />
-          <Autocomplete
-            size='small'
-            id='categoria'
-            sx={{ fontFamily: 'Outfit' }}
-            options={options}
-            renderInput={(params) => <TextField  {...params} label='categoria' />}
-          />
-          <AccordionList
-            setSearchImage={setSearchImage}
+          direction='row-reverse'
+          sx={{ overflow: 'hidden', height: '100%' }}
+        >
+          <Stack
+            spacing={2}
+            sx={{
+              minWidth: '320px',
+              height: '84vh',
+              p: 1.4,
+              pb: 6.4,
+              overflowX: 'scroll',
+              position: 'fixed',
+            }} >
+            <TextField fullWidth sx={{ '& input': { border: 'none' } }} id='subtitulo' label='subtítulo' helperText='' />
+            <Autocomplete
+              size='small'
+              id='categoria'
+              sx={{ fontFamily: 'Outfit' }}
+              options={options}
+              renderInput={(params) => <TextField  {...params} label='categoria' />}
+            />
+            <AccordionList
+              setSearchImage={setSearchImage}
+              selecionaImagem={selecionaImagem}
+              setSelecionaImagem={setSelecionaImagem}
+              searchImage={searchImage}
+              handleChange={handleChange}
+              handleColor={handleColor}
+              post={post}
+              postColor={postColor}
+              setPreviewImage={setPreviewImage}
+              setRandomImage={setRandomImage}
+              randomImage={randomImage}
+            />
+          </Stack>
+
+          <SearchImagePaper
+            previewImage={previewImage}
+            randomImage={randomImage}
+            setRandomImage={setRandomImage}
             selecionaImagem={selecionaImagem}
             setSelecionaImagem={setSelecionaImagem}
             searchImage={searchImage}
-            handleChange={handleChange}
-            handleColor={handleColor}
-            post={post}
-            postColor={postColor}
-            setPreviewImage={setPreviewImage}
-            setRandomImage={setRandomImage}
-            randomImage={randomImage}
-          />
+            backgroundType={String(post.background.type)} />
         </Stack>
+      </Paper>
+    </Collapse>
 
-        <SearchImagePaper
-          previewImage={previewImage}
-          randomImage={randomImage}
-          setRandomImage={setRandomImage}
-          selecionaImagem={selecionaImagem}
-          setSelecionaImagem={setSelecionaImagem}
-          searchImage={searchImage}
-          backgroundType={String(post.background.type)} />
-      </Stack>
-    </Paper>
 
   )
 }

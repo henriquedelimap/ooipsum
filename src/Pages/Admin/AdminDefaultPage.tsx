@@ -10,8 +10,6 @@ export const AdminDefaultPage = () => {
   const { id } = useParams()
   const { blogConfig } = useBlogConfig()
   const { setAppBarAction, setPostPage } = useInternalConfig()
-
-
   return (
     <Stack sx={{ position: 'relative', background: '#fff', height: '100%' }}>
       <MyAppBar />

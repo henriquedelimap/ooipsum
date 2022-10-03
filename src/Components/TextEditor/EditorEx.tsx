@@ -138,7 +138,7 @@ export const MenuBar = ({ editor }: { editor: any }) => {
 
 
   return (
-    <Stack sx={{ flexWrap: 'wrap', gap: .5 }} alignItems='center' justifyContent='start' direction='row' >
+    <Stack sx={{ gap: .5, width: '100%', overflow: 'scroll' }} alignItems='center' justifyContent='start' direction='row' >
       {
         editorOptions.map((items, index) => (
 
@@ -269,8 +269,8 @@ export const EditorDeTexto = ({ editable, content }: IEditor) => {
               zIndex: 1000,
               background: isPostPage ? '#fff' : '#ffffffaf',
               backdropFilter: isPostPage ? '' : 'blur(30px)',
-              pl: 4,
-              pr: 4,
+              pl: { xs: 2.4, md: 4 },
+              pr: { xs: 2.4, md: 4 },
               borderRadius: isPostPage ? 0 : 40
             }}>
             <MenuBar editor={editor} />
