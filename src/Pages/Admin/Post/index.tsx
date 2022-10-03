@@ -35,7 +35,7 @@ export const BlogPost = () => {
       </Box>
 
       <Stack direction='row' sx={{ height: '100%', position: 'relative', overflow: 'hidden', mt: { xs: 8, md: 7 } }}>
-        <Box sx={{ background: '#fafafa', width: { xs: 'calc(100% - 0px)', md: openMenuLateral ? 'calc(100% - 340px)' : 'calc(100% - 0px)' }, height: '100%', overflow: 'scroll', position: 'fixed' }}>
+        <Box sx={{ background: '#fafafa', width: { xs: 'calc(100% - 0px)', md: 'calc(100% - 340px)' }, height: '100%', overflow: 'scroll', position: 'fixed' }}>
           <EditorDeTexto editable={true} content={frase} />
         </Box>
         <MenuLateral openMenuLateral={openMenuLateral} setOpenMenuLateral={setOpenMenuLateral} />

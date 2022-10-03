@@ -39,8 +39,7 @@ export const Menu = (prop: Prop) => {
       <Stack
         alignItems='center'
         direction='row'
-        sx={{ background: '#3d3d3d', borderRadius: openMenu ? 8 : 20, pl: openMenu ? 2 : 0, pr: openMenu ? 2 : 0, p: .4 }} >
-
+        sx={{ background: '#3d3d3d', borderRadius: openMenu ? '3px' : 20, pl: openMenu ? 2 : 0, pr: openMenu ? 2 : 0 }} >
         <Collapse in={!openMenu}>
           <Stack
             alignItems='center'
