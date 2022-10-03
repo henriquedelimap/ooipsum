@@ -92,7 +92,7 @@ export const MenuLateral = ({
 
   useEffect(() => {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      setOpenMenuLateral(prev => !prev)
+      setOpenMenuLateral(false)
     }
   }, [])
   const options = [
@@ -111,7 +111,6 @@ export const MenuLateral = ({
         sx={{
           position: 'fixed',
           height: { xs: '64vh', md: '84vh' },
-          display: { xs: !openMenuLateral ? 'flex' : 'none', md: 'flex' },
           bottom: 0,
           minWidth: { xs: '100%', md: '320px' },
           borderTop: '2px solid #eaeaea',
