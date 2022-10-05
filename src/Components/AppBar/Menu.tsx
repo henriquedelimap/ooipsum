@@ -33,20 +33,19 @@ export const Menu = (prop: Prop) => {
       }
       }
       onMouseLeave={() => setOpenMenu(false)}
-      sx={{ width: '50%', height: '100%' }}>
-
+      sx={{ width: '50%' }}>
 
       <Stack
         alignItems='center'
         direction='row'
-        sx={{ background: '#3d3d3d', borderRadius: openMenu ? '3px' : 20, pl: openMenu ? 2 : 0, pr: openMenu ? 2 : 0 }} >
+        sx={{ background: '#f6f6f6', height: 40, borderRadius: openMenu ? '3px' : 20, pl: openMenu ? 2 : 0, pr: openMenu ? 2 : 0 }} >
         <Collapse in={!openMenu}>
           <Stack
             alignItems='center'
             sx={{ width: '100%', display: !openMenu ? 'flex' : 'none' }}
           >
             <IconButton >
-              <MdMenu color='white' />
+              <MdMenu color='#6d6d6d' />
             </IconButton>
           </Stack>
         </Collapse>
@@ -78,7 +77,7 @@ const MenuItems = () => {
             onClick={(event: any) => {
               navigate(`/${item.to}`)
             }}
-            sx={{ cursor: 'pointer', color: 'white', pl: 1, pr: 1, '&:hover': { fontWeight: 600 } }}
+            sx={{ cursor: 'pointer', pl: 1, pr: 1, '&:hover': { fontWeight: 600 } }}
           >
             {item.label}
           </Typography>

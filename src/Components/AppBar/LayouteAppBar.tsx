@@ -1,4 +1,4 @@
-import { Fade, AppBar, Toolbar, Stack, Box, IconButton, Slide } from "@mui/material"
+import { Fade, AppBar, Toolbar, Stack, Box, IconButton, Slide, Container } from "@mui/material"
 import { MdArrowRight, MdKeyboardArrowLeft } from "react-icons/md"
 import { useNavigate } from "react-router-dom"
 import { useBlogConfig } from "../../Common/Context/BlogConfig"
@@ -31,11 +31,10 @@ export const StyledAppBar = (prop: Prop) => {
           backdropFilter: 'blur(30px)',
           background: '#ffffff',
           boxShadow: 'none',
-          height: 64,
+          borderBottom: '1px solid #eaeaea',
           zIndex: 3000,
         }}>
           <Toolbar sx={{ justifyContent: 'space-between' }}>
-
             <Stack direction='row' alignItems='center'>
 
               <Slide in={isPostPage} direction='right'>
@@ -43,14 +42,16 @@ export const StyledAppBar = (prop: Prop) => {
                   <MdKeyboardArrowLeft />
                 </IconButton>
               </Slide>
-              <Box sx={{ height: 60, cursor: 'pointer' }} onClick={logoOnClick}>
+
+              <Box sx={{ height: 44, cursor: 'pointer' }} onClick={logoOnClick}>
                 {Script.logo}
               </Box >
             </Stack>
 
             {prop.children}
-
           </Toolbar>
+
+
         </AppBar>
       </Fade>
     </HiddenOnScroll >

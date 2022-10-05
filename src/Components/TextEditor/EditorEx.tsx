@@ -6,6 +6,7 @@ import { MouseEvent, useEffect, useState } from 'react'
 import { BsTextParagraph } from 'react-icons/bs'
 import { MdOutlineFormatBold, MdOutlineFormatItalic, MdRedo, MdUndo, MdFormatStrikethrough, MdAdd, MdFormatSize, MdRemove, MdFormatClear, MdFormatListBulleted, MdFormatListNumbered, MdFormatQuote, MdCode, MdOutlineHorizontalRule, MdTextFormat, MdTextFields } from 'react-icons/md'
 import { useInternalConfig } from '../../Common/Context/InternalConfig'
+import { usePostContext } from '../../Common/Context/Post/usePostContext'
 import './style.css'
 import './style.css'
 
@@ -215,6 +216,7 @@ interface IEditor {
 
 export const EditorDeTexto = ({ editable, content }: IEditor) => {
   const isPostPage = window.location.pathname.split('/')[2] === 'blog'
+  const { mountPost } = usePostContext()
 
   const editor = useEditor({
     editable,
@@ -229,6 +231,11 @@ export const EditorDeTexto = ({ editable, content }: IEditor) => {
   })
 
   const json = editor?.getHTML()
+
+
+  useEffect(() => {
+    mountPost('content', String(json))
+  }, [json, editor, content])
 
 
   useEffect(() => {

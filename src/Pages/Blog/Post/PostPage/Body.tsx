@@ -6,14 +6,6 @@ import { useAuthContext } from "../../../../Common/Context/Auth"
 import { useInternalConfig } from "../../../../Common/Context/InternalConfig"
 import { EditorDeTexto } from "../../../../Components/TextEditor/EditorEx"
 export const PostPageBody = ({ page }: { page?: any }) => {
-  let text
-
-  let textFormated = `
-  <h1>${page?.title}</h1>
-  <h3>${page?.abstract}</h3>
-  `
-
-  text = textFormated
 
   const [editable, setEditable] = useState(false)
   const { auth, usuario } = useAuthContext()
@@ -26,8 +18,8 @@ export const PostPageBody = ({ page }: { page?: any }) => {
           width: '100%',
           height: '80vh',
           borderRadius: '32px',
-          background: '#3d3d3d',
-          backgroundImage: `url(${page?.img})`,
+          background: page?.background?.color?.hex,
+          backgroundImage: `url(${page?.background?.url})`,
           backgroundPosition: 'center',
           backgroundSize: 'cover',
         }} />
@@ -44,7 +36,7 @@ export const PostPageBody = ({ page }: { page?: any }) => {
         }
       </Stack>
 
-      <EditorDeTexto editable={editable} content={text} />
+      <EditorDeTexto editable={editable} content={page?.content} />
 
     </Stack>
   )

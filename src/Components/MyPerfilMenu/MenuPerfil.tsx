@@ -43,9 +43,9 @@ export const PerfilMenu = (prop: Prop) => {
           borderRadius: 1,
           background: '#fff',
           position: 'absolute',
-          right: 24,
-          top: 8,
-          width: 320,
+          right: 12,
+          top: 4,
+          width: 332,
           minHeight: 400
         }}>
         <MyPerfilMenu />

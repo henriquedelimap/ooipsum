@@ -1,26 +1,26 @@
 import { FormControl, RadioGroup, FormControlLabel, Radio, Collapse, TextField } from "@mui/material"
+import { usePostContext } from "../../../../../../Common/Context/Post/usePostContext"
 import { IRadioGroup } from "../../../../../../Types"
 
 export const MyRadioGroup = ({
   value,
-  handle,
   options,
   name,
   hasCustomArea,
   ariaLabelledby,
-  handleInput,
-  inputValue,
   inputId,
   inputLabel,
   inputHelperText,
-}: IRadioGroup) =>
+}: IRadioGroup) => {
 
-  <FormControl>
+  const { handleMountPost, post } = usePostContext()
+
+  return <FormControl>
     <RadioGroup
       aria-labelledby={ariaLabelledby}
       name={name}
-      value={value}
-      onChange={handle}
+      value={name === 'permalink' ? post?.permalink.option : post[`${name}`]}
+      onChange={handleMountPost}
     >
       {
         options?.map((item, index) =>
@@ -28,10 +28,10 @@ export const MyRadioGroup = ({
       }
     </RadioGroup>
 
-    <Collapse in={hasCustomArea && value === 'custom'}>
+    <Collapse in={hasCustomArea && post?.permalink.option === 'custom'}>
       <TextField
-        value={inputValue}
-        onChange={handleInput}
+        value={post?.permalink?.custom}
+        onChange={handleMountPost}
         size='small'
         fullWidth
         sx={{
@@ -47,3 +47,4 @@ export const MyRadioGroup = ({
     </Collapse>
 
   </FormControl>
+}

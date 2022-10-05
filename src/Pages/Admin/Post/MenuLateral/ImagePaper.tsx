@@ -1,6 +1,7 @@
 import { Stack, Collapse, Grid, IconButton, Box } from "@mui/material";
 import { useState, useEffect, Dispatch, SetStateAction, useRef } from "react";
 import { MdClose } from 'react-icons/md'
+import { usePostContext } from "../../../../Common/Context/Post/usePostContext";
 
 export interface ISearchImage {
   searchImage: string | undefined,
@@ -11,16 +12,21 @@ export interface ISearchImage {
   setRandomImage: Dispatch<SetStateAction<number>>,
   previewImage: boolean,
 }
-export const SearchImagePaper = (prop: ISearchImage) => {
+export const SearchImagePaper = () => {
+
   const {
-    searchImage,
-    backgroundType,
-    selecionaImagem,
-    setSelecionaImagem,
+    post,
+    previewImage,
     randomImage,
     setRandomImage,
-    previewImage
-  } = prop
+    searchImage,
+    selecionaImagem,
+    setSelecionaImagem
+  } = usePostContext()
+
+  let backgroundType = post?.background?.type
+
+
   const [result, setResult] = useState<any>([''])
   const [limit, setLimit] = useState<number | undefined>(undefined)
   if (randomImage === limit) {
@@ -55,11 +61,11 @@ export const SearchImagePaper = (prop: ISearchImage) => {
 
       <Collapse in={!!searchImage && backgroundType === 'image' || previewImage} >
         <Grid
-          gap={3}
+          gap={1}
           container
           alignItems='center'
           sx={{
-            width: '64vw', p: 2
+            width: '64vw', p: 2, pt: 2,
           }}
           justifyContent='space-around'>
 
@@ -81,25 +87,22 @@ export const SearchImagePaper = (prop: ISearchImage) => {
                   key={index}
                   xs={selecionaImagem === item?.urls?.small ? 12 : 10}
                   sx={{
-                    height: 'auto',
                     width: '100%',
+                    height: 640,
                     transition: 'all 300ms ease-in',
-
                   }}
                 >
                   <img style={{
-                    padding: '2px',
-                    scrollSnapAlign: 'center',
+                    scrollSnapAlign: 'start',
+
 
                     objectFit: 'cover',
                     height: 640,
                     borderRadius:
                       selecionaImagem === item?.urls?.small
                         ? '3px'
-                        : index % 2 !== 0
-                          ? '3px 32px 3px 32px'
-                          : '32px 3px 32px 3px',
-                    width: '98%',
+                        : '32px',
+                    width: '100%',
 
 
                     outline: selecionaImagem === item?.urls?.small ? '1.8px solid #0066cc' : '1.8px solid transparent',

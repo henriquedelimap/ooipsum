@@ -41,7 +41,6 @@ export const MyAppBar = () => {
               spacing={.5}
               direction='row'
               sx={{
-                p: 1,
                 zIndex: 8000
               }}
             >
@@ -49,21 +48,20 @@ export const MyAppBar = () => {
                 size='small'
                 onClick={() => navigate(`/admin/blog`)}
                 sx={{
-                  background: '#f3f3f3',
+                  background: '#f6f6f6',
                   borderRadius: 1,
                   '&:hover': {
-                    background: '#f3f3f3',
+                    background: '#f6f6f6',
                     opacity: .7,
                     color: '#000'
                   },
                 }}>
-                <MdAdd color='#3d3d3d' fontSize={26} />
+                <MdAdd color='#6d6d6d' fontSize={26} />
               </Button>
 
               <Avatar
                 sx={{
-                  background: '#f3f3f3',
-                  width: 40,
+                  background: '#f6f6f6',
                   height: 40,
                   borderRadius: openMenuPerfil ? 6 : 1
                 }}

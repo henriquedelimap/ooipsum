@@ -13,13 +13,20 @@ export type PermalinkType = {
   url: string
 }
 export interface IPost {
+  [key: string]: string | PermalinkType | postBackgroundType
   permalink: PermalinkType
+  permalinkType: string
   privacy: string
   propagation: string
   background: postBackgroundType
+  status: string
+  id: string
+  title: string
+  subtitle: string
+  description: string
+  content: string
+  createdAt: string
 }
-
-
 
 interface IRadioOptions {
   value: string
@@ -30,8 +37,7 @@ export interface IRadioGroup {
   ariaLabelledby?: string
   ariaLabel?: string
   name?: string
-  value: string
-  handle: (event: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLElement>) => void
+  value?: string
   options?: IRadioOptions[]
   hasCustomArea?: boolean
   inputValue?: string | undefined
@@ -48,13 +54,4 @@ export interface IAccordionItem extends IRadioGroup {
 }
 
 export interface IDefinedBackground extends IAccordionItem {
-  setSearchImage: Dispatch<SetStateAction<string | undefined>>
-  searchImage: string | undefined
-  handleColor: (color: ColorResult, event: ChangeEvent<HTMLInputElement>) => void
-  postColor: ColorResult | undefined
-  selecionaImagem: string | undefined
-  setSelecionaImagem: Dispatch<SetStateAction<string | undefined>>
-  setRandomImage: Dispatch<SetStateAction<number>>
-  setPreviewImage: Dispatch<SetStateAction<boolean>>
-  randomImage: number
 }

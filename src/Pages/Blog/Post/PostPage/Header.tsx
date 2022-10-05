@@ -1,10 +1,10 @@
-import { Stack, Typography, Avatar, InputBase, FormControl, Badge, IconButton, OutlinedInput } from "@mui/material"
-import { ReactElement, useState } from "react"
-import { BsTextareaT } from "react-icons/bs"
-import { MdAdd, MdClose, MdEdit } from "react-icons/md"
+import { Stack, Typography, Avatar } from "@mui/material"
+import { usePostContext } from "../../../../Common/Context/Post/usePostContext"
 import { Text } from "../../../../Components/Text"
 
 export const PostPageHeader = ({ page, category }: { page?: any, category?: any }) => {
+  const { post } = usePostContext()
+
   return (
     <Stack
       spacing={8}
@@ -27,7 +27,7 @@ export const PostPageHeader = ({ page, category }: { page?: any, category?: any 
       >
         <Text
           content={page?.title}
-          variant='h2'
+          variant='h3'
           fontFamily={1}
           center
         />

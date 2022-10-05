@@ -5,7 +5,7 @@ import theme from '../../Style/Global'
 import { AuthProvider } from './Auth'
 import { BlogConfigProvider } from './BlogConfig'
 import { InternalConfigProvider } from './InternalConfig'
-import { PostProvider } from './Post'
+import { PostProvider } from './Post/Post'
 import { SignUpProvider } from './SignUp'
 
 const client = new ApolloClient({
