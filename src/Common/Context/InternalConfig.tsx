@@ -34,9 +34,21 @@ export const useInternalConfig = () => {
   const { appBarAction, appBarSubMenu, setAppBarSubMenu, setAppBarAction, pathname, setPathname, setPostPage, postPage } = useContext(InternalConfigContext) as IInternalConfigType
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const open = Boolean(anchorEl)
+  let isPostPage = window.location.pathname.split('/')[2] === 'blog'
 
 
   return {
-    appBarAction, appBarSubMenu, setAppBarSubMenu, setAppBarAction, anchorEl, setAnchorEl, open, pathname, setPathname, setPostPage, postPage
+    appBarAction,
+    appBarSubMenu,
+    setAppBarSubMenu,
+    setAppBarAction,
+    anchorEl,
+    setAnchorEl,
+    open,
+    pathname,
+    setPathname,
+    setPostPage,
+    postPage,
+    isPostPage
   }
 }

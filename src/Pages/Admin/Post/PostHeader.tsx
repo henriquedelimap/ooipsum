@@ -1,4 +1,4 @@
-import { Toolbar, Stack, FormControl, InputLabel, Input, Button, Typography, IconButton, ButtonGroup, Divider } from "@mui/material"
+import { Toolbar, Stack, FormControl, InputLabel, Input, Button, Typography, IconButton, ButtonGroup, Divider, InputBase } from "@mui/material"
 import { ReactNode, useState, Dispatch, SetStateAction } from "react"
 import { MdKeyboardArrowDown, MdMoreHoriz, MdOutlineRemoveRedEye, MdSettings } from "react-icons/md"
 import { Navigate, useNavigate } from "react-router-dom"
@@ -85,8 +85,7 @@ export const HeaderBlogPost = ({
       >
 
         <FormControl fullWidth >
-          <InputLabel>título</InputLabel>
-          <Input value={title} name='title' id='title' onChange={handlePostHeader} />
+          <InputBase placeholder="título" value={title} name='title' id='title' onChange={handlePostHeader} />
         </FormControl>
 
         <Stack sx={{ background: '#fff' }} justifyContent='center' direction={{ xs: 'row-reverse', md: 'row' }} spacing={{ xs: 0, md: .5 }} >

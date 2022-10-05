@@ -1,6 +1,4 @@
-import { useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import { createContext, ReactNode, useContext, useState, MouseEvent, useEffect, Dispatch, SetStateAction } from "react";
+import { createContext, ReactNode, useState, MouseEvent, useEffect, Dispatch, SetStateAction } from "react";
 import { ColorResult } from "react-color";
 import { IPost } from "../../../Types";
 
@@ -43,6 +41,7 @@ export const PostProvider = ({ children }: Prop) => {
     id: '',
     title: '',
     subtitle: '',
+    category: '',
     description: '',
     content: '',
     createdAt: ''
@@ -55,6 +54,7 @@ export const PostProvider = ({ children }: Prop) => {
   const [searchImage, setSearchImage] = useState<string | undefined>(undefined)
   const [title, setTitle] = useState<string | undefined>(undefined)
   const [subTitle, setSubTitle] = useState<string | undefined>(undefined)
+
   const mountPost = (key: string, value: string) => {
     switch (key) {
       case 'title':
@@ -65,7 +65,13 @@ export const PostProvider = ({ children }: Prop) => {
         break;
       case 'subtitle':
         setPost((anterior) => {
-          anterior.subTitle = String(value)
+          anterior.subtitle = String(value)
+          return anterior
+        })
+        break;
+      case 'category':
+        setPost((anterior) => {
+          anterior.category = String(value)
           return anterior
         })
         break;
@@ -116,8 +122,7 @@ export const PostProvider = ({ children }: Prop) => {
       : (e.target as HTMLInputElement).name === 'subtitle'
         ? setSubTitle(e.target.value)
         : ''
-
-    mountPost((e.target as HTMLInputElement).name, e.target.value)
+    mountPost((e.target as HTMLInputElement).id, e.target.value)
     setPost(anterior => {
       anterior.permalink.url = String(title?.replaceAll(' ', '-'))
       return anterior

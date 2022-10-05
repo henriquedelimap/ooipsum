@@ -3,12 +3,11 @@ import { useState } from "react"
 import { BsSave } from "react-icons/bs"
 import { MdEdit } from "react-icons/md"
 import { useAuthContext } from "../../../../Common/Context/Auth"
-import { useInternalConfig } from "../../../../Common/Context/InternalConfig"
 import { EditorDeTexto } from "../../../../Components/TextEditor/EditorEx"
 export const PostPageBody = ({ page }: { page?: any }) => {
 
   const [editable, setEditable] = useState(false)
-  const { auth, usuario } = useAuthContext()
+  const { usuario } = useAuthContext()
 
   return (
     <Stack sx={{ width: '100%', position: 'relative' }} spacing={2}>

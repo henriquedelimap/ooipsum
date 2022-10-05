@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction, useState } from "react"
 import { MdMenu } from "react-icons/md"
 import { useNavigate } from 'react-router-dom'
 import { useInternalConfig } from "../../Common/Context/InternalConfig"
+import { MyDialog } from "./LayouteAppBar"
 
 
 interface Prop {
@@ -64,7 +65,16 @@ export const Menu = (prop: Prop) => {
 
 const MenuItems = () => {
   const navigate = useNavigate()
-  const { appBarAction } = useInternalConfig()
+  const {
+    appBarAction,
+    isPostPage } = useInternalConfig()
+  const [openDialog, setOpenDialog] = useState<boolean>(false)
+  const [to, setTo] = useState<string | undefined>(undefined)
+
+  const handleOpenDialog = (to: string) => {
+    setOpenDialog(true)
+    setTo(to)
+  }
   return (
     <Stack direction='row'   >
       {
@@ -74,9 +84,7 @@ const MenuItems = () => {
             color='#3d3d3d'
             variant='h6'
             fontWeight={300}
-            onClick={(event: any) => {
-              navigate(`/${item.to}`)
-            }}
+            onClick={(event: any) => isPostPage ? handleOpenDialog(`/${item.to}`) : navigate(`/${item.to}`)}
             sx={{ cursor: 'pointer', pl: 1, pr: 1, '&:hover': { fontWeight: 600 } }}
           >
             {item.label}
@@ -84,6 +92,7 @@ const MenuItems = () => {
         )
         )
       }
+      <MyDialog to={to} open={openDialog} setOpen={setOpenDialog} />
     </Stack>
   )
 }

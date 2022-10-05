@@ -13,7 +13,7 @@ export const PostPageHeader = ({ page, category }: { page?: any, category?: any 
     >
 
       <Text
-        content={category?.tag}
+        content={page?.category}
         fontWeight={400}
         variant='h6'
         center

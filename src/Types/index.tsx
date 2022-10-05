@@ -20,6 +20,7 @@ export interface IPost {
   propagation: string
   background: postBackgroundType
   status: string
+  category: string
   id: string
   title: string
   subtitle: string

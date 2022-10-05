@@ -4,13 +4,13 @@ import { PostPageBody } from "./Body"
 import { PostPageHeader } from "./Header"
 import { PostPageMoreAction } from "./MoreAction"
 
-export const PostLayout = ({ page, category, edit }: { page?: any, category?: any, edit?: boolean }) => {
+export const PostLayout = ({ page }: { page?: any }) => {
 
   return (
     <Container maxWidth='lg'>
       <Stack spacing={2}>
         <Stack sx={{ width: '100%' }} spacing={8} alignItems='center'>
-          <PostPageHeader category={category} page={page} />
+          <PostPageHeader page={page} />
           <PostPageBody page={page} />
         </Stack>
         <Divider />

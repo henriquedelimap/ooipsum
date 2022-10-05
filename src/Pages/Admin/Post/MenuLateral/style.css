@@ -16,7 +16,7 @@
 }
 @keyframes paperSlide {
   0% {
-    transform: scaleY(0);
+    transform: scaleY(0.6);
   }
   98% {
   }

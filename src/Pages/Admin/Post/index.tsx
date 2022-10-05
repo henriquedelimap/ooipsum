@@ -18,8 +18,8 @@ export const BlogPost = () => {
 
   const appBarOption = [
     {
-      label: 'post',
-      to: 'post'
+      label: 'blog',
+      to: 'blog'
     }
   ]
 
@@ -30,7 +30,7 @@ export const BlogPost = () => {
 
   return (
     <Stack sx={{ height: '100% ', position: 'relative', overflow: 'hidden' }} >
-      <Box sx={{ background: '#fff', width: '100%', mt: 8 }}>
+      <Box sx={{ background: '#fff', width: '100%', mt: 2.4 }}>
         <HeaderBlogPost openMenuLateral={openMenuLateral} setOpenMenuLateral={setOpenMenuLateral} />
       </Box>
 

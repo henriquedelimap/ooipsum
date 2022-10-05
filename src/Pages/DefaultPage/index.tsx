@@ -10,7 +10,7 @@ export const DefaultPage = () => {
 
       <MyAppBar />
 
-      <Box sx={{ height: 64, width: '100%', background: '#fafafa' }} />
+      <Box sx={{ height: 44, width: '100%', background: '#fafafa' }} />
 
       <Paper sx={{ minHeight: '100vh', pb: 8, background: '#fafafa' }}>
         <Outlet />

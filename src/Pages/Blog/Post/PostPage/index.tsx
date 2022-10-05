@@ -21,7 +21,7 @@ export const PostPage = () => {
 
   return (
     <>
-      <PostLayout category={category} page={page} />
+      <PostLayout page={page} />
       <Container maxWidth='xl'>
         <PostPageNewsletter />
       </Container>

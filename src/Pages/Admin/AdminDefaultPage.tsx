@@ -13,9 +13,12 @@ export const AdminDefaultPage = () => {
   return (
     <Stack sx={{ position: 'relative', background: '#fff', height: '100%' }}>
       <MyAppBar />
+      <Stack sx={{ height: 44, width: '100%' }} />
       <MyAdminMenu />
+
       <Stack direction='row' sx={{ width: '100%' }}>
         <Stack sx={{ width: window.location.pathname.split('/')[2] === 'blog' ? '0%' : drawerWidth, display: { xs: 'none', md: 'block' } }} />
+
         <Stack sx={{ width: { xs: '100%', md: `calc(100% - ${window.location.pathname.split('/')[2] === 'blog' ? '0%' : drawerWidth})` } }} >
           <Outlet />
         </Stack>
