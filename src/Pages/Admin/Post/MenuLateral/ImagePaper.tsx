@@ -30,17 +30,17 @@ export const SearchImagePaper = () => {
   const [result, setResult] = useState<any>([''])
   const [limit, setLimit] = useState<number | undefined>(undefined)
   if (randomImage === limit) {
-    setRandomImage(1)
+    setRandomImage(0)
   }
   const fetchRequest = async () => {
     let Access_Key = "rqQXwCDIFG2i_2LtTwi1sHOr07iPKW1n94C_HArmR64"
     randomImage
     const data = await fetch(
-      `https://api.unsplash.com/search/photos?page=${randomImage}&query=${searchImage}&client_id=${Access_Key}`
+      `https://api.unsplash.com/search/photos?page=${0 || randomImage}&query=${searchImage}&client_id=${Access_Key}`
     );
     const dataJ = await data.json();
-    const result = dataJ.results;
-    setLimit(dataJ.total_pages)
+    const result = dataJ?.results;
+    setLimit(dataJ?.total_pages)
     setResult(result)
   };
   useEffect(() => {
