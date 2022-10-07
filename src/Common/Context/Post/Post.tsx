@@ -11,6 +11,8 @@ export interface IPostContext {
   subTitle: string | undefined
   setSelecionaImagem: Dispatch<SetStateAction<string | undefined>>
   setSearchImage: Dispatch<SetStateAction<string | undefined>>
+  setCustomPermalink: Dispatch<SetStateAction<string | undefined>>
+  customPermalink: string | undefined
   searchImage: string | undefined
   postColor: ColorResult | undefined
   selecionaImagem: string | undefined
@@ -54,6 +56,7 @@ export const PostProvider = ({ children }: Prop) => {
   const [searchImage, setSearchImage] = useState<string | undefined>(undefined)
   const [title, setTitle] = useState<string | undefined>(undefined)
   const [subTitle, setSubTitle] = useState<string | undefined>(undefined)
+  const [customPermalink, setCustomPermalink] = useState<string | undefined>(undefined)
 
   const mountPost = (key: string, value: string) => {
     switch (key) {
@@ -113,8 +116,13 @@ export const PostProvider = ({ children }: Prop) => {
 
   const handleMountPost = (e: any | MouseEvent<HTMLElement>, newOption?: string) => {
     mountPost(String(newOption) === 'solido' || String(newOption) === 'image' ? 'background' : (e.target as HTMLInputElement).name, String(newOption))
+    setValue(newOption)
     setKey((e.target as HTMLInputElement).name)
   }
+
+
+  const timeElapsed = Date.now()
+  const today = new Date(timeElapsed)
 
   const handlePostHeader = (e: any) => {
     (e.target as HTMLInputElement).name === 'title'
@@ -123,10 +131,6 @@ export const PostProvider = ({ children }: Prop) => {
         ? setSubTitle(e.target.value)
         : ''
     mountPost((e.target as HTMLInputElement).id, e.target.value)
-    setPost(anterior => {
-      anterior.permalink.url = String(title?.replaceAll(' ', '-'))
-      return anterior
-    })
   }
 
   const handlePostColor = (color: ColorResult, event: React.ChangeEvent<HTMLInputElement>) => {
@@ -135,7 +139,8 @@ export const PostProvider = ({ children }: Prop) => {
 
   useEffect(() => {
     mountPost(String(key), String(value))
-  }, [setPost, mountPost])
+  }, [setPost, handleMountPost, handlePostHeader])
+
 
   useEffect(() => {
     setPost(anterior => {
@@ -143,8 +148,19 @@ export const PostProvider = ({ children }: Prop) => {
       anterior.background.url = selecionaImagem
       return anterior
     })
+  }, [handlePostColor, setPostColor, setPost, setSelecionaImagem, selecionaImagem, setSearchImage, setPost, mountPost,])
 
-  }, [handlePostColor, setPostColor, setPost, setSelecionaImagem, selecionaImagem, setSearchImage])
+  useEffect(() => {
+
+    setPost(anterior => {
+      anterior.permalink.option === 'post-title'
+        ? anterior.permalink.url = String(title?.replaceAll(' ', '-'))
+        : anterior.permalink.option === 'post-title-data'
+          ? anterior.permalink.url = String(title?.concat(`-${today.toLocaleDateString().replaceAll('/', '-')}`).replaceAll(' ', '-'))
+          : anterior.permalink.url = String(customPermalink?.replaceAll(' ', '-'))
+      return anterior
+    })
+  }, [handleMountPost, setCustomPermalink])
 
   return (
     <PostContext.Provider value={
@@ -160,7 +176,9 @@ export const PostProvider = ({ children }: Prop) => {
         mountPost,
         handlePostHeader,
         title,
-        subTitle
+        subTitle,
+        setCustomPermalink,
+        customPermalink
       }
     }>
       {children}

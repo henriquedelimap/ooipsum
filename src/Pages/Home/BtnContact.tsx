@@ -1,5 +1,6 @@
 import { Button, Typography } from "@mui/material"
 import { Dispatch, SetStateAction } from "react"
+import './styles.css'
 interface Props {
   setMouseEntering: Dispatch<SetStateAction<string>>
   mouseEntering: string
@@ -39,7 +40,7 @@ export const BtnContact = (props: Props) => {
           userSelect: 'none',
           letterSpacing: '-.4rem',
           fontStyle: 'oblique',
-          transform: 'rotate(-270deg)'
+          writingMode: 'vertical-lr'
         }}
         color={mouseEntering}>
         contato

@@ -4,9 +4,14 @@ import { Script } from "../../Common/Script";
 import { Parallax } from "./Animation/Parallax"
 import { Slider } from './Animation/Slider'
 import { PostThumb } from "./Post/PostThumb"
+
+export const category = Script?.posts?.map(item => item.category)
+
+export const filterCategory = category?.filter((e, i) => {
+  return category.indexOf(e) === i
+})
+
 export const Blog = () => {
-
-
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -18,24 +23,19 @@ export const Blog = () => {
     <>
 
       {
-        Script.blog.map((item, index) => {
+        filterCategory?.map((item, index) => {
+          let matchPostByCategory = (Script?.posts?.map(post => post.category === item ? post : '')).filter(i => i)
+
           return (
-
-            <Parallax key={index} id={item.tag} >
+            <Parallax key={index} id={item} >
               <Slider>
-                <Stack direction='row' >
-
+                <Stack direction='row' spacing={4} sx={{ pl: 12, pr: 12 }} >
                   {
-                    item.posts.map((post, index) => {
-                      return (
-                        <PostThumb index={index} key={index} post={post} />
-                      )
-                    })
+                    matchPostByCategory?.map((post, index) => <PostThumb index={index} key={index} post={post} />)
                   }
                 </Stack>
               </Slider>
             </Parallax>
-
           )
         }
         )

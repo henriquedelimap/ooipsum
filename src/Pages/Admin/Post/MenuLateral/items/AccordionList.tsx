@@ -8,65 +8,45 @@ import { ItemAccordionList } from "./item"
 import { DefineBackground } from "./item/DefineBackground"
 
 
-export const AccordionList = () => {
+export const AccordionList = () =>
+  <Stack>
+    <DefineBackground
+      accordionTitle='escolha a capa do post'
+      accordionIndex={40}
+      accordionLabel='capa'
+      ariaLabel='background'
+    />
 
-  const {
-    post,
-    handleMountPost,
-    handlePostColor,
-    previewImage,
-    setPreviewImage,
-    randomImage,
-    setRandomImage,
-    searchImage,
-    setSearchImage,
-    postColor,
-    selecionaImagem,
-    setSelecionaImagem
-  } = usePostContext()
-  return (
+    <ItemAccordionList
+      accordionTitle='como será exibida a URL desse post?'
+      accordionIndex={20}
+      accordionLabel='permalink'
+      options={permalinkOptions}
+      name='permalink'
+      hasCustomArea={true}
+      ariaLabelledby='radio-bottom-permalink'
+      inputId='permalink-custom'
+      inputLabel='link  customizado'
+      inputHelperText='http://site.com/link-customizado'
+    />
 
-    <Stack>
-      <DefineBackground
-        accordionTitle='escolha a capa do post'
-        accordionIndex={40}
-        accordionLabel='capa'
-        ariaLabel='post image'
-      />
+    <ItemAccordionList
+      accordionTitle='quem poderá ver esse post?'
+      accordionIndex={40}
+      accordionLabel='privacidade'
+      options={postPrivacyOptions}
+      name='privacy'
+      hasCustomArea={false}
+      ariaLabelledby='radio-bottom-pricacy'
+    />
 
-      <ItemAccordionList
-        accordionTitle='como será exibida a URL desse post?'
-        accordionIndex={20}
-        accordionLabel='permalink'
-        options={permalinkOptions}
-        name='permalink'
-        hasCustomArea={true}
-        ariaLabelledby='radio-bottom-permalink'
-        inputId='permalink-custom'
-        inputLabel='link  customizado'
-        inputHelperText='http://site.com/link-customizado'
-      />
-
-      <ItemAccordionList
-        accordionTitle='quem poderá ver esse post?'
-        accordionIndex={40}
-        accordionLabel='privacidade'
-        options={postPrivacyOptions}
-        name='privacy'
-        hasCustomArea={false}
-        ariaLabelledby='radio-bottom-pricacy'
-      />
-
-      <ItemAccordionList
-        accordionTitle='como será a propagação?'
-        accordionIndex={60}
-        accordionLabel='propagação'
-        options={propagationOptions}
-        name='propagation'
-        hasCustomArea={false}
-        ariaLabelledby='radio-bottom-propagationOptions'
-      />
-    </Stack >
-
-  )
-}
+    <ItemAccordionList
+      accordionTitle='como será a propagação?'
+      accordionIndex={60}
+      accordionLabel='propagação'
+      options={propagationOptions}
+      name='propagation'
+      hasCustomArea={false}
+      ariaLabelledby='radio-bottom-propagationOptions'
+    />
+  </Stack >

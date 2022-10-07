@@ -14,7 +14,9 @@ export const usePostContext = () => {
     mountPost,
     handlePostHeader,
     title,
-    subTitle
+    subTitle,
+    setCustomPermalink,
+    customPermalink
   } = useContext(PostContext) as IPostContext
 
   const [randomImage, setRandomImage] = useState<number>(1)
@@ -36,7 +38,9 @@ export const usePostContext = () => {
     mountPost,
     handlePostHeader,
     title,
-    subTitle
+    subTitle,
+    setCustomPermalink,
+    customPermalink
   }
 }
 

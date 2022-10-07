@@ -1,0 +1,33 @@
+.text {
+  background-image: linear-gradient(45deg, #0080ff, #ff0080);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+
+  pointer-events: none;
+  opacity: 0;
+  user-select: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  98% {
+    opacity: 0;
+  }
+  100% {
+    top: 0px;
+  }
+}

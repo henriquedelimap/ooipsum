@@ -76,7 +76,7 @@ const MenuItems = () => {
     setTo(to)
   }
   return (
-    <Stack direction='row'   >
+    <Stack direction='row'  >
       {
         appBarAction?.map((item: any, index: any) => (
           <Typography

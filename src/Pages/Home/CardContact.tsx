@@ -17,11 +17,12 @@ export const CardContact = (props: Props) => {
     <Slide direction='down' in={openContact}>
       <Fade in={openContact}>
         <Stack
+
           alignItems='center'
           alignSelf='center'
           justifySelf='center'
           justifyContent='center'
-          sx={{ width: '100%', height: '100%' }}>
+          sx={{ width: '100%', height: '100%', display: openContact ? 'flex' : 'none' }}>
           <Avatar src={Logo} sx={{ width: 240, height: 240 }} />
         </Stack>
       </Fade>

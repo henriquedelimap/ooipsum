@@ -13,7 +13,7 @@ export const MyRadioGroup = ({
   inputHelperText,
 }: IRadioGroup) => {
 
-  const { handleMountPost, post } = usePostContext()
+  const { handleMountPost, post, setCustomPermalink, customPermalink } = usePostContext()
 
   return <FormControl>
     <RadioGroup
@@ -30,8 +30,8 @@ export const MyRadioGroup = ({
 
     <Collapse in={hasCustomArea && post?.permalink.option === 'custom'}>
       <TextField
-        value={post?.permalink?.custom}
-        onChange={handleMountPost}
+        value={customPermalink?.replaceAll(' ', '-')}
+        onChange={(e) => setCustomPermalink(e.target.value)}
         size='small'
         fullWidth
         sx={{

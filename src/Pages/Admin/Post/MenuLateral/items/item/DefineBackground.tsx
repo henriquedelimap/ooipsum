@@ -34,7 +34,8 @@ export const DefineBackground = ({
         <Typography variant='subtitle2' color='text.secondary'>{accordionTitle} </Typography>
         <ToggleButtonGroup
           fullWidth
-          value={post.background.type}
+          id="background"
+          value={post?.background?.type}
           exclusive
           onChange={handleMountPost}
           aria-label={ariaLabel}

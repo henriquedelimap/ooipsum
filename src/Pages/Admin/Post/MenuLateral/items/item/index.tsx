@@ -19,7 +19,7 @@ export const ItemAccordionList = ({
   accordionIndex,
   accordionLabel
 }: IAccordionItem) => {
-  const { handleMountPost } = usePostContext()
+  const { handleMountPost, post } = usePostContext()
   return (
 
     <MyAccordion label={accordionLabel} index={accordionIndex} >
@@ -31,8 +31,6 @@ export const ItemAccordionList = ({
           name={name}
           hasCustomArea={hasCustomArea}
           ariaLabelledby={ariaLabelledby}
-          handleInput={handleInput}
-          inputValue={inputValue}
           inputId={inputId}
           inputLabel={inputLabel}
           inputHelperText={inputHelperText}

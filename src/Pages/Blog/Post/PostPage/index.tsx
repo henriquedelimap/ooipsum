@@ -10,8 +10,7 @@ import { PostLayout } from "./PostLayout"
 export const PostPage = () => {
 
   const { id } = useParams()
-  const page = Script.blog.map((item) => item.posts.find((post) => post.id === id)).filter(i => i)[0]
-  const category = Script.blog.find((item) => item.posts.find((post) => post.id === id))
+  const page = Script.posts?.filter(post => post.id === id)[0]
 
   if (!page) {
     return (
@@ -30,8 +29,8 @@ export const PostPage = () => {
         <Slider>
           <Stack direction='row' spacing={2}>
             {
-              category?.posts.map((post, index) => (
-                post === page ? '' : <PostThumb small index={index} key={index} post={post} />
+              Script?.posts.map((post, index) => (
+                <PostThumb small index={index} key={index} post={post} />
               )
               )
             }

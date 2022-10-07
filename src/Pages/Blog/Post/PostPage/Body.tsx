@@ -1,11 +1,13 @@
 import { IconButton, Stack } from "@mui/material"
-import { useState } from "react"
+import { useEditor } from "@tiptap/react"
+import StarterKit from "@tiptap/starter-kit"
+import { useEffect, useState } from "react"
 import { BsSave } from "react-icons/bs"
 import { MdEdit } from "react-icons/md"
 import { useAuthContext } from "../../../../Common/Context/Auth"
 import { EditorDeTexto } from "../../../../Components/TextEditor/EditorEx"
-export const PostPageBody = ({ page }: { page?: any }) => {
 
+export const PostPageBody = ({ page }: { page: any }) => {
   const [editable, setEditable] = useState(false)
   const { usuario } = useAuthContext()
 

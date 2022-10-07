@@ -38,11 +38,12 @@ export const StyledAppBar = (prop: Prop) => {
           boxShadow: 'none',
           borderBottom: '1px solid #eaeaea',
           zIndex: 3000,
-        }}>
-          <Toolbar sx={{ justifyContent: 'space-between' }}>
-            <Stack direction='row' alignItems='center'>
 
-              <Slide in={isPostPage} direction='right'>
+        }}>
+          <Toolbar sx={{ justifyContent: 'space-between', position: 'relative' }}>
+            <Stack direction='row' alignItems='center' >
+
+              <Slide in={isPostPage} direction='right' >
                 <IconButton
                   sx={{ display: isPostPage ? 'flex' : 'none' }}
                   onClick={() => setOpenDialog(true)}>

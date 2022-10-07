@@ -75,7 +75,7 @@ export const HeaderBlogPost = ({
 
 
   return (
-    <Toolbar sx={{ width: '100%', position: 'fixed' }}>
+    <Toolbar sx={{ width: '100%', position: 'fixed', background: '#fff' }}>
       <Stack
         spacing={{ xs: 1, md: 4 }}
         sx={{ width: '100%' }}
