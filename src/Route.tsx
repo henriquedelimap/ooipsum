@@ -27,7 +27,7 @@ export const Rotas = () => {
             <Route path='blog' element={<Blog />} />
           </Route>
 
-          <Route path='blog/:id' element={<BlogRotas />} />
+          <Route path='post/:id' element={<BlogRotas />} />
 
           <Route path='admin' element={!!auth ? <AdminDefaultPage /> : <Acessar />} >
             <Route index element={<AdminHomePage />} />

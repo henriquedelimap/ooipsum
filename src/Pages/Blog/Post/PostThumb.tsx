@@ -7,7 +7,7 @@ export const PostThumb = ({ post, index, small }: { post: any, index: number, sm
 
   return (
     <Card
-      onClick={() => navigate(`/blog/${post.id}`)}
+      onClick={() => navigate(`/post/${post.permalink.url}`)}
       sx={{
         scrollSnapAlign: 'center',
         width: !!small ? '50vw' : '80vw',

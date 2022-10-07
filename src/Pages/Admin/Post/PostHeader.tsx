@@ -89,12 +89,15 @@ export const HeaderBlogPost = ({
         </FormControl>
 
         <Stack sx={{ background: '#fff' }} justifyContent='center' direction={{ xs: 'row-reverse', md: 'row' }} spacing={{ xs: 0, md: .5 }} >
-          <MyButton onClick={() => navigate(post.permalink.url)
-          }
+          <MyButton
+            onClick={() => navigate(post?.permalink.url)}
             label='pré-vizualizar'
             variant='outlined'
             startIcon={<MdOutlineRemoveRedEye color='#3d3d3d' />} />
-          <MyButton label='publicar' variant='contained' />
+          <MyButton
+            onClick={() => navigate(`/post/${post?.permalink.url}`)}
+            label='publicar'
+            variant='contained' />
           <IconButton
             onClick={() => setOpenMenuLateral(prev => !prev)}
             sx={{

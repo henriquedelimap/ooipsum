@@ -13,7 +13,11 @@ export const Script = {
   posts: [
     {
       id: 'abc123',
+      permalink: {
+        url: 'abc123',
+      },
       title: 'conheça o lapsoo',
+
       subtitle: 'amo Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos officia dolor nemo perspiciatis neque facilis nostrum molestiae doloribus similique perferendis!',
       description: '',
       background: {
@@ -25,7 +29,11 @@ export const Script = {
     },
     {
       id: 'bac213',
+      permalink: {
+        url: 'bac213',
+      },
       title: 'como usar?',
+
       subtitle: 'Lorem dolor sit amet consectetur adipisicing elit. Eos officia dolor nemo perspiciatis neque facilis nostrum molestiae doloribus similique perferendis!',
       description: '',
       background: {
@@ -41,6 +49,9 @@ export const Script = {
     {
       id: 'abs131',
       title: 'quando usar?',
+      permalink: {
+        url: 'abs131',
+      },
       subtitle: ' adipisicing elit. Eos officia dolor nemo perspiciatis neque facilis nostrum molestiae doloribus similique perferendis!',
       description: '',
       background: {
@@ -57,6 +68,9 @@ export const Script = {
     {
       id: 'abc12123',
       title: 'conheça o nextoo',
+      permalink: {
+        url: 'abc12123',
+      },
       subtitle: 'Lorem  officia dolor nemo perspiciatis neque facilis nostrum molestiae doloribus similique perferendis!',
       description: '',
       background: {
@@ -76,6 +90,9 @@ export const Script = {
       category: 'nextoo',
 
       content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel quibusdam commodi dolorem est mollitia optio, libero perspiciatis eos sit doloremque facere consequatur nemo exercitationem iure consectetur rerum hic? Non distinctio repellat temporibus quidem saepe? Suscipit facilis modi aliquid numquam sapiente repellat placeat labore et debitis eaque repellendus deleniti non ut, iste itaque a commodi vero amet maxime nemo. Quam, magnam itaque! Iusto est ex ab totam debitis harum similique perferendis?',
+      permalink: {
+        url: 'asdbc123',
+      },
       subtitle: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos officia dolor nemo perspiciatis neque facilis nostrum molestiae doloribus similique perferendis!',
       createdAt: '28 jan 2022'
     },
@@ -89,12 +106,18 @@ export const Script = {
       category: 'nextoo',
 
       content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel quibusdam commodi dolorem est mollitia optio, libero perspiciatis eos sit doloremque facere consequatur nemo exercitationem iure consectetur rerum hic? Non distinctio repellat temporibus quidem saepe? Suscipit facilis modi aliquid numquam sapiente repellat placeat labore et debitis eaque repellendus deleniti non ut, iste itaque a commodi vero amet maxime nemo. Quam, magnam itaque! Iusto est ex ab totam debitis harum similique perferendis?',
+      permalink: {
+        url: 'abcfws23',
+      },
       subtitle: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos officia dolor nemo perspiciatis neque facilis nostrum molestiae doloribus similique perferendis!',
       createdAt: '20 set 2022'
     },
     {
       id: 'abc12324123',
       title: 'boas práticas',
+      permalink: {
+        url: 'abc12324123',
+      },
       subtitle: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos officia dolor nemo perspiciatis neque facilis nostrum molestiae doloribus similique perferendis!',
       description: '',
       background: {
@@ -115,6 +138,9 @@ export const Script = {
       category: 'nextoo',
 
       content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel quibusdam commodi dolorem est mollitia optio, libero perspiciatis eos sit doloremque facere consequatur nemo exercitationem iure consectetur rerum hic? Non distinctio repellat temporibus quidem saepe? Suscipit facilis modi aliquid numquam sapiente repellat placeat labore et debitis eaque repellendus deleniti non ut, iste itaque a commodi vero amet maxime nemo. Quam, magnam itaque! Iusto est ex ab totam debitis harum similique perferendis?',
+      permalink: {
+        url: 'asdasd21bc123',
+      },
       subtitle: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos officia dolor nemo perspiciatis neque facilis nostrum molestiae doloribus similique perferendis!',
       createdAt: '8 jul 2022'
     },
@@ -128,6 +154,9 @@ export const Script = {
       category: 'nextoo',
 
       content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel quibusdam commodi dolorem est mollitia optio, libero perspiciatis eos sit doloremque facere consequatur nemo exercitationem iure consectetur rerum hic? Non distinctio repellat temporibus quidem saepe? Suscipit facilis modi aliquid numquam sapiente repellat placeat labore et debitis eaque repellendus deleniti non ut, iste itaque a commodi vero amet maxime nemo. Quam, magnam itaque! Iusto est ex ab totam debitis harum similique perferendis?',
+      permalink: {
+        url: 'adbcs43223',
+      },
       subtitle: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos officia dolor nemo perspiciatis neque facilis nostrum molestiae doloribus similique perferendis!',
       createdAt: '20 ago 2022'
     }
